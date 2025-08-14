@@ -4,6 +4,7 @@ class DataLoader {
         this.componentsData = null;
         this.fullComponentsData = null; // Store full data for accurate counts
         this.templatesData = null; // Deprecated - templates now in components.json
+        this.metadataData = null; // External metadata for tags, companies, technologies
         this.loadingStates = {
             components: false
         };
@@ -46,6 +47,9 @@ class DataLoader {
             // Store both full and component data
             this.fullComponentsData = allData;
             this.componentsData = allData;
+            
+            // Load metadata
+            await this.loadMetadata();
             
             this.cache.set(cacheKey, allData);
             
@@ -367,6 +371,250 @@ class DataLoader {
             mcps: this.componentsData?.mcps?.length || 0,
             templates: this.componentsData?.templates?.length || 0
         };
+    }
+
+    // Load external metadata
+    async loadMetadata() {
+        try {
+            const cacheKey = 'metadata';
+            if (this.cache.has(cacheKey)) {
+                this.metadataData = this.cache.get(cacheKey);
+                return this.metadataData;
+            }
+
+            const response = await fetch('components-metadata.json', {
+                headers: {
+                    'Cache-Control': 'max-age=300' // 5 minutes cache
+                }
+            });
+            
+            if (!response.ok) {
+                console.warn('Could not load metadata file, using empty metadata');
+                this.metadataData = { metadata: {}, companies: {}, technologies: {} };
+                return this.metadataData;
+            }
+            
+            this.metadataData = await response.json();
+            this.cache.set(cacheKey, this.metadataData);
+            
+            return this.metadataData;
+        } catch (error) {
+            console.warn('Error loading metadata:', error);
+            this.metadataData = { metadata: {}, companies: {}, technologies: {} };
+            return this.metadataData;
+        }
+    }
+
+    // Get metadata for component (external metadata takes priority over frontmatter)
+    getComponentMetadata(componentName) {
+        if (!this.metadataData) {
+            return { tags: [], companies: [], technologies: [] };
+        }
+        
+        const metadata = this.metadataData.metadata[componentName];
+        if (metadata) {
+            return {
+                tags: metadata.tags || [],
+                companies: metadata.companies || [],
+                technologies: metadata.technologies || []
+            };
+        }
+        
+        // Fallback to empty metadata
+        return { tags: [], companies: [], technologies: [] };
+    }
+
+    // Extract tags from component frontmatter (kept as fallback)
+    extractTagsFromFrontmatter(content) {
+        if (!content) return { tags: [], companies: [], technologies: [] };
+        
+        const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
+        if (!frontmatterMatch) return { tags: [], companies: [], technologies: [] };
+        
+        const frontmatter = frontmatterMatch[1];
+        
+        // Extract tags array
+        const tagsMatch = frontmatter.match(/tags:\s*\[(.*?)\]/s);
+        const tags = tagsMatch 
+            ? tagsMatch[1].split(',').map(tag => tag.trim().replace(/['"]/g, ''))
+            : [];
+        
+        // Extract companies array
+        const companiesMatch = frontmatter.match(/companies:\s*\[(.*?)\]/s);
+        const companies = companiesMatch 
+            ? companiesMatch[1].split(',').map(company => company.trim().replace(/['"]/g, ''))
+            : [];
+            
+        // Extract technologies array
+        const technologiesMatch = frontmatter.match(/technologies:\s*\[(.*?)\]/s);
+        const technologies = technologiesMatch 
+            ? technologiesMatch[1].split(',').map(tech => tech.trim().replace(/['"]/g, ''))
+            : [];
+        
+        return { tags, companies, technologies };
+    }
+
+    // Get all unique tags from components
+    getAllTags() {
+        const allTags = new Set();
+        this.getAllComponents().forEach(component => {
+            const { tags } = this.getComponentMetadata(component.name);
+            tags.forEach(tag => allTags.add(tag));
+        });
+        return Array.from(allTags).sort();
+    }
+
+    // Get all unique companies from components
+    getAllCompanies() {
+        const allCompanies = new Set();
+        this.getAllComponents().forEach(component => {
+            const { companies } = this.getComponentMetadata(component.name);
+            companies.forEach(company => allCompanies.add(company));
+        });
+        return Array.from(allCompanies).sort();
+    }
+
+    // Get all unique technologies from components
+    getAllTechnologies() {
+        const allTechnologies = new Set();
+        this.getAllComponents().forEach(component => {
+            const { technologies } = this.getComponentMetadata(component.name);
+            technologies.forEach(tech => allTechnologies.add(tech));
+        });
+        return Array.from(allTechnologies).sort();
+    }
+
+    // Get company info from metadata
+    getCompanyInfo(companySlug) {
+        if (!this.metadataData || !this.metadataData.companies) {
+            return null;
+        }
+        return this.metadataData.companies[companySlug] || null;
+    }
+
+    // Get technology info from metadata
+    getTechnologyInfo(techSlug) {
+        if (!this.metadataData || !this.metadataData.technologies) {
+            return null;
+        }
+        return this.metadataData.technologies[techSlug] || null;
+    }
+
+    // Filter components by tags, companies, or technologies
+    filterComponentsByTags(filterOptions = {}) {
+        const { tags = [], companies = [], technologies = [], type = null } = filterOptions;
+        
+        let filteredComponents = this.getAllComponents();
+        
+        // Filter by type if specified
+        if (type) {
+            filteredComponents = filteredComponents.filter(component => component.type === type);
+        }
+        
+        // Filter by tags, companies, or technologies
+        if (tags.length > 0 || companies.length > 0 || technologies.length > 0) {
+            filteredComponents = filteredComponents.filter(component => {
+                const componentMeta = this.getComponentMetadata(component.name);
+                
+                const hasMatchingTag = tags.length === 0 || tags.some(tag => 
+                    componentMeta.tags.includes(tag)
+                );
+                
+                const hasMatchingCompany = companies.length === 0 || companies.some(company => 
+                    componentMeta.companies.includes(company)
+                );
+                
+                const hasMatchingTechnology = technologies.length === 0 || technologies.some(tech => 
+                    componentMeta.technologies.includes(tech)
+                );
+                
+                return hasMatchingTag || hasMatchingCompany || hasMatchingTechnology;
+            });
+        }
+        
+        return filteredComponents;
+    }
+
+    // Get components for a specific company stack
+    getCompanyStack(companySlug) {
+        const companyComponents = this.filterComponentsByTags({ companies: [companySlug] });
+        
+        // Group by type
+        const groupedComponents = {
+            agents: companyComponents.filter(c => c.type === 'agent'),
+            commands: companyComponents.filter(c => c.type === 'command'),
+            mcps: companyComponents.filter(c => c.type === 'mcp'),
+            settings: companyComponents.filter(c => c.type === 'setting'),
+            hooks: companyComponents.filter(c => c.type === 'hook'),
+            templates: companyComponents.filter(c => c.type === 'template')
+        };
+        
+        return groupedComponents;
+    }
+
+    // Get components for a specific technology stack
+    getTechnologyStack(techSlug) {
+        const techComponents = this.filterComponentsByTags({ technologies: [techSlug] });
+        
+        // Group by type
+        const groupedComponents = {
+            agents: techComponents.filter(c => c.type === 'agent'),
+            commands: techComponents.filter(c => c.type === 'command'),
+            mcps: techComponents.filter(c => c.type === 'mcp'),
+            settings: techComponents.filter(c => c.type === 'setting'),
+            hooks: techComponents.filter(c => c.type === 'hook'),
+            templates: techComponents.filter(c => c.type === 'template')
+        };
+        
+        return groupedComponents;
+    }
+
+    // Get all settings components
+    getSettings() {
+        if (!this.componentsData) return [];
+        return this.componentsData.settings || [];
+    }
+
+    // Get all hooks components
+    getHooks() {
+        if (!this.componentsData) return [];
+        return this.componentsData.hooks || [];
+    }
+
+    // Get settings by category
+    getSettingsByCategory(category) {
+        const settings = this.getSettings();
+        return settings.filter(setting => setting.category === category);
+    }
+
+    // Get hooks by category
+    getHooksByCategory(category) {
+        const hooks = this.getHooks();
+        return hooks.filter(hook => hook.category === category);
+    }
+
+    // Get all setting categories
+    getSettingCategories() {
+        const settings = this.getSettings();
+        const categories = new Set();
+        settings.forEach(setting => {
+            if (setting.category) {
+                categories.add(setting.category);
+            }
+        });
+        return Array.from(categories).sort();
+    }
+
+    // Get all hook categories
+    getHookCategories() {
+        const hooks = this.getHooks();
+        const categories = new Set();
+        hooks.forEach(hook => {
+            if (hook.category) {
+                categories.add(hook.category);
+            }
+        });
+        return Array.from(categories).sort();
     }
 }
 

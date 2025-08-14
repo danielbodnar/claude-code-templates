@@ -152,6 +152,12 @@
                     <button class="filter-btn" data-filter="commands" onclick="setUnifiedFilter('commands')">
                         ⚡ Commands
                     </button>
+                    <button class="filter-btn" data-filter="settings" onclick="setUnifiedFilter('settings')">
+                        ⚙️ Settings
+                    </button>
+                    <button class="filter-btn" data-filter="hooks" onclick="setUnifiedFilter('hooks')">
+                        🪝 Hooks
+                    </button>
                     <button class="filter-btn" data-filter="mcps" onclick="setUnifiedFilter('mcps')">
                         🔌 MCPs
                     </button>
@@ -178,6 +184,100 @@
             <!-- Content container -->
             <div class="unified-grid" id="unifiedGrid" id="components-content">
                 <!-- All content will be loaded here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Company Stacks Carousel -->
+        <section class="company-stacks-carousel" style="display: none;">
+            <div class="command-block">
+                <div class="command-label">$ Popular Development Stacks</div>
+                <div class="command-description">Complete component collections for major companies and technologies</div>
+            </div>
+            <div class="carousel-container">
+                <button class="carousel-btn carousel-btn-left" onclick="scrollCarousel('left')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"/>
+                    </svg>
+                </button>
+                <div class="carousel-track" id="companyCarousel">
+                    <a href="#/company/openai" class="company-stack-card" onclick="window.stackRouter?.navigateTo('#/company/openai')">
+                        <div class="company-logo">🤖</div>
+                        <div class="company-info">
+                            <h3>OpenAI</h3>
+                            <p>GPT, DALL-E & Whisper APIs</p>
+                        </div>
+                        <div class="stack-arrow">→</div>
+                    </a>
+                    <a href="#/company/anthropic" class="company-stack-card" onclick="window.stackRouter?.navigateTo('#/company/anthropic')">
+                        <div class="company-logo">🧠</div>
+                        <div class="company-info">
+                            <h3>Anthropic</h3>
+                            <p>Claude AI integration</p>
+                        </div>
+                        <div class="stack-arrow">→</div>
+                    </a>
+                    <a href="#/company/stripe" class="company-stack-card" onclick="window.stackRouter?.navigateTo('#/company/stripe')">
+                        <div class="company-logo">💳</div>
+                        <div class="company-info">
+                            <h3>Stripe</h3>
+                            <p>Payment processing APIs</p>
+                        </div>
+                        <div class="stack-arrow">→</div>
+                    </a>
+                    <a href="#/company/salesforce" class="company-stack-card" onclick="window.stackRouter?.navigateTo('#/company/salesforce')">
+                        <div class="company-logo">☁️</div>
+                        <div class="company-info">
+                            <h3>Salesforce</h3>
+                            <p>CRM & Lightning platform</p>
+                        </div>
+                        <div class="stack-arrow">→</div>
+                    </a>
+                    <a href="#/company/shopify" class="company-stack-card" onclick="window.stackRouter?.navigateTo('#/company/shopify')">
+                        <div class="company-logo">🛒</div>
+                        <div class="company-info">
+                            <h3>Shopify</h3>
+                            <p>E-commerce APIs & apps</p>
+                        </div>
+                        <div class="stack-arrow">→</div>
+                    </a>
+                    <a href="#/company/twilio" class="company-stack-card" onclick="window.stackRouter?.navigateTo('#/company/twilio')">
+                        <div class="company-logo">📞</div>
+                        <div class="company-info">
+                            <h3>Twilio</h3>
+                            <p>Communication APIs</p>
+                        </div>
+                        <div class="stack-arrow">→</div>
+                    </a>
+                    <a href="#/company/aws" class="company-stack-card" onclick="window.stackRouter?.navigateTo('#/company/aws')">
+                        <div class="company-logo">☁️</div>
+                        <div class="company-info">
+                            <h3>AWS</h3>
+                            <p>Cloud & serverless APIs</p>
+                        </div>
+                        <div class="stack-arrow">→</div>
+                    </a>
+                    <a href="#/company/github" class="company-stack-card" onclick="window.stackRouter?.navigateTo('#/company/github')">
+                        <div class="company-logo">🐙</div>
+                        <div class="company-info">
+                            <h3>GitHub</h3>
+                            <p>Git automation & Actions</p>
+                        </div>
+                        <div class="stack-arrow">→</div>
+                    </a>
+                    <a href="#/companies" class="company-stack-card view-all-card" onclick="window.stackRouter?.navigateTo('#/companies')">
+                        <div class="company-logo">👀</div>
+                        <div class="company-info">
+                            <h3>View All</h3>
+                            <p>30+ companies & platforms</p>
+                        </div>
+                        <div class="stack-arrow">→</div>
+                    </a>
+                </div>
+                <button class="carousel-btn carousel-btn-right" onclick="scrollCarousel('right')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/>
+                    </svg>
+                </button>
             </div>
         </section>
 
@@ -398,8 +498,11 @@
     </div>
 
     <link rel="stylesheet" href="css/workflows-modal.css">
+    <link rel="stylesheet" href="css/stack-page.css">
     <script src="js/utils.js"></script>
     <script src="js/data-loader.js"></script>
+    <script src="js/stack-router.js"></script>
+    <script src="js/carousel.js"></script>
     <script src="js/cart-manager.js"></script>
     <script src="js/index-events.js"></script>
     <script src="js/modal-helpers.js"></script>

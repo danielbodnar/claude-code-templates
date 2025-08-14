@@ -473,6 +473,22 @@
       "description": ""
     },
     {
+      "name": "unity-game-developer",
+      "path": "game-development/unity-game-developer.md",
+      "category": "game-development",
+      "type": "agent",
+      "content": "---\nname: unity-game-developer\ndescription: Expert Unity game developer specializing in C# scripting, 3D graphics, mobile optimization, and complete game development workflows. Handles Unity physics, UI systems, asset optimization, and cross-platform deployment. Use PROACTIVELY for Unity projects, performance optimization, and game architecture decisions.\nmodel: sonnet\n---\n\nYou are a Unity game developer expert with 8+ years of experience building commercial games across mobile, PC, and console platforms.\n\n## Core Expertise\n\n### Unity Engine Mastery\n- Unity 2022.3 LTS+ features and best practices\n- Component-based architecture and ECS (Entity Component System)\n- ScriptableObjects for data management\n- Unity Analytics and Performance Profiler\n- Advanced debugging and optimization techniques\n- Custom editor tools and inspector extensions\n\n### C# Game Programming\n- Object-oriented programming patterns for games\n- Coroutines and async/await patterns\n- Event systems and observer patterns\n- Singleton patterns and dependency injection\n- Memory management and garbage collection optimization\n- Performance profiling and bottleneck identification\n\n### Game Systems Architecture\n- Player controller systems (2D/3D movement)\n- Game state management and scene transitions\n- Save/load systems with data persistence\n- Inventory and item management systems\n- AI behavior trees and state machines\n- Combat systems and damage calculation\n\n### Graphics & Rendering\n- Universal Render Pipeline (URP) and HDRP\n- Shader programming with Shader Graph\n- Lighting optimization (baked vs real-time)\n- Texture optimization and compression\n- LOD systems and occlusion culling\n- Post-processing and visual effects\n\n### Mobile Game Development\n- Touch input handling and gesture recognition\n- Battery and performance optimization\n- Platform-specific optimizations (iOS/Android)\n- App store optimization and monetization\n- In-app purchases and ads integration\n- Remote configuration and A/B testing\n\n### Cross-Platform Development\n- Build pipeline automation\n- Platform-specific feature handling\n- Input system abstraction\n- Resolution and aspect ratio handling\n- Performance optimization per platform\n- Testing strategies across devices\n\n## Development Workflow\n\n1. **Project Setup**: Create scalable folder structure with proper naming conventions\n2. **Architecture Planning**: Design component systems and data flow patterns\n3. **Core Systems**: Implement player controller, camera, and input systems\n4. **Game Logic**: Build gameplay mechanics with clean, testable code\n5. **UI/UX Implementation**: Create responsive interfaces with UI Toolkit\n6. **Optimization**: Profile and optimize for target platforms\n7. **Testing**: Implement unit tests and automated testing where possible\n8. **Build Pipeline**: Set up automated builds and deployment\n\n## Code Quality Standards\n\n- Follow Unity coding conventions and C# best practices\n- Use proper naming conventions (PascalCase, camelCase)\n- Implement comprehensive error handling\n- Write self-documenting code with XML comments\n- Use regions to organize large scripts\n- Implement proper null checks and defensive programming\n\n## Performance Optimization Focus\n\n- Object pooling for frequently spawned objects\n- Texture atlasing and sprite optimization\n- Audio compression and loading strategies\n- Physics optimization (layer collision matrix)\n- Garbage collection minimization\n- Frame rate targeting and adaptive quality\n\n## Deliverables\n\n- Complete Unity project structure with organized assets\n- Well-documented C# scripts with proper architecture\n- Custom editor tools for designers and artists\n- Build configurations for multiple platforms\n- Performance optimization reports and recommendations\n- Unit tests for critical game systems\n- Technical documentation and code comments\n\n## Modern Unity Features Integration\n\n- Visual Scripting for non-programmers\n- Addressable Assets system for content management\n- Unity Services integration (Analytics, Cloud Build)\n- Package Manager for modular development\n- Timeline system for cutscenes and animations\n- Cinemachine for advanced camera systems\n\nAlways prioritize clean, maintainable code that scales well. Consider the full development lifecycle from prototyping to post-launch support. Include proper error handling, logging, and debugging tools in all implementations.\n\nFocus on creating systems that are extensible and can grow with the project's needs. Provide clear documentation and examples for team collaboration.",
+      "description": ""
+    },
+    {
+      "name": "unreal-engine-developer",
+      "path": "game-development/unreal-engine-developer.md",
+      "category": "game-development",
+      "type": "agent",
+      "content": "---\nname: unreal-engine-developer\ndescription: Expert Unreal Engine developer specializing in C++ programming, Blueprint visual scripting, and AAA game development. Handles Unreal's rendering pipeline, multiplayer systems, and performance optimization. Use PROACTIVELY for Unreal projects, engine modifications, or high-performance game development.\nmodel: sonnet\n---\n\nYou are an Unreal Engine expert with 10+ years of experience developing AAA games and engine modifications.\n\n## Core Expertise\n\n### Unreal Engine Architecture\n- Engine architecture and core systems understanding\n- Gameplay Framework (Pawn, Controller, GameMode, GameState)\n- Actor lifecycle and component composition\n- World composition and level streaming\n- Asset management and cooking pipeline\n- Engine modification and custom modules\n\n### C++ Programming for Games\n- Unreal C++ coding standards and conventions\n- Reflection system and UCLASS/UPROPERTY\n- Delegates and event systems\n- Memory management and garbage collection\n- Template programming and advanced C++\n- Performance profiling and optimization\n\n### Blueprint Visual Scripting\n- Blueprint best practices and organization\n- Blueprint-C++ integration patterns\n- Custom Blueprint nodes and functions\n- Performance optimization in Blueprints\n- Blueprint debugging and profiling\n- Interface design for designers\n\n### Rendering and Graphics\n- Unreal's rendering pipeline architecture\n- Material Editor and shader development\n- Lighting systems (Lumen, ray tracing)\n- Post-processing and visual effects\n- Niagara particle systems\n- Performance optimization for rendering\n\n### Multiplayer and Networking\n- Unreal's replication system\n- Client-server architecture\n- RPC (Remote Procedure Calls) implementation\n- Network optimization and bandwidth management\n- Dedicated servers and matchmaking\n- Anti-cheat integration\n\n### Performance Optimization\n- Profiling tools (Unreal Insights, Stat commands)\n- CPU and GPU optimization strategies\n- Memory optimization and leak detection\n- Loading time optimization\n- Platform-specific optimizations\n- Scalability settings and adaptive quality\n\n## Development Workflow\n\n1. **Project Setup**: Configure project settings, plugins, and coding standards\n2. **Architecture Design**: Plan class hierarchy and system interactions\n3. **Core Implementation**: Build fundamental systems in C++\n4. **Blueprint Integration**: Create designer-friendly Blueprint interfaces\n5. **Content Integration**: Implement asset pipeline and content workflow\n6. **Optimization**: Profile and optimize for target platforms\n7. **Testing**: Implement automated testing and validation\n8. **Deployment**: Set up build automation and distribution\n\n## Code Quality Standards\n\n- Follow Epic's coding standards and conventions\n- Use proper naming conventions for classes and variables\n- Implement comprehensive logging and debugging tools\n- Use Unreal's assertion and check macros\n- Document complex systems and algorithms\n- Use version control best practices with Perforce/Git\n\n## Advanced Features\n\n### Custom Tools and Editors\n- Custom editor widgets and tools\n- Asset factories and importers\n- Custom details panels and property editors\n- Commandlets for batch processing\n- Plugin development and distribution\n- Integration with external tools and pipelines\n\n### Engine Extensions\n- Custom render passes and shaders\n- Audio system extensions\n- Input system customization\n- Platform-specific implementations\n- Memory allocator customizations\n- Custom garbage collection strategies\n\n## Platform Considerations\n\n- Console-specific optimizations (PlayStation, Xbox)\n- PC platform variations and requirements\n- Mobile platform adaptations\n- VR/AR development considerations\n- Cloud gaming optimization\n- Cross-platform development challenges\n\n## Deliverables\n\n- Complete Unreal project with proper organization\n- Well-architected C++ classes with Blueprint integration\n- Custom editor tools for content creators\n- Performance optimization reports\n- Platform-specific build configurations\n- Technical documentation and code comments\n- Automated testing and validation systems\n\n## Modern Unreal Features\n\n- Nanite virtualized geometry\n- Lumen global illumination\n- World Partition and One File Per Actor\n- Chaos physics system\n- MetaHuman integration\n- Unreal Engine 5+ specific features\n\nAlways consider the full production pipeline from development to shipping. Focus on creating systems that can handle the scale and complexity of AAA game development while remaining maintainable and extensible.\n\nPrioritize performance and memory efficiency throughout development, and ensure all systems are properly documented for team collaboration.",
+      "description": ""
+    },
+    {
       "name": "mcp-deployment-orchestrator",
       "path": "mcp-dev-team/mcp-deployment-orchestrator.md",
       "category": "mcp-dev-team",
@@ -952,6 +968,14 @@
       "category": "documentation",
       "type": "command",
       "content": "# Documentation Update Command: Update Implementation Documentation\n\n## Documentation Analysis\n\n1. Review current documentation status:\n   - Check `specs/implementation_status.md` for overall project status\n   - Review implemented phase document (`specs/phase{N}_implementation_plan.md`)\n   - Review `specs/flutter_structurizr_implementation_spec.md` and `specs/flutter_structurizr_implementation_spec_updated.md`\n   - Review `specs/testing_plan.md` to ensure it is current given recent test passes, failures, and changes\n   - Examine `CLAUDE.md` and `README.md` for project-wide documentation\n   - Check for and document any new lessons learned or best practices in CLAUDE.md\n\n2. Analyze implementation and testing results:\n   - Review what was implemented in the last phase\n   - Review testing results and coverage\n   - Identify new best practices discovered during implementation\n   - Note any implementation challenges and solutions\n   - Cross-reference updated documentation with recent implementation and test results to ensure accuracy\n\n## Documentation Updates\n\n1. Update phase implementation document:\n   - Mark completed tasks with ✅ status\n   - Update implementation percentages\n   - Add detailed notes on implementation approach\n   - Document any deviations from original plan with justification\n   - Add new sections if needed (lessons learned, best practices)\n   - Document specific implementation details for complex components\n   - Include a summary of any new troubleshooting tips or workflow improvements discovered during the phase\n\n2. Update implementation status document:\n   - Update phase completion percentages\n   - Add or update implementation status for components\n   - Add notes on implementation approach and decisions\n   - Document best practices discovered during implementation\n   - Note any challenges overcome and solutions implemented\n\n3. Update implementation specification documents:\n   - Mark completed items with ✅ or strikethrough but preserve original requirements\n   - Add notes on implementation details where appropriate\n   - Add references to implemented files and classes\n   - Update any implementation guidance based on experience\n\n4. Update CLAUDE.md and README.md if necessary:\n   - Add new best practices\n   - Update project status\n   - Add new implementation guidance\n   - Document known issues or limitations\n   - Update usage examples to include new functionality\n\n5. Document new testing procedures:\n   - Add details on test files created\n   - Include test running instructions\n   - Document test coverage\n   - Explain testing approach for complex components\n\n## Documentation Formatting and Structure\n\n1. Maintain consistent documentation style:\n   - Use clear headings and sections\n   - Include code examples where helpful\n   - Use status indicators (✅, ⚠️, ❌) consistently\n   - Maintain proper Markdown formatting\n\n2. Ensure documentation completeness:\n   - Cover all implemented features\n   - Include usage examples\n   - Document API changes or additions\n   - Include troubleshooting guidance for common issues\n\n## Guidelines\n\n- DO NOT CREATE new specification files\n- UPDATE existing files in the `specs/` directory\n- Maintain consistent documentation style\n- Include practical examples where appropriate\n- Cross-reference related documentation sections\n- Document best practices and lessons learned\n- Provide clear status updates on project progress\n- Update numerical completion percentages\n- Ensure documentation reflects actual implementation\n\nProvide a summary of documentation updates after completion, including:\n1. Files updated\n2. Major changes to documentation\n3. Updated completion percentages\n4. New best practices documented\n5. Status of the overall project after this phase",
+      "description": ""
+    },
+    {
+      "name": "unity-project-setup",
+      "path": "game-development/unity-project-setup.md",
+      "category": "game-development",
+      "type": "command",
+      "content": "---\nname: unity-project-setup\ndescription: Initializes a complete Unity project with optimal folder structure, essential packages, and development configurations. Sets up version control, coding standards, and build pipeline for professional game development.\ntype: command\n---\n\n# Unity Project Setup Command\n\nSets up a professional Unity project with industry-standard structure and configurations.\n\n## What it creates:\n\n### Project Structure\n```\nAssets/\n├── _Project/\n│   ├── Scripts/\n│   │   ├── Managers/\n│   │   ├── Player/\n│   │   ├── UI/\n│   │   ├── Gameplay/\n│   │   └── Utilities/\n│   ├── Art/\n│   │   ├── Textures/\n│   │   ├── Materials/\n│   │   ├── Models/\n│   │   └── Animations/\n│   ├── Audio/\n│   │   ├── Music/\n│   │   ├── SFX/\n│   │   └── Voice/\n│   ├── Prefabs/\n│   │   ├── Characters/\n│   │   ├── Environment/\n│   │   ├── UI/\n│   │   └── Effects/\n│   ├── Scenes/\n│   │   ├── Development/\n│   │   ├── Production/\n│   │   └── Testing/\n│   ├── Settings/\n│   │   ├── Input/\n│   │   ├── Rendering/\n│   │   └── Audio/\n│   └── Resources/\n├── Plugins/\n├── StreamingAssets/\n└── Editor/\n    ├── Scripts/\n    └── Resources/\n```\n\n### Essential Packages\n- Universal Render Pipeline (URP)\n- Input System\n- Cinemachine\n- ProBuilder\n- Timeline\n- Addressables\n- Unity Analytics\n- Version Control (if available)\n\n### Project Settings\n- Optimized quality settings for target platforms\n- Input system configuration\n- Physics settings\n- Time and rendering configurations\n- Build settings for multiple platforms\n\n### Development Tools\n- Code formatting rules (.editorconfig)\n- Git configuration with Unity-optimized .gitignore\n- Assembly definition files for better compilation\n- Custom editor scripts for workflow improvement\n\n### Version Control Setup\n- Git repository initialization\n- Unity-specific .gitignore\n- LFS configuration for large assets\n- Branching strategy documentation\n\n## Usage:\n\n```bash\nnpx claude-code-templates@latest --command unity-project-setup\n```\n\n## Interactive Options:\n\n1. **Project Type Selection**\n   - 2D Game\n   - 3D Game\n   - Mobile Game\n   - VR/AR Game\n   - Hybrid (2D/3D)\n\n2. **Target Platforms**\n   - PC (Windows/Mac/Linux)\n   - Mobile (iOS/Android)\n   - Console (PlayStation/Xbox/Nintendo)\n   - WebGL\n   - VR (Oculus/SteamVR)\n\n3. **Version Control**\n   - Git\n   - Plastic SCM\n   - Perforce\n   - None\n\n4. **Additional Packages**\n   - TextMeshPro\n   - Post Processing\n   - Unity Ads\n   - Unity Analytics\n   - Unity Cloud Build\n   - Custom package selection\n\n## Generated Files:\n\n### Core Scripts\n- `GameManager.cs` - Main game controller\n- `SceneLoader.cs` - Scene management system\n- `AudioManager.cs` - Audio system controller\n- `InputManager.cs` - Input handling system\n- `UIManager.cs` - UI system manager\n- `SaveSystem.cs` - Save/load functionality\n\n### Editor Tools\n- `ProjectSetupWindow.cs` - Custom editor window\n- `SceneQuickStart.cs` - Scene setup automation\n- `AssetValidator.cs` - Asset validation tools\n- `BuildAutomation.cs` - Build pipeline helpers\n\n### Configuration Files\n- `ProjectSettings.asset` - Optimized project settings\n- `QualitySettings.asset` - Multi-platform quality tiers\n- `InputActions.inputactions` - Input system configuration\n- `AssemblyDefinitions` - Modular compilation setup\n\n### Documentation\n- `README.md` - Project overview and setup instructions\n- `CONTRIBUTING.md` - Development guidelines\n- `CHANGELOG.md` - Version history template\n- `API_REFERENCE.md` - Code documentation template\n\n## Post-Setup Checklist:\n\n- [ ] Review and adjust quality settings for target platforms\n- [ ] Configure input actions for your game controls\n- [ ] Set up build configurations for all target platforms\n- [ ] Review folder structure and rename as needed\n- [ ] Configure version control and make initial commit\n- [ ] Set up continuous integration if required\n- [ ] Configure analytics and crash reporting\n- [ ] Review and customize coding standards\n\n## Platform-Specific Configurations:\n\n### Mobile\n- Touch input configuration\n- Performance optimization settings\n- Battery usage optimization\n- App store submission setup\n\n### PC\n- Multi-resolution support\n- Keyboard/mouse input setup\n- Graphics options menu template\n- Windows/Mac/Linux build configs\n\n### Console\n- Platform-specific input mapping\n- Achievement/trophy integration setup\n- Online services configuration\n- Certification requirement templates\n\nThis command creates a production-ready Unity project structure that scales from prototype to shipped game, following industry best practices and Unity's recommended patterns.",
       "description": ""
     },
     {
@@ -2213,6 +2237,14 @@
       "description": "A Node.js/TypeScript Model Context Protocol (MCP) server for Atlassian Bitbucket Cloud. Enables AI systems (e.g., LLMs like Claude or Cursor AI) to securely interact with your repositories, pull requests, workspaces, and code in real time."
     },
     {
+      "name": "mcp-server-trello",
+      "path": "devtools/mcp-server-trello.json",
+      "category": "devtools",
+      "type": "mcp",
+      "content": "{\n  \"mcpServers\": {\n    \"trello\": {\n      \"command\": \"pnpx\",\n      \"args\": [\"@delorenj/mcp-server-trello\"],\n      \"env\": {\n        \"TRELLO_API_KEY\": \"your-api-key\",\n        \"TRELLO_TOKEN\": \"your-token\"\n      }\n    }\n  }\n}",
+      "description": ""
+    },
+    {
       "name": "filesystem-access",
       "path": "filesystem/filesystem-access.json",
       "category": "filesystem",
@@ -2261,6 +2293,130 @@
       "description": "Web content fetching and data extraction capabilities. Access external APIs, scrape web content, and integrate external data sources."
     }
   ],
+  "settings": [
+    {
+      "name": "retention-7-days",
+      "path": "cleanup/retention-7-days.json",
+      "category": "cleanup",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Set chat transcript retention to 7 days for privacy.\",\n  \"cleanupPeriodDays\": 7\n}",
+      "description": "Set chat transcript retention to 7 days for privacy."
+    },
+    {
+      "name": "retention-90-days",
+      "path": "cleanup/retention-90-days.json",
+      "category": "cleanup",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Set chat transcript retention to 90 days for extended history.\",\n  \"cleanupPeriodDays\": 90\n}",
+      "description": "Set chat transcript retention to 90 days for extended history."
+    },
+    {
+      "name": "use-haiku",
+      "path": "model/use-haiku.json",
+      "category": "model",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Configure Claude Code to use Claude 3.5 Haiku model for faster responses.\",\n  \"model\": \"claude-3-5-haiku-20241022\"\n}",
+      "description": "Configure Claude Code to use Claude 3.5 Haiku model for faster responses."
+    },
+    {
+      "name": "use-sonnet",
+      "path": "model/use-sonnet.json",
+      "category": "model",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Configure Claude Code to use Claude 3.5 Sonnet model.\",\n  \"model\": \"claude-3-5-sonnet-20241022\"\n}",
+      "description": "Configure Claude Code to use Claude 3.5 Sonnet model."
+    },
+    {
+      "name": "allow-npm-commands",
+      "path": "permissions/allow-npm-commands.json",
+      "category": "permissions",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Allow common npm development commands (lint, test, build, start).\",\n  \"permissions\": {\n    \"allow\": [\n      \"Bash(npm run lint)\",\n      \"Bash(npm run test:*)\",\n      \"Bash(npm run build)\",\n      \"Bash(npm start)\"\n    ]\n  }\n}",
+      "description": "Allow common npm development commands (lint, test, build, start)."
+    },
+    {
+      "name": "deny-sensitive-files",
+      "path": "permissions/deny-sensitive-files.json",
+      "category": "permissions",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Deny access to sensitive files like environment variables and secrets.\",\n  \"permissions\": {\n    \"deny\": [\n      \"Read(./.env)\",\n      \"Read(./.env.*)\",\n      \"Read(./secrets/**)\",\n      \"Read(./config/credentials.json)\"\n    ]\n  }\n}",
+      "description": "Deny access to sensitive files like environment variables and secrets."
+    },
+    {
+      "name": "custom-telemetry",
+      "path": "telemetry/custom-telemetry.json",
+      "category": "telemetry",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Custom telemetry configuration with different endpoint.\",\n  \"env\": {\n    \"CLAUDE_CODE_ENABLE_TELEMETRY\": \"0\",\n    \"OTEL_METRICS_EXPORTER\": \"custom\"\n  }\n}",
+      "description": "Custom telemetry configuration with different endpoint."
+    },
+    {
+      "name": "disable-telemetry",
+      "path": "telemetry/disable-telemetry.json",
+      "category": "telemetry",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Disable Claude Code telemetry for privacy.\",\n  \"env\": {\n    \"DISABLE_TELEMETRY\": \"1\"\n  }\n}",
+      "description": "Disable Claude Code telemetry for privacy."
+    },
+    {
+      "name": "enable-telemetry",
+      "path": "telemetry/enable-telemetry.json",
+      "category": "telemetry",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Enable Claude Code telemetry for usage analytics and improvements.\",\n  \"env\": {\n    \"CLAUDE_CODE_ENABLE_TELEMETRY\": \"1\"\n  }\n}",
+      "description": "Enable Claude Code telemetry for usage analytics and improvements."
+    }
+  ],
+  "hooks": [
+    {
+      "name": "format-javascript-files",
+      "path": "post-tool/format-javascript-files.json",
+      "category": "post-tool",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Automatically format JavaScript/TypeScript files after any Edit operation using prettier. This hook runs 'npx prettier --write' on any .js, .ts, .jsx, or .tsx file that Claude modifies, ensuring consistent code formatting. Uses npx so prettier doesn't need to be globally installed. Includes error suppression so it won't fail if prettier is not available.\",\n  \"hooks\": {\n    \"PostToolUse\": {\n      \"Edit\": \"if [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" =~ \\\\.(js|ts|jsx|tsx)$ ]]; then npx prettier --write \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; fi\"\n    }\n  }\n}",
+      "description": "Automatically format JavaScript/TypeScript files after any Edit operation using prettier. This hook runs 'npx prettier --write' on any .js, .ts, .jsx, or .tsx file that Claude modifies, ensuring consistent code formatting. Uses npx so prettier doesn't need to be globally installed. Includes error suppression so it won't fail if prettier is not available."
+    },
+    {
+      "name": "format-python-files",
+      "path": "post-tool/format-python-files.json",
+      "category": "post-tool",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Automatically format Python files after any Edit operation using black formatter. This hook runs 'black' on any .py file that Claude modifies, ensuring consistent Python code formatting. Requires black to be installed ('pip install black'). The command includes error suppression (2>/dev/null || true) so it won't fail if black is not installed.\",\n  \"hooks\": {\n    \"PostToolUse\": {\n      \"Edit\": \"if [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.py ]]; then black \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; fi\"\n    }\n  }\n}",
+      "description": "Automatically format Python files after any Edit operation using black formatter. This hook runs 'black' on any .py file that Claude modifies, ensuring consistent Python code formatting. Requires black to be installed ('pip install black'). The command includes error suppression (2>/dev/null || true) so it won't fail if black is not installed."
+    },
+    {
+      "name": "git-add-changes",
+      "path": "post-tool/git-add-changes.json",
+      "category": "post-tool",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Automatically stage changes in git after file modifications for easier commit workflow. This hook runs 'git add' on any file that Claude edits or writes, automatically staging changes for the next commit. Includes error suppression so it won't fail in non-git repositories. Helps streamline the development workflow by preparing files for commit.\",\n  \"hooks\": {\n    \"PostToolUse\": {\n      \"Edit\": \"git add \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true\",\n      \"Write\": \"git add \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true\"\n    }\n  }\n}",
+      "description": "Automatically stage changes in git after file modifications for easier commit workflow. This hook runs 'git add' on any file that Claude edits or writes, automatically staging changes for the next commit. Includes error suppression so it won't fail in non-git repositories. Helps streamline the development workflow by preparing files for commit."
+    },
+    {
+      "name": "run-tests-after-changes",
+      "path": "post-tool/run-tests-after-changes.json",
+      "category": "post-tool",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Automatically run quick tests after code modifications to ensure nothing breaks. This hook executes 'npm run test:quick' silently after any Edit operation and provides feedback on test status. Helps catch breaking changes immediately during development. Only runs if package.json exists and the test:quick script is available.\",\n  \"hooks\": {\n    \"PostToolUse\": {\n      \"Edit\": \"if [[ -f package.json ]] && npm run test:quick --silent >/dev/null 2>&1; then echo '✅ Tests passed'; else echo '⚠️ Tests may need attention'; fi\"\n    }\n  }\n}",
+      "description": "Automatically run quick tests after code modifications to ensure nothing breaks. This hook executes 'npm run test:quick' silently after any Edit operation and provides feedback on test status. Helps catch breaking changes immediately during development. Only runs if package.json exists and the test:quick script is available."
+    },
+    {
+      "name": "backup-before-edit",
+      "path": "pre-tool/backup-before-edit.json",
+      "category": "pre-tool",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Create automatic backup of files before any Edit operation for safety. This hook creates a timestamped backup copy (filename.backup.timestamp) of any existing file before Claude modifies it. Provides a safety net to recover previous versions if needed. Only backs up existing files, includes error suppression to handle edge cases gracefully.\",\n  \"hooks\": {\n    \"PreToolUse\": {\n      \"Edit\": \"if [[ -f \\\"$CLAUDE_TOOL_FILE_PATH\\\" ]]; then cp \\\"$CLAUDE_TOOL_FILE_PATH\\\" \\\"$CLAUDE_TOOL_FILE_PATH.backup.$(date +%s)\\\" 2>/dev/null || true; fi\"\n    }\n  }\n}",
+      "description": "Create automatic backup of files before any Edit operation for safety. This hook creates a timestamped backup copy (filename.backup.timestamp) of any existing file before Claude modifies it. Provides a safety net to recover previous versions if needed. Only backs up existing files, includes error suppression to handle edge cases gracefully."
+    },
+    {
+      "name": "notify-before-bash",
+      "path": "pre-tool/notify-before-bash.json",
+      "category": "pre-tool",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Show notification before any Bash command execution for security awareness. This hook displays a simple echo message '🔔 About to run bash command...' before Claude executes any bash command, giving you visibility into when system commands are about to run. Useful for monitoring and auditing command execution.\",\n  \"hooks\": {\n    \"PreToolUse\": {\n      \"Bash\": \"echo '🔔 About to run bash command...'\"\n    }\n  }\n}",
+      "description": "Show notification before any Bash command execution for security awareness. This hook displays a simple echo message '🔔 About to run bash command...' before Claude executes any bash command, giving you visibility into when system commands are about to run. Useful for monitoring and auditing command execution."
+    }
+  ],
   "templates": [
     {
       "name": "angular-app",
@@ -2287,7 +2443,6 @@
         ".mcp.json",
         ".claude/commands/git-workflow.md",
         ".claude/commands/project-setup.md",
-        "README.md",
         "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=common --yes"
