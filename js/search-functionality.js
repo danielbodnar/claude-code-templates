@@ -399,47 +399,62 @@ function getCategoryIcon(category) {
 }
 
 /**
- * Generate component card HTML (this should match the existing card format)
+ * Generate component card HTML (matching existing template-card format)
  */
 function generateComponentCard(component, category) {
     const name = component.name || component.title || 'Unnamed Component';
     const description = component.description || 'No description available';
     const tags = component.tags || [];
+    const displayName = name.replace(/[-_]/g, ' ');
     
     // Generate installation command based on category
     const installCommand = generateInstallCommand(component, category);
+    const escapedCommand = installCommand.replace(/'/g, "\\'");
+    const escapedName = (component.name || component.title || '').replace(/'/g, "\\'");
+    const componentPath = component.path ? (component.path.endsWith('.json') ? component.path : component.path + '.json') : (component.name || 'item') + '.json';
+    
+    // Convert category plural to singular for showComponentDetails
+    const singularCategory = category === 'settings' ? 'setting' : category === 'hooks' ? 'hook' : category.slice(0, -1);
     
     return `
-        <div class="component-card" data-category="${category}">
-            <div class="card-front">
-                <div class="card-header">
-                    <div class="card-title-row">
-                        <h3 class="card-title">${name}</h3>
-                        <div class="card-category">${getCategoryIcon(category)} ${category}</div>
-                    </div>
-                    <p class="card-description">${description}</p>
+        <div class="template-card search-result-card" data-category="${category}">
+            <div class="card-inner">
+                <div class="card-front">
+                    <div class="component-type-badge">${getCategoryIcon(category)} ${category}</div>
+                    <h3 class="card-title">${displayName}</h3>
+                    <p class="card-description">${description.length > 100 ? description.substring(0, 100) + '...' : description}</p>
+                    ${tags.length > 0 ? `
+                        <div class="card-tags">
+                            ${tags.slice(0, 3).map(tag => `<span class="tag">${tag}</span>`).join('')}
+                            ${tags.length > 3 ? `<span class="tag-more">+${tags.length - 3}</span>` : ''}
+                        </div>
+                    ` : ''}
                 </div>
-                <div class="card-tags">
-                    ${tags.slice(0, 3).map(tag => `<span class="tag">${tag}</span>`).join('')}
-                    ${tags.length > 3 ? `<span class="tag-more">+${tags.length - 3}</span>` : ''}
-                </div>
-                <div class="card-actions">
-                    <button class="btn btn-primary add-to-cart" onclick="addToCart('${category}', '${component.name || component.path}')">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19,7H16V6A4,4 0 0,0 12,2A4,4 0 0,0 8,6V7H5A1,1 0 0,0 4,8V19A3,3 0 0,0 7,22H17A3,3 0 0,0 20,19V8A1,1 0 0,0 19,7M10,6A2,2 0 0,1 12,4A2,2 0 0,1 14,6V7H10V6M18,19A1,1 0 0,1 17,20H7A1,1 0 0,1 6,19V9H8V10A1,1 0 0,0 10,10A1,1 0 0,0 10,8V9H14V10A1,1 0 0,0 16,10A1,1 0 0,0 14,8V9H18V19Z"/>
-                        </svg>
-                        Add to Cart
-                    </button>
-                </div>
-            </div>
-            <div class="card-back">
-                <div class="install-commands">
-                    <div class="command-section">
-                        <div class="command-label">Installation Command:</div>
-                        <div class="command-line">
-                            <span class="prompt">$</span>
-                            <code class="command">${installCommand}</code>
-                            <button class="copy-btn" onclick="copyToClipboard('${installCommand}')">Copy</button>
+                <div class="card-back">
+                    <div class="command-display">
+                        <h3>Installation Command</h3>
+                        <div class="command-code-container">
+                            <div class="command-code">${installCommand}</div>
+                            <button class="copy-overlay-btn" onclick="copyToClipboard('${escapedCommand}'); event.stopPropagation();" title="Copy command">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                </svg>
+                                Copy Command
+                            </button>
+                        </div>
+                        <div class="card-actions">
+                            <button class="view-files-btn" onclick="showComponentDetails('${singularCategory}', '${escapedName}', '${componentPath}', '${component.category || category}')">
+                                📁 View Details
+                            </button>
+                            <button class="add-to-cart-btn" 
+                                    data-type="${category}s" 
+                                    data-path="${component.path || component.name}"
+                                    onclick="handleAddToCart('${escapedName}', '${component.path || component.name}', '${category}s', '${component.category || category}', this)">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19,7H18V6A2,2 0 0,0 16,4H8A2,2 0 0,0 6,6V7H5A1,1 0 0,0 4,8A1,1 0 0,0 5,9H6V19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V9H19A1,1 0 0,0 20,8A1,1 0 0,0 19,7M8,6H16V7H8V6M16,19H8V9H16V19Z"/>
+                                </svg>
+                                Add to Stack
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -476,6 +491,9 @@ function showAllComponents() {
         setUnifiedFilter('agents'); // Default to agents
     }
 }
+
+// Search result cards now use the global click handler from index-events.js
+// No need for custom toggleCard function
 
 // Initialize search functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -644,6 +662,239 @@ document.addEventListener('DOMContentLoaded', function() {
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
                 gap: 1.5rem;
+            }
+            
+            .search-result-card {
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
+            
+            /* Ensure search result cards inherit flip behavior */
+            .search-result-card .card-inner {
+                transition: transform 0.6s;
+                transform-style: preserve-3d;
+            }
+            
+            .search-result-card.flipped .card-inner {
+                transform: rotateY(180deg);
+            }
+            
+            .search-result-card .component-type-badge {
+                background: var(--accent-color, #00d4aa)20;
+                color: var(--accent-color, #00d4aa);
+                font-size: 0.75rem;
+                font-weight: 600;
+                text-transform: capitalize;
+            }
+            
+            .search-result-card .card-title {
+                color: var(--text-primary, #ffffff);
+                font-size: 1.1rem;
+                font-weight: normal;
+                margin: 0.75rem 0 0.5rem 0;
+                text-transform: capitalize;
+            }
+            
+            .search-result-card .card-description {
+                color: var(--text-secondary, #8892a0);
+                font-size: 0.8rem;
+                line-height: 1.4;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+            
+            /* Card back should match main template card styles */
+            .search-result-card .card-back {
+                background: var(--bg-tertiary);
+                padding: 1.5rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .search-result-card .card-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                margin-top: auto;
+            }
+            
+            .search-result-card .tag {
+                background: var(--hover-bg, #2a3338);
+                color: var(--text-dim, #8892a0);
+                padding: 0.25rem 0.5rem;
+                border-radius: 4px;
+                font-size: 0.7rem;
+                font-weight: 500;
+            }
+            
+            .search-result-card .tag-more {
+                background: var(--accent-color, #00d4aa)30;
+                color: var(--accent-color, #00d4aa);
+                padding: 0.25rem 0.5rem;
+                border-radius: 4px;
+                font-size: 0.7rem;
+                font-weight: 600;
+            }
+            
+            .search-result-card .card-back h3 {
+                color: var(--text-primary, #ffffff);
+                font-size: 0.85rem;
+                font-weight: normal;
+                margin-bottom: 0.5rem;
+                text-align: center;
+            }
+            
+            .search-result-card .command-display {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                padding: 0;
+            }
+            
+            .search-result-card .command-code-container {
+                position: relative;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                background: var(--bg-tertiary);
+                border: 1px solid var(--border-secondary);
+                border-radius: 4px;
+                padding: 8px 12px;
+                margin-bottom: 0.5rem;
+                flex-shrink: 0;
+            }
+            
+            .search-result-card .command-code {
+                flex: 1;
+                color: var(--text-primary, #ffffff);
+                font-size: 0.75rem;
+                font-family: 'Monaco', 'Menlo', monospace;
+                overflow-x: auto;
+                white-space: nowrap;
+                padding-right: 8px;
+            }
+            
+            .search-result-card .copy-overlay-btn {
+                background: var(--text-accent, #00d4aa);
+                border: none;
+                color: var(--bg-primary, #0a0e0f);
+                padding: 4px 8px;
+                border-radius: 3px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-size: 10px;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                opacity: 0;
+                transform: translateX(10px);
+                position: absolute;
+                right: 6px;
+                z-index: 2;
+            }
+            
+            .search-result-card .command-code-container:hover .copy-overlay-btn {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            
+            .search-result-card .copy-overlay-btn:hover {
+                background: var(--text-success, #22c55e);
+                transform: translateX(0) translateY(-1px);
+                box-shadow: 0 2px 8px rgba(0, 212, 170, 0.3);
+            }
+            
+            .search-result-card .btn {
+                background: var(--accent-color, #00d4aa);
+                color: var(--bg-color, #0a0e0f);
+                border: none;
+                padding: 0.75rem 1rem;
+                border-radius: 6px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                width: 100%;
+            }
+            
+            .search-result-card .btn:hover {
+                background: var(--accent-color, #00d4aa)90;
+                transform: translateY(-1px);
+            }
+            
+            /* View Details and Add to Stack buttons */
+            .search-result-card .view-files-btn {
+                background: rgba(0, 255, 0, 0.2); /* Debug background */
+                border: 2px solid lime; /* Debug border */
+                color: var(--text-color, #ffffff);
+                padding: 0.4rem 0.6rem;
+                border-radius: 4px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.3rem;
+                width: 100%;
+                margin-bottom: 0;
+                font-size: 0.75rem;
+            }
+            
+            .search-result-card .view-files-btn:hover {
+                background: var(--hover-bg, #2a3338);
+                border-color: var(--accent-color, #00d4aa);
+                transform: translateY(-1px);
+            }
+            
+            .search-result-card .add-to-cart-btn {
+                background: rgba(255, 255, 0, 0.5); /* Debug background */
+                border: 2px solid yellow; /* Debug border */
+                color: black; /* Debug text color */
+                padding: 0.4rem 0.6rem;
+                border-radius: 4px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.3rem;
+                width: 100%;
+                font-size: 0.75rem;
+            }
+            
+            .search-result-card .add-to-cart-btn:hover {
+                background: var(--accent-color, #00d4aa)90;
+                transform: translateY(-1px);
+            }
+            
+            .search-result-card .add-to-cart-btn.added {
+                background: var(--success-color, #22c55e);
+                color: var(--bg-color, #0a0e0f);
+            }
+            
+            /* Card actions container */
+            .search-result-card .card-actions {
+                display: flex;
+                flex-direction: column;
+                gap: 0.4rem;
+                width: 100%;
+                margin-top: auto;
+                background: rgba(255, 0, 0, 0.1); /* Debug background */
+                border: 1px solid red; /* Debug border */
+                padding: 4px; /* Debug padding */
             }
             
             @media (max-width: 768px) {
