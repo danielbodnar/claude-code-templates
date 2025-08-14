@@ -2369,6 +2369,94 @@
   ],
   "hooks": [
     {
+      "name": "build-on-change",
+      "path": "automation/build-on-change.json",
+      "category": "automation",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Automatically trigger build processes when source files change. Detects common build tools and runs appropriate build commands.\",\n  \"hooks\": {\n    \"PostToolUse\": {\n      \"Edit\": \"if [[ -f package.json ]] && grep -q '\\\"build\\\"' package.json; then npm run build 2>/dev/null || yarn build 2>/dev/null || true; elif [[ -f Makefile ]]; then make 2>/dev/null || true; elif [[ -f Cargo.toml ]]; then cargo build 2>/dev/null || true; elif [[ -f pom.xml ]]; then mvn compile 2>/dev/null || true; elif [[ -f build.gradle ]]; then ./gradlew build 2>/dev/null || true; fi\"\n    }\n  }\n}",
+      "description": "Automatically trigger build processes when source files change. Detects common build tools and runs appropriate build commands."
+    },
+    {
+      "name": "dependency-checker",
+      "path": "automation/dependency-checker.json",
+      "category": "automation",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Advanced dependency analysis and security checking. Monitors for outdated packages, security vulnerabilities, and license compatibility.\",\n  \"hooks\": {\n    \"PostToolUse\": {\n      \"Edit\": \"if [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *package.json || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *requirements.txt || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *Cargo.toml || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *pom.xml || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *Gemfile ]]; then echo \\\"Dependency file modified: $CLAUDE_TOOL_FILE_PATH\\\"; if [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *package.json ]] && command -v npm >/dev/null 2>&1; then npm audit 2>/dev/null || true; npx npm-check-updates 2>/dev/null || true; elif [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *requirements.txt ]] && command -v safety >/dev/null 2>&1; then safety check -r \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; elif [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *Cargo.toml ]] && command -v cargo >/dev/null 2>&1; then cargo audit 2>/dev/null || true; fi; fi\"\n    }\n  }\n}",
+      "description": "Advanced dependency analysis and security checking. Monitors for outdated packages, security vulnerabilities, and license compatibility."
+    },
+    {
+      "name": "simple-notifications",
+      "path": "automation/simple-notifications.json",
+      "category": "automation",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Send simple desktop notifications when Claude Code operations complete. Works on macOS and Linux systems.\",\n  \"hooks\": {\n    \"PostToolUse\": \"if command -v osascript >/dev/null 2>&1; then osascript -e 'display notification \\\"Tool: $CLAUDE_TOOL_NAME completed\\\" with title \\\"Claude Code\\\"'; elif command -v notify-send >/dev/null 2>&1; then notify-send 'Claude Code' \\\"Tool: $CLAUDE_TOOL_NAME completed\\\"; fi\"\n  }\n}",
+      "description": "Send simple desktop notifications when Claude Code operations complete. Works on macOS and Linux systems."
+    },
+    {
+      "name": "change-tracker",
+      "path": "development-tools/change-tracker.json",
+      "category": "development-tools",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Track file changes in a simple log. Records which files were modified and when for easy tracking of Claude Code activity.\",\n  \"hooks\": {\n    \"PostToolUse\": {\n      \"Edit\": \"echo \\\"[$(date '+%Y-%m-%d %H:%M:%S')] File modified: $CLAUDE_TOOL_FILE_PATH\\\" >> ~/.claude/changes.log\",\n      \"MultiEdit\": \"echo \\\"[$(date '+%Y-%m-%d %H:%M:%S')] File modified: $CLAUDE_TOOL_FILE_PATH\\\" >> ~/.claude/changes.log\",\n      \"Write\": \"echo \\\"[$(date '+%Y-%m-%d %H:%M:%S')] File created: $CLAUDE_TOOL_FILE_PATH\\\" >> ~/.claude/changes.log\"\n    }\n  }\n}",
+      "description": "Track file changes in a simple log. Records which files were modified and when for easy tracking of Claude Code activity."
+    },
+    {
+      "name": "command-logger",
+      "path": "development-tools/command-logger.json",
+      "category": "development-tools",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Log all Claude Code commands to a file for audit and debugging purposes. Simple logging that records tool usage with timestamps.\",\n  \"hooks\": {\n    \"PreToolUse\": \"echo \\\"[$(date)] Tool: $CLAUDE_TOOL_NAME | File: $CLAUDE_TOOL_FILE_PATH\\\" >> ~/.claude/command-log.txt\"\n  }\n}",
+      "description": "Log all Claude Code commands to a file for audit and debugging purposes. Simple logging that records tool usage with timestamps."
+    },
+    {
+      "name": "file-backup",
+      "path": "development-tools/file-backup.json",
+      "category": "development-tools",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Automatically backup files before editing. Creates timestamped backups in a .backups directory when files are modified.\",\n  \"hooks\": {\n    \"PreToolUse\": {\n      \"Edit\": \"if [[ -n \\\"$CLAUDE_TOOL_FILE_PATH\\\" && -f \\\"$CLAUDE_TOOL_FILE_PATH\\\" ]]; then mkdir -p .backups && cp \\\"$CLAUDE_TOOL_FILE_PATH\\\" \\\".backups/$(basename \\\"$CLAUDE_TOOL_FILE_PATH\\\").$(date +%Y%m%d_%H%M%S).bak\\\"; fi\",\n      \"MultiEdit\": \"if [[ -n \\\"$CLAUDE_TOOL_FILE_PATH\\\" && -f \\\"$CLAUDE_TOOL_FILE_PATH\\\" ]]; then mkdir -p .backups && cp \\\"$CLAUDE_TOOL_FILE_PATH\\\" \\\".backups/$(basename \\\"$CLAUDE_TOOL_FILE_PATH\\\").$(date +%Y%m%d_%H%M%S).bak\\\"; fi\"\n    }\n  }\n}",
+      "description": "Automatically backup files before editing. Creates timestamped backups in a .backups directory when files are modified."
+    },
+    {
+      "name": "lint-on-save",
+      "path": "development-tools/lint-on-save.json",
+      "category": "development-tools",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Automatically run linting tools after file modifications. Supports ESLint for JavaScript/TypeScript, Pylint for Python, and RuboCop for Ruby.\",\n  \"hooks\": {\n    \"PostToolUse\": {\n      \"Edit\": \"if [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.js || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.ts || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.jsx || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.tsx ]]; then npx eslint \\\"$CLAUDE_TOOL_FILE_PATH\\\" --fix 2>/dev/null || true; elif [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.py ]]; then pylint \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; elif [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.rb ]]; then rubocop \\\"$CLAUDE_TOOL_FILE_PATH\\\" --auto-correct 2>/dev/null || true; fi\",\n      \"MultiEdit\": \"if [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.js || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.ts || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.jsx || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.tsx ]]; then npx eslint \\\"$CLAUDE_TOOL_FILE_PATH\\\" --fix 2>/dev/null || true; elif [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.py ]]; then pylint \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; elif [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.rb ]]; then rubocop \\\"$CLAUDE_TOOL_FILE_PATH\\\" --auto-correct 2>/dev/null || true; fi\"\n    }\n  }\n}",
+      "description": "Automatically run linting tools after file modifications. Supports ESLint for JavaScript/TypeScript, Pylint for Python, and RuboCop for Ruby."
+    },
+    {
+      "name": "smart-formatting",
+      "path": "development-tools/smart-formatting.json",
+      "category": "development-tools",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Smart code formatting based on file type. Automatically formats code using Prettier, Black, gofmt, rustfmt, and other language-specific formatters.\",\n  \"hooks\": {\n    \"PostToolUse\": {\n      \"Edit\": \"if [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.js || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.ts || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.jsx || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.tsx || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.json || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.css || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.html ]]; then npx prettier --write \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; elif [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.py ]]; then black \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; elif [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.go ]]; then gofmt -w \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; elif [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.rs ]]; then rustfmt \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; elif [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.php ]]; then php-cs-fixer fix \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; fi\",\n      \"MultiEdit\": \"if [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.js || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.ts || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.jsx || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.tsx || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.json || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.css || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.html ]]; then npx prettier --write \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; elif [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.py ]]; then black \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; elif [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.go ]]; then gofmt -w \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; elif [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.rs ]]; then rustfmt \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; elif [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.php ]]; then php-cs-fixer fix \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; fi\"\n    }\n  }\n}",
+      "description": "Smart code formatting based on file type. Automatically formats code using Prettier, Black, gofmt, rustfmt, and other language-specific formatters."
+    },
+    {
+      "name": "auto-git-add",
+      "path": "git-workflow/auto-git-add.json",
+      "category": "git-workflow",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Automatically stage modified files with git add after editing. Helps maintain a clean git workflow by staging changes as they're made.\",\n  \"hooks\": {\n    \"PostToolUse\": {\n      \"Edit\": \"if [[ -n \\\"$CLAUDE_TOOL_FILE_PATH\\\" ]] && git rev-parse --git-dir >/dev/null 2>&1; then git add \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; fi\",\n      \"MultiEdit\": \"if [[ -n \\\"$CLAUDE_TOOL_FILE_PATH\\\" ]] && git rev-parse --git-dir >/dev/null 2>&1; then git add \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; fi\",\n      \"Write\": \"if [[ -n \\\"$CLAUDE_TOOL_FILE_PATH\\\" ]] && git rev-parse --git-dir >/dev/null 2>&1; then git add \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; fi\"\n    }\n  }\n}",
+      "description": "Automatically stage modified files with git add after editing. Helps maintain a clean git workflow by staging changes as they're made."
+    },
+    {
+      "name": "smart-commit",
+      "path": "git-workflow/smart-commit.json",
+      "category": "git-workflow",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Intelligent git commit creation with automatic message generation and validation. Creates meaningful commits based on file changes.\",\n  \"hooks\": {\n    \"PostToolUse\": {\n      \"Edit\": \"if git rev-parse --git-dir >/dev/null 2>&1 && [[ -n \\\"$CLAUDE_TOOL_FILE_PATH\\\" ]]; then git add \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null; CHANGED_LINES=$(git diff --cached --numstat \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null | awk '{print $1+$2}'); if [[ $CHANGED_LINES -gt 0 ]]; then FILENAME=$(basename \\\"$CLAUDE_TOOL_FILE_PATH\\\"); EXT=\\\"${FILENAME##*.}\\\"; if [[ $CHANGED_LINES -lt 10 ]]; then SIZE=\\\"minor\\\"; elif [[ $CHANGED_LINES -lt 50 ]]; then SIZE=\\\"moderate\\\"; else SIZE=\\\"major\\\"; fi; MSG=\\\"Update $FILENAME: $SIZE changes ($CHANGED_LINES lines)\\\"; git commit -m \\\"$MSG\\\" \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; fi; fi\",\n      \"Write\": \"if git rev-parse --git-dir >/dev/null 2>&1 && [[ -n \\\"$CLAUDE_TOOL_FILE_PATH\\\" ]]; then git add \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null; FILENAME=$(basename \\\"$CLAUDE_TOOL_FILE_PATH\\\"); git commit -m \\\"Add new file: $FILENAME\\\" \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; fi\"\n    }\n  }\n}",
+      "description": "Intelligent git commit creation with automatic message generation and validation. Creates meaningful commits based on file changes."
+    },
+    {
+      "name": "performance-monitor",
+      "path": "performance/performance-monitor.json",
+      "category": "performance",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Monitor system performance during Claude Code operations. Tracks CPU, memory usage, and execution time for performance optimization.\",\n  \"hooks\": {\n    \"PreToolUse\": \"echo \\\"$(date +%s.%N),$(ps -o %cpu= -p $$),$(ps -o rss= -p $$),$CLAUDE_TOOL_NAME,start\\\" >> ~/.claude/performance.csv\",\n    \"PostToolUse\": \"echo \\\"$(date +%s.%N),$(ps -o %cpu= -p $$),$(ps -o rss= -p $$),$CLAUDE_TOOL_NAME,end\\\" >> ~/.claude/performance.csv; if [[ $(wc -l < ~/.claude/performance.csv) -gt 1000 ]]; then tail -n 500 ~/.claude/performance.csv > ~/.claude/performance.csv.tmp && mv ~/.claude/performance.csv.tmp ~/.claude/performance.csv; fi\"\n  }\n}",
+      "description": "Monitor system performance during Claude Code operations. Tracks CPU, memory usage, and execution time for performance optimization."
+    },
+    {
       "name": "format-javascript-files",
       "path": "post-tool/format-javascript-files.json",
       "category": "post-tool",
@@ -2415,6 +2503,30 @@
       "type": "hook",
       "content": "{\n  \"description\": \"Show notification before any Bash command execution for security awareness. This hook displays a simple echo message '🔔 About to run bash command...' before Claude executes any bash command, giving you visibility into when system commands are about to run. Useful for monitoring and auditing command execution.\",\n  \"hooks\": {\n    \"PreToolUse\": {\n      \"Bash\": \"echo '🔔 About to run bash command...'\"\n    }\n  }\n}",
       "description": "Show notification before any Bash command execution for security awareness. This hook displays a simple echo message '🔔 About to run bash command...' before Claude executes any bash command, giving you visibility into when system commands are about to run. Useful for monitoring and auditing command execution."
+    },
+    {
+      "name": "file-protection",
+      "path": "security/file-protection.json",
+      "category": "security",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Protect critical files from accidental modification. Prevents editing of important system files, configuration files, and production code.\",\n  \"hooks\": {\n    \"PreToolUse\": {\n      \"Edit\": \"PROTECTED_PATTERNS=('*/etc/*' '*/usr/bin/*' '*/usr/sbin/*' '*.production.*' '*prod*config*' '*/node_modules/*' '*/vendor/*'); for pattern in \\\"${PROTECTED_PATTERNS[@]}\\\"; do if [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == $pattern ]]; then echo \\\"Error: File $CLAUDE_TOOL_FILE_PATH is protected from modification\\\" >&2; exit 1; fi; done\",\n      \"MultiEdit\": \"PROTECTED_PATTERNS=('*/etc/*' '*/usr/bin/*' '*/usr/sbin/*' '*.production.*' '*prod*config*' '*/node_modules/*' '*/vendor/*'); for pattern in \\\"${PROTECTED_PATTERNS[@]}\\\"; do if [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == $pattern ]]; then echo \\\"Error: File $CLAUDE_TOOL_FILE_PATH is protected from modification\\\" >&2; exit 1; fi; done\",\n      \"Write\": \"PROTECTED_PATTERNS=('*/etc/*' '*/usr/bin/*' '*/usr/sbin/*' '*.production.*' '*prod*config*' '*/node_modules/*' '*/vendor/*'); for pattern in \\\"${PROTECTED_PATTERNS[@]}\\\"; do if [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == $pattern ]]; then echo \\\"Error: File $CLAUDE_TOOL_FILE_PATH is protected from modification\\\" >&2; exit 1; fi; done\"\n    }\n  }\n}",
+      "description": "Protect critical files from accidental modification. Prevents editing of important system files, configuration files, and production code."
+    },
+    {
+      "name": "security-scanner",
+      "path": "security/security-scanner.json",
+      "category": "security",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Scan code for security vulnerabilities and secrets after modifications. Uses multiple security tools to detect potential issues.\",\n  \"hooks\": {\n    \"PostToolUse\": {\n      \"Edit\": \"if command -v semgrep >/dev/null 2>&1; then semgrep --config=auto \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; fi; if command -v bandit >/dev/null 2>&1 && [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.py ]]; then bandit \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; fi; if command -v gitleaks >/dev/null 2>&1; then gitleaks detect --source=\\\"$CLAUDE_TOOL_FILE_PATH\\\" --no-git 2>/dev/null || true; fi; if grep -qE '(password|secret|key|token)\\\\s*=\\\\s*[\\\"\\\\'][^\\\"\\\\'\\n]{8,}' \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null; then echo \\\"Warning: Potential hardcoded secrets detected in $CLAUDE_TOOL_FILE_PATH\\\" >&2; fi\",\n      \"Write\": \"if command -v semgrep >/dev/null 2>&1; then semgrep --config=auto \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; fi; if command -v bandit >/dev/null 2>&1 && [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.py ]]; then bandit \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; fi; if command -v gitleaks >/dev/null 2>&1; then gitleaks detect --source=\\\"$CLAUDE_TOOL_FILE_PATH\\\" --no-git 2>/dev/null || true; fi; if grep -qE '(password|secret|key|token)\\\\s*=\\\\s*[\\\"\\\\'][^\\\"\\\\'\\n]{8,}' \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null; then echo \\\"Warning: Potential hardcoded secrets detected in $CLAUDE_TOOL_FILE_PATH\\\" >&2; fi\"\n    }\n  }\n}",
+      "description": "Scan code for security vulnerabilities and secrets after modifications. Uses multiple security tools to detect potential issues."
+    },
+    {
+      "name": "test-runner",
+      "path": "testing/test-runner.json",
+      "category": "testing",
+      "type": "hook",
+      "content": "{\n  \"description\": \"Automatically run relevant tests after code changes. Detects test files and runs appropriate test commands based on file extensions and project structure.\",\n  \"hooks\": {\n    \"PostToolUse\": {\n      \"Edit\": \"if [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.js || \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.ts ]] && [[ -f package.json ]]; then npm test 2>/dev/null || yarn test 2>/dev/null || true; elif [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.py ]] && [[ -f pytest.ini || -f setup.cfg || -f pyproject.toml ]]; then pytest \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || python -m pytest \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; elif [[ \\\"$CLAUDE_TOOL_FILE_PATH\\\" == *.rb ]] && [[ -f Gemfile ]]; then bundle exec rspec \\\"$CLAUDE_TOOL_FILE_PATH\\\" 2>/dev/null || true; fi\"\n    }\n  }\n}",
+      "description": "Automatically run relevant tests after code changes. Detects test files and runs appropriate test commands based on file extensions and project structure."
     }
   ],
   "templates": [
@@ -2443,6 +2555,7 @@
         ".mcp.json",
         ".claude/commands/git-workflow.md",
         ".claude/commands/project-setup.md",
+        "README.md",
         "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=common --yes"
