@@ -360,6 +360,8 @@ class DataLoader {
                 agents: this.fullComponentsData.agents ? this.fullComponentsData.agents.length : 0,
                 commands: this.fullComponentsData.commands ? this.fullComponentsData.commands.length : 0,
                 mcps: this.fullComponentsData.mcps ? this.fullComponentsData.mcps.length : 0,
+                settings: this.fullComponentsData.settings ? this.fullComponentsData.settings.length : 0,
+                hooks: this.fullComponentsData.hooks ? this.fullComponentsData.hooks.length : 0,
                 templates: this.fullComponentsData.templates ? this.fullComponentsData.templates.length : 0
             };
         }
@@ -369,6 +371,8 @@ class DataLoader {
             agents: this.componentsData?.agents?.length || 0,
             commands: this.componentsData?.commands?.length || 0,
             mcps: this.componentsData?.mcps?.length || 0,
+            settings: this.componentsData?.settings?.length || 0,
+            hooks: this.componentsData?.hooks?.length || 0,
             templates: this.componentsData?.templates?.length || 0
         };
     }

@@ -10,6 +10,8 @@ class IndexPageManager {
             agents: new Set(),
             commands: new Set(),
             mcps: new Set(),
+            settings: new Set(),
+            hooks: new Set(),
             templates: new Set()
         };
         
@@ -111,7 +113,9 @@ class IndexPageManager {
     isDataEmpty(data) {
         return !data || ((!data.agents || data.agents.length === 0) &&
                          (!data.commands || data.commands.length === 0) &&
-                         (!data.mcps || data.mcps.length === 0));
+                         (!data.mcps || data.mcps.length === 0) &&
+                         (!data.settings || data.settings.length === 0) &&
+                         (!data.hooks || data.hooks.length === 0));
     }
     
     // Show/hide loading state
@@ -271,6 +275,8 @@ class IndexPageManager {
         this.availableCategories.agents.clear();
         this.availableCategories.commands.clear();
         this.availableCategories.mcps.clear();
+        this.availableCategories.settings.clear();
+        this.availableCategories.hooks.clear();
         this.availableCategories.templates.clear();
         
         // Collect categories from each component type
@@ -292,6 +298,20 @@ class IndexPageManager {
             this.componentsData.mcps.forEach(component => {
                 const category = component.category || 'general';
                 this.availableCategories.mcps.add(category);
+            });
+        }
+        
+        if (this.componentsData.settings && Array.isArray(this.componentsData.settings)) {
+            this.componentsData.settings.forEach(component => {
+                const category = component.category || 'general';
+                this.availableCategories.settings.add(category);
+            });
+        }
+        
+        if (this.componentsData.hooks && Array.isArray(this.componentsData.hooks)) {
+            this.componentsData.hooks.forEach(component => {
+                const category = component.category || 'general';
+                this.availableCategories.hooks.add(category);
             });
         }
         
@@ -328,6 +348,8 @@ class IndexPageManager {
             case 'agents':
             case 'commands':
             case 'mcps':
+            case 'settings':
+            case 'hooks':
                 this.displayComponents(grid, this.currentFilter);
                 break;
             default:
@@ -437,7 +459,9 @@ class IndexPageManager {
         const typeConfig = {
             agent: { icon: '🤖', color: '#ff6b6b' },
             command: { icon: '⚡', color: '#4ecdc4' },
-            mcp: { icon: '🔌', color: '#45b7d1' }
+            mcp: { icon: '🔌', color: '#45b7d1' },
+            setting: { icon: '⚙️', color: '#9c88ff' },
+            hook: { icon: '🪝', color: '#ff8c42' }
         };
         
         const config = typeConfig[component.type];
@@ -586,6 +610,8 @@ class IndexPageManager {
         const agentsBtn = document.querySelector('[data-filter="agents"]');
         const commandsBtn = document.querySelector('[data-filter="commands"]');
         const mcpsBtn = document.querySelector('[data-filter="mcps"]');
+        const settingsBtn = document.querySelector('[data-filter="settings"]');
+        const hooksBtn = document.querySelector('[data-filter="hooks"]');
         const templatesBtn = document.querySelector('[data-filter="templates"]');
         
         if (agentsBtn) {
@@ -596,6 +622,12 @@ class IndexPageManager {
         }
         if (mcpsBtn) {
             mcpsBtn.innerHTML = `🔌 MCPs (${totalCounts.mcps})`;
+        }
+        if (settingsBtn) {
+            settingsBtn.innerHTML = `⚙️ Settings (${totalCounts.settings})`;
+        }
+        if (hooksBtn) {
+            hooksBtn.innerHTML = `🪝 Hooks (${totalCounts.hooks})`;
         }
         if (templatesBtn) {
             templatesBtn.innerHTML = `📦 Templates (${totalCounts.templates})`;
@@ -622,6 +654,18 @@ class IndexPageManager {
                 name: 'MCP', 
                 description: 'Build a Model Context Protocol integration',
                 color: '#45b7d1'
+            },
+            settings: { 
+                icon: '⚙️', 
+                name: 'Setting', 
+                description: 'Configure Claude Code behavior',
+                color: '#9c88ff'
+            },
+            hooks: { 
+                icon: '🪝', 
+                name: 'Hook', 
+                description: 'Automate tool execution workflows',
+                color: '#ff8c42'
             }
         };
         
@@ -1037,6 +1081,18 @@ function showComponentContributeModal(type) {
             example: 'redis-integration',
             structure: '- MCP server configuration\n- Connection parameters\n- Environment variables\n- Usage examples'
         },
+        settings: { 
+            name: 'Setting', 
+            description: 'Claude Code configuration setting',
+            example: 'custom-model-config',
+            structure: '- Setting description\n- Configuration options\n- Environment variables\n- Usage examples and best practices'
+        },
+        hooks: { 
+            name: 'Hook', 
+            description: 'Automation hook for tool execution',
+            example: 'format-on-save',
+            structure: '- Hook description and trigger\n- Command to execute\n- PreToolUse or PostToolUse configuration\n- Error handling and examples'
+        },
         templates: { 
             name: 'Template', 
             description: 'Project template with language or framework setup',
@@ -1242,7 +1298,7 @@ function showComponentContributeModal(type) {
                                         <pre>${config.structure}</pre>
                                     </div>
                                     <div class="step-command">
-                                        <strong>Example filename:</strong> <code>${config.example}.${type === 'mcps' ? 'json' : 'md'}</code>
+                                        <strong>Example filename:</strong> <code>${config.example}.${(type === 'mcps' || type === 'settings' || type === 'hooks') ? 'json' : 'md'}</code>
                                     </div>
                                 </div>
                             </div>
@@ -1278,8 +1334,8 @@ function showComponentContributeModal(type) {
                                     <h4>Submit Pull Request</h4>
                                     <p>Submit your contribution with proper documentation:</p>
                                     <div class="step-command">
-                                        <code>git add cli-tool/components/${type}/${config.example}.${type === 'mcps' ? 'json' : 'md'}</code>
-                                        <button class="copy-btn" onclick="copyToClipboard('git add cli-tool/components/${type}/${config.example}.${type === 'mcps' ? 'json' : 'md'}')">Copy</button>
+                                        <code>git add cli-tool/components/${type}/${config.example}.${(type === 'mcps' || type === 'settings' || type === 'hooks') ? 'json' : 'md'}</code>
+                                        <button class="copy-btn" onclick="copyToClipboard('git add cli-tool/components/${type}/${config.example}.${(type === 'mcps' || type === 'settings' || type === 'hooks') ? 'json' : 'md'}')">Copy</button>
                                     </div>
                                     <div class="step-command">
                                         <code>git commit -m "feat: Add ${config.example} ${config.name.toLowerCase()}"</code>
