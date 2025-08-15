@@ -11,38 +11,27 @@ function toggleSearch() {
     const container = document.getElementById('searchBarContainer');
     const input = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchToggleBtn');
-    const categoryButtons = document.querySelectorAll('.category-filter-btn');
     const categoryLabels = document.querySelectorAll('.category-filter-label');
     
     if (searchActive) {
-        // Hide search and show category filters
+        // Hide search and show category sections
         container.style.display = 'none';
         searchActive = false;
         searchBtn.classList.remove('active');
         clearSearch();
         
-        // Show category filter buttons
-        categoryButtons.forEach(btn => {
-            btn.style.display = '';
-        });
-        
-        // Show category filter labels
+        // Show category filter labels/sections
         categoryLabels.forEach(label => {
             label.style.display = '';
         });
     } else {
-        // Show search and hide category filters
+        // Show search and hide category sections
         container.style.display = 'block';
         searchActive = true;
         searchBtn.classList.add('active');
         input.focus();
         
-        // Hide category filter buttons
-        categoryButtons.forEach(btn => {
-            btn.style.display = 'none';
-        });
-        
-        // Hide category filter labels
+        // Hide category filter labels/sections only (keep filter buttons visible)
         categoryLabels.forEach(label => {
             label.style.display = 'none';
         });
