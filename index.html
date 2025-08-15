@@ -183,27 +183,27 @@
             <div class="unified-filter-bar">
                 <div class="filter-label">$ Filter Components</div>
                 <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="agents" onclick="setUnifiedFilter('agents')">
+                    <!-- Search Button - First in row -->
+                    <button class="filter-btn search-btn" id="searchToggleBtn" onclick="toggleSearch()" title="Search components">
+                        🔍 Search
+                    </button>
+                    <button class="filter-btn active category-filter-btn" data-filter="agents" onclick="setUnifiedFilter('agents')">
                         🤖 Agents
                     </button>
-                    <button class="filter-btn" data-filter="commands" onclick="setUnifiedFilter('commands')">
+                    <button class="filter-btn category-filter-btn" data-filter="commands" onclick="setUnifiedFilter('commands')">
                         ⚡ Commands
                     </button>
-                    <button class="filter-btn" data-filter="settings" onclick="setUnifiedFilter('settings')">
+                    <button class="filter-btn category-filter-btn" data-filter="settings" onclick="setUnifiedFilter('settings')">
                         ⚙️ Settings
                     </button>
-                    <button class="filter-btn" data-filter="hooks" onclick="setUnifiedFilter('hooks')">
+                    <button class="filter-btn category-filter-btn" data-filter="hooks" onclick="setUnifiedFilter('hooks')">
                         🪝 Hooks
                     </button>
-                    <button class="filter-btn" data-filter="mcps" onclick="setUnifiedFilter('mcps')">
+                    <button class="filter-btn category-filter-btn" data-filter="mcps" onclick="setUnifiedFilter('mcps')">
                         🔌 MCPs
                     </button>
-                    <button class="filter-btn" data-filter="templates" onclick="setUnifiedFilter('templates')">
+                    <button class="filter-btn category-filter-btn" data-filter="templates" onclick="setUnifiedFilter('templates')">
                         📦 Templates
-                    </button>
-                    <!-- Search Button -->
-                    <button class="filter-btn search-btn" id="searchToggleBtn" onclick="toggleSearch()" title="Search components" style="display: none;">
-                        🔍 Search
                     </button>
                 </div>
             </div>
