@@ -2295,6 +2295,62 @@
   ],
   "settings": [
     {
+      "name": "bedrock-configuration",
+      "path": "api/bedrock-configuration.json",
+      "category": "api",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Configure Claude Code to use Amazon Bedrock for AI model access. Enables enterprise-grade deployment with AWS billing and compliance features, ideal for organizations already using AWS infrastructure.\",\n  \"env\": {\n    \"CLAUDE_CODE_USE_BEDROCK\": \"1\",\n    \"AWS_BEARER_TOKEN_BEDROCK\": \"your-bedrock-api-key\"\n  }\n}",
+      "description": "Configure Claude Code to use Amazon Bedrock for AI model access. Enables enterprise-grade deployment with AWS billing and compliance features, ideal for organizations already using AWS infrastructure."
+    },
+    {
+      "name": "corporate-proxy",
+      "path": "api/corporate-proxy.json",
+      "category": "api",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Configure proxy settings for corporate network environments. Allows Claude Code to work behind corporate firewalls and proxy servers while maintaining security compliance with enterprise network policies.\",\n  \"env\": {\n    \"HTTP_PROXY\": \"http://proxy.company.com:8080\",\n    \"HTTPS_PROXY\": \"https://proxy.company.com:8080\"\n  }\n}",
+      "description": "Configure proxy settings for corporate network environments. Allows Claude Code to work behind corporate firewalls and proxy servers while maintaining security compliance with enterprise network policies."
+    },
+    {
+      "name": "custom-headers",
+      "path": "api/custom-headers.json",
+      "category": "api",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Add custom headers to API requests for specialized authentication or routing requirements. Useful for enterprise deployments with custom authentication systems or API gateways that require additional metadata.\",\n  \"env\": {\n    \"ANTHROPIC_CUSTOM_HEADERS\": \"X-Company-ID: your-company-id\\\\nX-Environment: production\\\\nX-API-Version: v1\"\n  }\n}",
+      "description": "Add custom headers to API requests for specialized authentication or routing requirements. Useful for enterprise deployments with custom authentication systems or API gateways that require additional metadata."
+    },
+    {
+      "name": "vertex-configuration",
+      "path": "api/vertex-configuration.json",
+      "category": "api",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Configure Claude Code to use Google Vertex AI for AI model access. Provides integration with Google Cloud Platform infrastructure and billing, suitable for organizations using GCP services.\",\n  \"env\": {\n    \"CLAUDE_CODE_USE_VERTEX\": \"1\",\n    \"VERTEX_REGION_CLAUDE_3_5_SONNET\": \"us-central1\",\n    \"VERTEX_REGION_CLAUDE_3_5_HAIKU\": \"us-central1\"\n  }\n}",
+      "description": "Configure Claude Code to use Google Vertex AI for AI model access. Provides integration with Google Cloud Platform infrastructure and billing, suitable for organizations using GCP services."
+    },
+    {
+      "name": "api-key-helper",
+      "path": "authentication/api-key-helper.json",
+      "category": "authentication",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Configure a custom script to dynamically generate authentication tokens. The script will be executed to obtain fresh API keys, useful for environments with rotating credentials or temporary access tokens. TTL is set to 1 hour (3600000ms).\",\n  \"apiKeyHelper\": \"/bin/generate_temp_api_key.sh\",\n  \"env\": {\n    \"CLAUDE_CODE_API_KEY_HELPER_TTL_MS\": \"3600000\"\n  }\n}",
+      "description": "Configure a custom script to dynamically generate authentication tokens. The script will be executed to obtain fresh API keys, useful for environments with rotating credentials or temporary access tokens. TTL is set to 1 hour (3600000ms)."
+    },
+    {
+      "name": "force-claudeai-login",
+      "path": "authentication/force-claudeai-login.json",
+      "category": "authentication",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Restrict authentication to Claude.ai accounts only. This prevents users from logging in with Anthropic Console accounts, ensuring all access goes through the Claude.ai platform for consistent user experience and billing.\",\n  \"forceLoginMethod\": \"claudeai\"\n}",
+      "description": "Restrict authentication to Claude.ai accounts only. This prevents users from logging in with Anthropic Console accounts, ensuring all access goes through the Claude.ai platform for consistent user experience and billing."
+    },
+    {
+      "name": "force-console-login",
+      "path": "authentication/force-console-login.json",
+      "category": "authentication",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Restrict authentication to Anthropic Console accounts only. This ensures all usage is billed through the API billing system and prevents access via Claude.ai accounts, ideal for enterprise environments with centralized billing.\",\n  \"forceLoginMethod\": \"console\"\n}",
+      "description": "Restrict authentication to Anthropic Console accounts only. This ensures all usage is billed through the API billing system and prevents access via Claude.ai accounts, ideal for enterprise environments with centralized billing."
+    },
+    {
       "name": "retention-7-days",
       "path": "cleanup/retention-7-days.json",
       "category": "cleanup",
@@ -2309,6 +2365,94 @@
       "type": "setting",
       "content": "{\n  \"description\": \"Set chat transcript retention to 90 days for extended history.\",\n  \"cleanupPeriodDays\": 90\n}",
       "description": "Set chat transcript retention to 90 days for extended history."
+    },
+    {
+      "name": "bash-timeouts",
+      "path": "environment/bash-timeouts.json",
+      "category": "environment",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Configure timeout settings for bash command execution. Prevents long-running commands from hanging indefinitely while allowing sufficient time for complex operations like builds and deployments.\",\n  \"env\": {\n    \"BASH_DEFAULT_TIMEOUT_MS\": \"120000\",\n    \"BASH_MAX_TIMEOUT_MS\": \"600000\",\n    \"BASH_MAX_OUTPUT_LENGTH\": \"100000\"\n  }\n}",
+      "description": "Configure timeout settings for bash command execution. Prevents long-running commands from hanging indefinitely while allowing sufficient time for complex operations like builds and deployments."
+    },
+    {
+      "name": "development-utils",
+      "path": "environment/development-utils.json",
+      "category": "environment",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Enhanced development environment configuration with useful utilities and debugging features. Includes built-in ripgrep usage, terminal title updates, and directory maintenance for improved developer experience.\",\n  \"env\": {\n    \"USE_BUILTIN_RIPGREP\": \"1\",\n    \"CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR\": \"1\",\n    \"CLAUDE_CODE_DISABLE_TERMINAL_TITLE\": \"0\"\n  }\n}",
+      "description": "Enhanced development environment configuration with useful utilities and debugging features. Includes built-in ripgrep usage, terminal title updates, and directory maintenance for improved developer experience."
+    },
+    {
+      "name": "performance-optimization",
+      "path": "environment/performance-optimization.json",
+      "category": "environment",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Optimize Claude Code performance by adjusting token limits and disabling non-essential features. Reduces API costs and improves response times for development workflows focused on code quality over conversational features.\",\n  \"env\": {\n    \"CLAUDE_CODE_MAX_OUTPUT_TOKENS\": \"8000\",\n    \"DISABLE_NON_ESSENTIAL_MODEL_CALLS\": \"1\",\n    \"DISABLE_COST_WARNINGS\": \"1\"\n  }\n}",
+      "description": "Optimize Claude Code performance by adjusting token limits and disabling non-essential features. Reduces API costs and improves response times for development workflows focused on code quality over conversational features."
+    },
+    {
+      "name": "privacy-focused",
+      "path": "environment/privacy-focused.json",
+      "category": "environment",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Maximize privacy by disabling all telemetry, error reporting, and non-essential network traffic. Ideal for sensitive development environments or organizations with strict data privacy requirements.\",\n  \"env\": {\n    \"CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC\": \"1\",\n    \"DISABLE_TELEMETRY\": \"1\",\n    \"DISABLE_ERROR_REPORTING\": \"1\",\n    \"DISABLE_BUG_COMMAND\": \"1\",\n    \"DISABLE_AUTOUPDATER\": \"1\"\n  }\n}",
+      "description": "Maximize privacy by disabling all telemetry, error reporting, and non-essential network traffic. Ideal for sensitive development environments or organizations with strict data privacy requirements."
+    },
+    {
+      "name": "aws-credentials",
+      "path": "global/aws-credentials.json",
+      "category": "global",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Configure AWS credential management for Bedrock integration. Set up custom scripts for credential refresh and export, useful for environments with rotating AWS credentials or SSO integration.\",\n  \"awsAuthRefresh\": \"aws sso login --profile myprofile\",\n  \"awsCredentialExport\": \"/bin/generate_aws_grant.sh\"\n}",
+      "description": "Configure AWS credential management for Bedrock integration. Set up custom scripts for credential refresh and export, useful for environments with rotating AWS credentials or SSO integration."
+    },
+    {
+      "name": "custom-model",
+      "path": "global/custom-model.json",
+      "category": "global",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Override the default Claude model with a custom or alternative model configuration. Useful for testing new model versions or using organization-specific model deployments.\",\n  \"model\": \"claude-3-5-sonnet-20241022\",\n  \"env\": {\n    \"ANTHROPIC_SMALL_FAST_MODEL\": \"claude-3-5-haiku-20241022\"\n  }\n}",
+      "description": "Override the default Claude model with a custom or alternative model configuration. Useful for testing new model versions or using organization-specific model deployments."
+    },
+    {
+      "name": "git-commit-settings",
+      "path": "global/git-commit-settings.json",
+      "category": "global",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Configure git commit behavior including the co-authored-by signature. Disable the Claude co-authorship line if you prefer clean commit history or have organizational policies against AI attribution.\",\n  \"includeCoAuthoredBy\": false\n}",
+      "description": "Configure git commit behavior including the co-authored-by signature. Disable the Claude co-authorship line if you prefer clean commit history or have organizational policies against AI attribution."
+    },
+    {
+      "name": "disable-risky-servers",
+      "path": "mcp/disable-risky-servers.json",
+      "category": "mcp",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Disable specific MCP servers that may pose security risks or are not needed for your workflow. This blacklist approach allows most servers while blocking potentially problematic integrations.\",\n  \"disabledMcpjsonServers\": [\n    \"web-scraper\",\n    \"system-admin\",\n    \"network-tools\"\n  ]\n}",
+      "description": "Disable specific MCP servers that may pose security risks or are not needed for your workflow. This blacklist approach allows most servers while blocking potentially problematic integrations."
+    },
+    {
+      "name": "enable-all-project-servers",
+      "path": "mcp/enable-all-project-servers.json",
+      "category": "mcp",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Automatically approve and enable all MCP servers defined in project .mcp.json files. This setting bypasses manual approval prompts for project-defined MCP servers, streamlining development workflow in trusted environments.\",\n  \"enableAllProjectMcpServers\": true\n}",
+      "description": "Automatically approve and enable all MCP servers defined in project .mcp.json files. This setting bypasses manual approval prompts for project-defined MCP servers, streamlining development workflow in trusted environments."
+    },
+    {
+      "name": "enable-specific-servers",
+      "path": "mcp/enable-specific-servers.json",
+      "category": "mcp",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Enable only specific MCP servers from .mcp.json files. This provides granular control over which MCP integrations are active, allowing you to selectively enable trusted or required servers while blocking others.\",\n  \"enabledMcpjsonServers\": [\n    \"memory\",\n    \"github\",\n    \"filesystem\"\n  ]\n}",
+      "description": "Enable only specific MCP servers from .mcp.json files. This provides granular control over which MCP integrations are active, allowing you to selectively enable trusted or required servers while blocking others."
+    },
+    {
+      "name": "mcp-timeouts",
+      "path": "mcp/mcp-timeouts.json",
+      "category": "mcp",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Configure timeout settings for MCP server operations. Adjust startup and tool execution timeouts to accommodate slower systems or complex MCP server operations while preventing indefinite hangs.\",\n  \"env\": {\n    \"MCP_TIMEOUT\": \"30000\",\n    \"MCP_TOOL_TIMEOUT\": \"60000\",\n    \"MAX_MCP_OUTPUT_TOKENS\": \"50000\"\n  }\n}",
+      "description": "Configure timeout settings for MCP server operations. Adjust startup and tool execution timeouts to accommodate slower systems or complex MCP server operations while preventing indefinite hangs."
     },
     {
       "name": "use-haiku",
@@ -2327,6 +2471,22 @@
       "description": "Configure Claude Code to use Claude 3.5 Sonnet model."
     },
     {
+      "name": "additional-directories",
+      "path": "permissions/additional-directories.json",
+      "category": "permissions",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Grant access to additional directories outside the current project. Useful for monorepo setups, shared libraries, or when working with documentation stored in separate repositories.\",\n  \"permissions\": {\n    \"additionalDirectories\": [\n      \"../docs/\",\n      \"../shared-components/\",\n      \"~/projects/common-utils/\",\n      \"/opt/company-tools/\"\n    ]\n  }\n}",
+      "description": "Grant access to additional directories outside the current project. Useful for monorepo setups, shared libraries, or when working with documentation stored in separate repositories."
+    },
+    {
+      "name": "allow-git-operations",
+      "path": "permissions/allow-git-operations.json",
+      "category": "permissions",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Allow common git operations for version control workflow. Permits git status, diff, add, commit, and push operations while maintaining security by requiring explicit permission for potentially destructive operations.\",\n  \"permissions\": {\n    \"allow\": [\n      \"Bash(git status)\",\n      \"Bash(git diff:*)\",\n      \"Bash(git add:*)\",\n      \"Bash(git commit:*)\",\n      \"Bash(git push:*)\",\n      \"Bash(git pull:*)\",\n      \"Bash(git log:*)\"\n    ]\n  }\n}",
+      "description": "Allow common git operations for version control workflow. Permits git status, diff, add, commit, and push operations while maintaining security by requiring explicit permission for potentially destructive operations."
+    },
+    {
       "name": "allow-npm-commands",
       "path": "permissions/allow-npm-commands.json",
       "category": "permissions",
@@ -2341,6 +2501,70 @@
       "type": "setting",
       "content": "{\n  \"description\": \"Deny access to sensitive files like environment variables and secrets.\",\n  \"permissions\": {\n    \"deny\": [\n      \"Read(./.env)\",\n      \"Read(./.env.*)\",\n      \"Read(./secrets/**)\",\n      \"Read(./config/credentials.json)\"\n    ]\n  }\n}",
       "description": "Deny access to sensitive files like environment variables and secrets."
+    },
+    {
+      "name": "development-mode",
+      "path": "permissions/development-mode.json",
+      "category": "permissions",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Comprehensive permissions for active development. Allows most development tools and operations while maintaining security boundaries. Ideal for trusted development environments where productivity is prioritized.\",\n  \"permissions\": {\n    \"allow\": [\n      \"Bash(npm:*)\",\n      \"Bash(yarn:*)\",\n      \"Bash(node:*)\",\n      \"Bash(git:*)\",\n      \"Bash(docker:*)\",\n      \"Bash(python:*)\",\n      \"Bash(pip:*)\",\n      \"Read(**/*.json)\",\n      \"Read(**/*.js)\",\n      \"Read(**/*.ts)\",\n      \"Read(**/*.py)\",\n      \"Edit(**/*.js)\",\n      \"Edit(**/*.ts)\",\n      \"Edit(**/*.py)\",\n      \"Edit(**/*.json)\",\n      \"Write(**/*.js)\",\n      \"Write(**/*.ts)\",\n      \"Write(**/*.py)\"\n    ],\n    \"deny\": [\n      \"Read(./.env*)\",\n      \"Read(./secrets/**)\",\n      \"Bash(rm -rf:*)\",\n      \"Bash(sudo:*)\"\n    ]\n  }\n}",
+      "description": "Comprehensive permissions for active development. Allows most development tools and operations while maintaining security boundaries. Ideal for trusted development environments where productivity is prioritized."
+    },
+    {
+      "name": "read-only-mode",
+      "path": "permissions/read-only-mode.json",
+      "category": "permissions",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Restrict Claude to read-only operations for code review and analysis. Prevents any file modifications or command executions, making it safe for exploring unfamiliar codebases or conducting security audits.\",\n  \"permissions\": {\n    \"allow\": [\n      \"Read(**/*)\",\n      \"Glob\",\n      \"Grep\",\n      \"LS\"\n    ],\n    \"deny\": [\n      \"Edit\",\n      \"Write\",\n      \"MultiEdit\",\n      \"Bash\",\n      \"WebFetch\"\n    ]\n  }\n}",
+      "description": "Restrict Claude to read-only operations for code review and analysis. Prevents any file modifications or command executions, making it safe for exploring unfamiliar codebases or conducting security audits."
+    },
+    {
+      "name": "colorful-statusline",
+      "path": "statusline/colorful-statusline.json",
+      "category": "statusline",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Colorful status line with ANSI color codes for enhanced visual appeal. Uses colors to distinguish between different information types: blue for model, green for directory, yellow for git branch.\",\n  \"statusLine\": {\n    \"type\": \"command\",\n    \"command\": \"bash -c 'input=$(cat); MODEL=$(echo \\\"$input\\\" | jq -r \\\".model.display_name\\\"); DIR=$(echo \\\"$input\\\" | jq -r \\\".workspace.current_dir\\\"); BRANCH=\\\"\\\"; if git rev-parse --git-dir >/dev/null 2>&1; then BRANCH=\\\" | \\\\033[33m🌿 $(git branch --show-current 2>/dev/null)\\\\033[0m\\\"; fi; echo \\\"\\\\033[34m[$MODEL]\\\\033[0m \\\\033[32m📁 ${DIR##*/}\\\\033[0m$BRANCH\\\"'\"\n  }\n}",
+      "description": "Colorful status line with ANSI color codes for enhanced visual appeal. Uses colors to distinguish between different information types: blue for model, green for directory, yellow for git branch."
+    },
+    {
+      "name": "command-statusline",
+      "path": "statusline/command-statusline.json",
+      "category": "statusline",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Configure a custom status line using a shell command that receives session context via JSON stdin. The script can display model name, current directory, git branch, or any dynamic information. Create your script at ~/.claude/statusline.sh and make it executable.\",\n  \"statusLine\": {\n    \"type\": \"command\",\n    \"command\": \"~/.claude/statusline.sh\",\n    \"padding\": 0\n  }\n}",
+      "description": "Configure a custom status line using a shell command that receives session context via JSON stdin. The script can display model name, current directory, git branch, or any dynamic information. Create your script at ~/.claude/statusline.sh and make it executable."
+    },
+    {
+      "name": "git-branch-statusline",
+      "path": "statusline/git-branch-statusline.json",
+      "category": "statusline",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Display current model, directory, and git branch with change indicators in the status line. Shows model name, folder name, active branch, and count of uncommitted changes for complete development context.\",\n  \"statusLine\": {\n    \"type\": \"command\",\n    \"command\": \"bash -c 'input=$(cat); MODEL=$(echo \\\"$input\\\" | jq -r \\\".model.display_name\\\"); DIR=$(echo \\\"$input\\\" | jq -r \\\".workspace.current_dir\\\"); BRANCH=\\\"\\\"; if git rev-parse --git-dir >/dev/null 2>&1; then BRANCH=\\\" | 🌿 $(git branch --show-current 2>/dev/null)\\\"; CHANGES=$(git status --porcelain 2>/dev/null | wc -l); if [ $CHANGES -gt 0 ]; then BRANCH=\\\"$BRANCH ($CHANGES)\\\"; fi; fi; echo \\\"[$MODEL] 📁 ${DIR##*/}$BRANCH\\\"'\"\n  }\n}",
+      "description": "Display current model, directory, and git branch with change indicators in the status line. Shows model name, folder name, active branch, and count of uncommitted changes for complete development context."
+    },
+    {
+      "name": "minimal-statusline",
+      "path": "statusline/minimal-statusline.json",
+      "category": "statusline",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Simple minimal status line showing only model name and current directory. Clean and distraction-free display perfect for focused development sessions where you want minimal visual clutter.\",\n  \"statusLine\": {\n    \"type\": \"command\",\n    \"command\": \"bash -c 'input=$(cat); MODEL=$(echo \\\"$input\\\" | jq -r \\\".model.display_name\\\"); DIR=$(echo \\\"$input\\\" | jq -r \\\".workspace.current_dir\\\"); echo \\\"[$MODEL] ${DIR##*/}\\\"'\"\n  }\n}",
+      "description": "Simple minimal status line showing only model name and current directory. Clean and distraction-free display perfect for focused development sessions where you want minimal visual clutter."
+    },
+    {
+      "name": "project-info-statusline",
+      "path": "statusline/project-info-statusline.json",
+      "category": "statusline",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Display comprehensive project information including model, directory, Node.js version, and Claude Code version. Perfect for multi-project environments where you need full context about your development setup.\",\n  \"statusLine\": {\n    \"type\": \"command\", \n    \"command\": \"bash -c 'input=$(cat); MODEL=$(echo \\\"$input\\\" | jq -r \\\".model.display_name\\\"); DIR=$(echo \\\"$input\\\" | jq -r \\\".workspace.current_dir\\\"); VERSION=$(echo \\\"$input\\\" | jq -r \\\".version\\\"); NODE_VER=$(node --version 2>/dev/null || echo \\\"N/A\\\"); echo \\\"[$MODEL] 📁 ${DIR##*/} | Node $NODE_VER | Claude $VERSION\\\"'\"\n  }\n}",
+      "description": "Display comprehensive project information including model, directory, Node.js version, and Claude Code version. Perfect for multi-project environments where you need full context about your development setup."
+    },
+    {
+      "name": "time-statusline",
+      "path": "statusline/time-statusline.json",
+      "category": "statusline",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Status line with timestamp showing model, directory, and current time. Useful for tracking session duration and maintaining awareness of time during long coding sessions.\",\n  \"statusLine\": {\n    \"type\": \"command\",\n    \"command\": \"bash -c 'input=$(cat); MODEL=$(echo \\\"$input\\\" | jq -r \\\".model.display_name\\\"); DIR=$(echo \\\"$input\\\" | jq -r \\\".workspace.current_dir\\\"); TIME=$(date \\\"+%H:%M\\\"); echo \\\"[$MODEL] 📁 ${DIR##*/} | 🕐 $TIME\\\"'\"\n  }\n}",
+      "description": "Status line with timestamp showing model, directory, and current time. Useful for tracking session duration and maintaining awareness of time during long coding sessions."
     },
     {
       "name": "custom-telemetry",
