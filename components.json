@@ -2519,6 +2519,30 @@
       "description": "Restrict Claude to read-only operations for code review and analysis. Prevents any file modifications or command executions, making it safe for exploring unfamiliar codebases or conducting security audits."
     },
     {
+      "name": "bug-circus-statusline",
+      "path": "statusline/bug-circus-statusline.json",
+      "category": "statusline",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Turn debugging into a circus performance! Watch performers juggle bugs while the audience reacts to your coding show with dynamic applause and reactions.\",\n  \"config\": {\n    \"statusLine\": {\n      \"type\": \"command\",\n      \"command\": \"bash -c 'input=$(cat); MODEL=$(echo \\\"$input\\\" | jq -r \\\".model.display_name\\\"); DIR=$(echo \\\"$input\\\" | jq -r \\\".workspace.current_dir\\\"); SESSION=$(echo \\\"$input\\\" | jq -r \\\".session_id\\\" | cut -c1-8); CACHE=\\\"/tmp/circus_$SESSION\\\"; if [ ! -f \\\"$CACHE\\\" ]; then echo \\\"0\\\" > \\\"$CACHE\\\"; fi; SHOWS=$(cat \\\"$CACHE\\\"); SHOWS=$((SHOWS + 1)); echo \\\"$SHOWS\\\" > \\\"$CACHE\\\"; PERFORMERS=(\\\"🤹\\\" \\\"🎭\\\" \\\"🎪\\\" \\\"🎨\\\" \\\"🎯\\\"); PERFORMER=${PERFORMERS[$((SHOWS % 5))]}; AUDIENCE=$(python3 -c \\\"import random; print(''.join(['👏' if random.random() > 0.7 else '😴' for _ in range(3)]))\\\" 2>/dev/null || echo \\\"👏😴👏\\\"); echo \\\"[$MODEL] 🎪 Show #$SHOWS | $PERFORMER | $AUDIENCE | 📁 ${DIR##*/}\\\"'\"\n    }\n  }\n}",
+      "description": "Turn debugging into a circus performance! Watch performers juggle bugs while the audience reacts to your coding show with dynamic applause and reactions."
+    },
+    {
+      "name": "code-casino-statusline",
+      "path": "statusline/code-casino-statusline.json",
+      "category": "statusline",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Roll the dice with your code! Persistent chip tracking with wins and losses based on random dice rolls. Watch your coding fortune rise and fall.\",\n  \"config\": {\n    \"statusLine\": {\n      \"type\": \"command\",\n      \"command\": \"bash -c 'input=$(cat); MODEL=$(echo \\\"$input\\\" | jq -r \\\".model.display_name\\\"); DIR=$(echo \\\"$input\\\" | jq -r \\\".workspace.current_dir\\\"); SESSION=$(echo \\\"$input\\\" | jq -r \\\".session_id\\\" | cut -c1-8); CACHE=\\\"/tmp/casino_$SESSION\\\"; if [ ! -f \\\"$CACHE\\\" ]; then echo \\\"100\\\" > \\\"$CACHE\\\"; fi; CHIPS=$(cat \\\"$CACHE\\\"); DICE1=$((RANDOM % 6 + 1)); DICE2=$((RANDOM % 6 + 1)); SUM=$((DICE1 + DICE2)); if [ $SUM -eq 7 ] || [ $SUM -eq 11 ]; then CHIPS=$((CHIPS + 10)); RESULT=\\\"🎰 WIN!\\\"; elif [ $SUM -eq 2 ] || [ $SUM -eq 12 ]; then CHIPS=$((CHIPS - 5)); RESULT=\\\"💸 LOSE\\\"; else RESULT=\\\"🎲 ROLL\\\"; fi; echo \\\"$CHIPS\\\" > \\\"$CACHE\\\"; echo \\\"[$MODEL] 🎰 Chips: $CHIPS | 🎲 $DICE1+$DICE2=$SUM $RESULT | 📁 ${DIR##*/}\\\"'\"\n    }\n  }\n}",
+      "description": "Roll the dice with your code! Persistent chip tracking with wins and losses based on random dice rolls. Watch your coding fortune rise and fall."
+    },
+    {
+      "name": "code-spaceship-statusline",
+      "path": "statusline/code-spaceship-statusline.json",
+      "category": "statusline",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Navigate through space on your coding journey. Track fuel consumption, travel distance, and warp levels. The ship's condition reflects your coding momentum.\",\n  \"config\": {\n    \"statusLine\": {\n      \"type\": \"command\",\n      \"command\": \"bash -c 'input=$(cat); MODEL=$(echo \\\"$input\\\" | jq -r \\\".model.display_name\\\"); DIR=$(echo \\\"$input\\\" | jq -r \\\".workspace.current_dir\\\"); SESSION=$(echo \\\"$input\\\" | jq -r \\\".session_id\\\" | cut -c1-8); CACHE=\\\"/tmp/spaceship_$SESSION\\\"; if [ ! -f \\\"$CACHE\\\" ]; then echo \\\"100 0 0\\\" > \\\"$CACHE\\\"; fi; read FUEL DISTANCE WARP < \\\"$CACHE\\\"; FUEL=$((FUEL - 1)); DISTANCE=$((DISTANCE + 5)); if [ $FUEL -le 0 ]; then FUEL=100; WARP=$((WARP + 1)); fi; echo \\\"$FUEL $DISTANCE $WARP\\\" > \\\"$CACHE\\\"; SHIP=$([ $FUEL -gt 80 ] && echo \\\"🚀\\\" || [ $FUEL -gt 40 ] && echo \\\"🛸\\\" || echo \\\"🆘\\\"); STARS=$(python3 -c \\\"import random; print(''.join(random.choice('⭐🌟✨') for _ in range(3)))\\\" 2>/dev/null || echo \\\"⭐🌟✨\\\"); echo \\\"[$MODEL] $SHIP Warp $WARP | ⛽$FUEL% | 🌌 ${DISTANCE}ly | $STARS | 📁 ${DIR##*/}\\\"'\"\n    }\n  }\n}",
+      "description": "Navigate through space on your coding journey. Track fuel consumption, travel distance, and warp levels. The ship's condition reflects your coding momentum."
+    },
+    {
       "name": "colorful-statusline",
       "path": "statusline/colorful-statusline.json",
       "category": "statusline",
@@ -2533,6 +2557,22 @@
       "type": "setting",
       "content": "{\n  \"description\": \"Configure a custom status line using a shell command that receives session context via JSON stdin. The script can display model name, current directory, git branch, or any dynamic information. Create your script at ~/.claude/statusline.sh and make it executable.\",\n  \"statusLine\": {\n    \"type\": \"command\",\n    \"command\": \"~/.claude/statusline.sh\",\n    \"padding\": 0\n  }\n}",
       "description": "Configure a custom status line using a shell command that receives session context via JSON stdin. The script can display model name, current directory, git branch, or any dynamic information. Create your script at ~/.claude/statusline.sh and make it executable."
+    },
+    {
+      "name": "data-ocean-statusline",
+      "path": "statusline/data-ocean-statusline.json",
+      "category": "statusline",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Dive deep into an ocean of code. Track depth based on file count, encounter different sea creatures, and occasionally discover treasure while surfing the data waves.\",\n  \"config\": {\n    \"statusLine\": {\n      \"type\": \"command\",\n      \"command\": \"bash -c 'input=$(cat); MODEL=$(echo \\\"$input\\\" | jq -r \\\".model.display_name\\\"); DIR=$(echo \\\"$input\\\" | jq -r \\\".workspace.current_dir\\\"); WAVES=(\\\"🌊\\\" \\\"🌀\\\" \\\"💧\\\" \\\"⚡\\\" \\\"🔥\\\"); WAVE=${WAVES[$((RANDOM % 5))]}; DEPTH=$(($(find . -name \\\"*.py\\\" -o -name \\\"*.js\\\" -o -name \\\"*.rs\\\" 2>/dev/null | wc -l) * 10)); CREATURES=$([ $DEPTH -gt 100 ] && echo \\\"🐋\\\" || [ $DEPTH -gt 50 ] && echo \\\"🐠\\\" || echo \\\"🐟\\\"); TREASURE=$([ $((RANDOM % 20)) -eq 0 ] && echo \\\"💎\\\" || echo \\\"\\\"); echo \\\"[$MODEL] $WAVE Depth: ${DEPTH}m | $CREATURES $TREASURE | 📁 ${DIR##*/}\\\"'\"\n    }\n  }\n}",
+      "description": "Dive deep into an ocean of code. Track depth based on file count, encounter different sea creatures, and occasionally discover treasure while surfing the data waves."
+    },
+    {
+      "name": "emotion-theater-statusline",
+      "path": "statusline/emotion-theater-statusline.json",
+      "category": "statusline",
+      "type": "setting",
+      "content": "{\n  \"description\": \"A theatrical display of coding emotions and activities. Random mood faces and dynamic activity detection based on file types present in your project.\",\n  \"config\": {\n    \"statusLine\": {\n      \"type\": \"command\",\n      \"command\": \"bash -c 'input=$(cat); MODEL=$(echo \\\"$input\\\" | jq -r \\\".model.display_name\\\"); DIR=$(echo \\\"$input\\\" | jq -r \\\".workspace.current_dir\\\"); MOOD_FACES=(\\\"😴\\\" \\\"😅\\\" \\\"🤔\\\" \\\"😎\\\" \\\"🤯\\\" \\\"🥳\\\" \\\"😤\\\" \\\"🤖\\\"); MOOD=${MOOD_FACES[$((RANDOM % ${#MOOD_FACES[@]}))]}; ACTIVITY=$([ -f \\\"*.py\\\" ] && echo \\\"🐍 Pythoning\\\" || [ -f \\\"*.js\\\" ] && echo \\\"🌐 JSing\\\" || [ -f \\\"*.rs\\\" ] && echo \\\"🦀 Rusting\\\" || echo \\\"💻 Coding\\\"); TIME=$(date \\\"+%H:%M\\\"); ENERGY=$((RANDOM % 100 + 1)); echo \\\"[$MODEL] $MOOD $ACTIVITY | ⚡$ENERGY% | 🕐 $TIME | 📁 ${DIR##*/}\\\"'\"\n    }\n  }\n}",
+      "description": "A theatrical display of coding emotions and activities. Random mood faces and dynamic activity detection based on file types present in your project."
     },
     {
       "name": "git-branch-statusline",
@@ -2551,6 +2591,30 @@
       "description": "Simple minimal status line showing only model name and current directory. Clean and distraction-free display perfect for focused development sessions where you want minimal visual clutter."
     },
     {
+      "name": "productivity-rainbow-statusline",
+      "path": "statusline/productivity-rainbow-statusline.json",
+      "category": "statusline",
+      "type": "setting",
+      "content": "{\n  \"description\": \"A colorful celebration of your coding journey. Dynamic rainbow colors that cycle with time, energy levels based on time of day, and productivity streaks.\",\n  \"config\": {\n    \"statusLine\": {\n      \"type\": \"command\",\n      \"command\": \"bash -c 'input=$(cat); MODEL=$(echo \\\"$input\\\" | jq -r \\\".model.display_name\\\"); DIR=$(echo \\\"$input\\\" | jq -r \\\".workspace.current_dir\\\"); COLORS=(\\\"🔴\\\" \\\"🟠\\\" \\\"🟡\\\" \\\"🟢\\\" \\\"🔵\\\" \\\"🟣\\\"); COLOR_INDEX=$(($(date +%S) % 6)); COLOR=${COLORS[$COLOR_INDEX]}; RAINBOW=\\\"🌈\\\"; HOUR=$(date +%H); ENERGY=$([ $HOUR -lt 12 ] && echo \\\"☀️ Morning\\\" || [ $HOUR -lt 18 ] && echo \\\"🌤️ Afternoon\\\" || echo \\\"🌙 Evening\\\"); STREAK=$(($(date +%j) % 100)); echo \\\"[$MODEL] $RAINBOW $COLOR $ENERGY | ⚡Streak: $STREAK | 📁 ${DIR##*/}\\\"'\"\n    }\n  }\n}",
+      "description": "A colorful celebration of your coding journey. Dynamic rainbow colors that cycle with time, energy levels based on time of day, and productivity streaks."
+    },
+    {
+      "name": "programmer-tamagotchi-statusline",
+      "path": "statusline/programmer-tamagotchi-statusline.json",
+      "category": "statusline",
+      "type": "setting",
+      "content": "{\n  \"description\": \"A virtual pet that evolves based on your coding activity. Health and happiness change over time, creating an emotional connection with your coding sessions.\",\n  \"config\": {\n    \"statusLine\": {\n      \"type\": \"command\",\n      \"command\": \"bash -c 'input=$(cat); MODEL=$(echo \\\"$input\\\" | jq -r \\\".model.display_name\\\"); DIR=$(echo \\\"$input\\\" | jq -r \\\".workspace.current_dir\\\"); SESSION=$(echo \\\"$input\\\" | jq -r \\\".session_id\\\" | cut -c1-8); CACHE=\\\"/tmp/tamagochi_$SESSION\\\"; if [ ! -f \\\"$CACHE\\\" ]; then echo \\\"100 50 0\\\" > \\\"$CACHE\\\"; fi; read HEALTH HAPPINESS COMMITS < \\\"$CACHE\\\"; COMMITS=$((COMMITS + 1)); if [ $((COMMITS % 10)) -eq 0 ]; then HAPPINESS=$((HAPPINESS + 5)); fi; if [ $((COMMITS % 20)) -eq 0 ]; then HEALTH=$((HEALTH - 10)); fi; HEALTH=$((HEALTH > 100 ? 100 : HEALTH)); HAPPINESS=$((HAPPINESS > 100 ? 100 : HAPPINESS)); echo \\\"$HEALTH $HAPPINESS $COMMITS\\\" > \\\"$CACHE\\\"; if [ $HEALTH -gt 80 ]; then PET=\\\"🐱\\\"; elif [ $HEALTH -gt 60 ]; then PET=\\\"😺\\\"; elif [ $HEALTH -gt 40 ]; then PET=\\\"😿\\\"; else PET=\\\"💀\\\"; fi; if [ $HAPPINESS -gt 80 ]; then MOOD=\\\"✨\\\"; elif [ $HAPPINESS -gt 60 ]; then MOOD=\\\"😊\\\"; elif [ $HAPPINESS -gt 40 ]; then MOOD=\\\"😐\\\"; else MOOD=\\\"😢\\\"; fi; echo \\\"[$MODEL] $PET$MOOD HP:$HEALTH Joy:$HAPPINESS | 📁 ${DIR##*/} | Commits:$COMMITS\\\"'\"\n    }\n  }\n}",
+      "description": "A virtual pet that evolves based on your coding activity. Health and happiness change over time, creating an emotional connection with your coding sessions."
+    },
+    {
+      "name": "programming-fitness-tracker-statusline",
+      "path": "statusline/programming-fitness-tracker-statusline.json",
+      "category": "statusline",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Track your coding fitness with steps and calories burned through programming. Earn badges and monitor your coding intensity levels.\",\n  \"config\": {\n    \"statusLine\": {\n      \"type\": \"command\",\n      \"command\": \"bash -c 'input=$(cat); MODEL=$(echo \\\"$input\\\" | jq -r \\\".model.display_name\\\"); DIR=$(echo \\\"$input\\\" | jq -r \\\".workspace.current_dir\\\"); SESSION=$(echo \\\"$input\\\" | jq -r \\\".session_id\\\" | cut -c1-8); CACHE=\\\"/tmp/fitness_$SESSION\\\"; if [ ! -f \\\"$CACHE\\\" ]; then echo \\\"0 0\\\" > \\\"$CACHE\\\"; fi; read STEPS CALORIES < \\\"$CACHE\\\"; STEPS=$((STEPS + 1)); CALORIES=$((CALORIES + 2)); echo \\\"$STEPS $CALORIES\\\" > \\\"$CACHE\\\"; BADGE=\\\"\\\"; [ $STEPS -ge 100 ] && BADGE=\\\"🏆\\\"; [ $STEPS -ge 50 ] && BADGE=\\\"🥉\\\"; INTENSITY=$([ $((STEPS % 10)) -lt 3 ] && echo \\\"🚶\\\" || [ $((STEPS % 10)) -lt 7 ] && echo \\\"🏃\\\" || echo \\\"💨\\\"); echo \\\"[$MODEL] $INTENSITY Steps: $STEPS | 🔥 ${CALORIES}cal $BADGE | 📁 ${DIR##*/}\\\"'\"\n    }\n  }\n}",
+      "description": "Track your coding fitness with steps and calories burned through programming. Earn badges and monitor your coding intensity levels."
+    },
+    {
       "name": "project-info-statusline",
       "path": "statusline/project-info-statusline.json",
       "category": "statusline",
@@ -2559,12 +2623,28 @@
       "description": "Display comprehensive project information including model, directory, Node.js version, and Claude Code version. Perfect for multi-project environments where you need full context about your development setup."
     },
     {
+      "name": "rpg-status-bar-statusline",
+      "path": "statusline/rpg-status-bar-statusline.json",
+      "category": "statusline",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Level up your coding skills like in an RPG. Gain experience with each session, advance through classes from Novice to Archmage, and track your health and mana.\",\n  \"config\": {\n    \"statusLine\": {\n      \"type\": \"command\",\n      \"command\": \"bash -c 'input=$(cat); MODEL=$(echo \\\"$input\\\" | jq -r \\\".model.display_name\\\"); DIR=$(echo \\\"$input\\\" | jq -r \\\".workspace.current_dir\\\"); SESSION=$(echo \\\"$input\\\" | jq -r \\\".session_id\\\" | cut -c1-8); CACHE=\\\"/tmp/rpg_$SESSION\\\"; if [ ! -f \\\"$CACHE\\\" ]; then echo \\\"1 0 Novice\\\" > \\\"$CACHE\\\"; fi; read LEVEL XP CLASS < \\\"$CACHE\\\"; XP=$((XP + 3)); if [ $XP -ge $((LEVEL * 100)) ]; then LEVEL=$((LEVEL + 1)); XP=0; [ $LEVEL -eq 5 ] && CLASS=\\\"Wizard\\\"; [ $LEVEL -eq 10 ] && CLASS=\\\"Archmage\\\"; fi; echo \\\"$LEVEL $XP $CLASS\\\" > \\\"$CACHE\\\"; MANA=$([ -f \\\"package.json\\\" ] && echo \\\"🔵\\\" || echo \\\"⚪\\\"); HP=$(git status --porcelain 2>/dev/null | wc -l | awk \\\"{\\\\$1=\\\\$1}1\\\"); HP=$((10 - HP)); echo \\\"[$MODEL] ⚔️ $CLASS Lv.$LEVEL | HP:$HP/10 $MANA | 📁 ${DIR##*/} | XP:$XP/$((LEVEL * 100))\\\"'\"\n    }\n  }\n}",
+      "description": "Level up your coding skills like in an RPG. Gain experience with each session, advance through classes from Novice to Archmage, and track your health and mana."
+    },
+    {
       "name": "time-statusline",
       "path": "statusline/time-statusline.json",
       "category": "statusline",
       "type": "setting",
       "content": "{\n  \"description\": \"Status line with timestamp showing model, directory, and current time. Useful for tracking session duration and maintaining awareness of time during long coding sessions.\",\n  \"statusLine\": {\n    \"type\": \"command\",\n    \"command\": \"bash -c 'input=$(cat); MODEL=$(echo \\\"$input\\\" | jq -r \\\".model.display_name\\\"); DIR=$(echo \\\"$input\\\" | jq -r \\\".workspace.current_dir\\\"); TIME=$(date \\\"+%H:%M\\\"); echo \\\"[$MODEL] 📁 ${DIR##*/} | 🕐 $TIME\\\"'\"\n  }\n}",
       "description": "Status line with timestamp showing model, directory, and current time. Useful for tracking session duration and maintaining awareness of time during long coding sessions."
+    },
+    {
+      "name": "virtual-code-garden-statusline",
+      "path": "statusline/virtual-code-garden-statusline.json",
+      "category": "statusline",
+      "type": "setting",
+      "content": "{\n  \"description\": \"Watch your code garden grow with each session. Plants evolve from seeds to trees based on your activity, with dynamic weather effects.\",\n  \"config\": {\n    \"statusLine\": {\n      \"type\": \"command\",\n      \"command\": \"bash -c 'input=$(cat); MODEL=$(echo \\\"$input\\\" | jq -r \\\".model.display_name\\\"); DIR=$(echo \\\"$input\\\" | jq -r \\\".workspace.current_dir\\\"); SESSION=$(echo \\\"$input\\\" | jq -r \\\".session_id\\\" | cut -c1-8); CACHE=\\\"/tmp/garden_$SESSION\\\"; if [ ! -f \\\"$CACHE\\\" ]; then echo \\\"0\\\" > \\\"$CACHE\\\"; fi; GROWTH=$(cat \\\"$CACHE\\\"); GROWTH=$((GROWTH + 1)); echo \\\"$GROWTH\\\" > \\\"$CACHE\\\"; STAGE=$((GROWTH / 10)); case $STAGE in 0) PLANT=\\\"🌱\\\";; 1) PLANT=\\\"🌿\\\";; 2) PLANT=\\\"🍃\\\";; 3) PLANT=\\\"🌳\\\";; *) PLANT=\\\"🌺\\\";; esac; WEATHER=$([ $((GROWTH % 7)) -eq 0 ] && echo \\\"🌧️\\\" || [ $((GROWTH % 5)) -eq 0 ] && echo \\\"☀️\\\" || echo \\\"⛅\\\"); echo \\\"[$MODEL] $PLANT $WEATHER Garden Lv.$STAGE | 📁 ${DIR##*/} | Growth: $GROWTH\\\"'\"\n    }\n  }\n}",
+      "description": "Watch your code garden grow with each session. Plants evolve from seeds to trees based on your activity, with dynamic weather effects."
     },
     {
       "name": "custom-telemetry",
