@@ -47,7 +47,7 @@ function createComponentModalHTML(component) {
     }
     const installCommand = `npx claude-code-templates@latest --${component.type}=${componentPath} --yes`;
     
-    const description = getComponentDescription(component, 120); // Short description - 2 lines max
+    const description = getComponentDescription(component); // Full description
 
     // Construct GitHub URL
     let githubUrl = 'https://github.com/davila7/claude-code-templates/';

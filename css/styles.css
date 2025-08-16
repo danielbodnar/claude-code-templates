@@ -2016,7 +2016,6 @@ body {
     border: 1px solid var(--border-secondary);
     border-radius: 8px;
     padding: 1rem;
-    max-height: 300px;
     overflow-y: auto;
 }
 
@@ -2395,7 +2394,6 @@ body {
     }
     
     .component-preview {
-        max-height: 200px;
         padding: 0.75rem;
     }
     
