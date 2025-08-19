@@ -1,4 +1,13 @@
 // Index Events - Handles events specific to index.html
+console.log('index-events.js loaded successfully');
+
+// Global function to focus search input when clicking wrapper
+function focusSearchInput() {
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.focus();
+    }
+}
 
 class IndexPageManager {
     constructor() {
@@ -968,6 +977,192 @@ function setUnifiedFilter(filter) {
     if (window.indexManager) {
         window.indexManager.setFilter(filter);
     }
+    
+    // Update filter buttons - remove active from ALL filter buttons
+    document.querySelectorAll('.component-type-filters .filter-chip').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Add active class only to the clicked filter button
+    const activeBtn = document.querySelector(`[data-filter="${filter}"]`);
+    if (activeBtn) {
+        activeBtn.classList.add('active');
+    }
+    
+    console.log('Component type filter selected:', filter);
+    
+    // Show category filters for the selected component type
+    showCategoryFilters(filter);
+}
+
+// Function to show category filters based on component type
+function showCategoryFilters(componentType) {
+    const categoryContainer = document.getElementById('componentCategories');
+    const categoryChips = document.getElementById('categoryChips');
+    
+    if (!categoryContainer || !categoryChips) return;
+    
+    // Get categories from actual component data
+    let categories = [];
+    
+    if (window.dataLoader) {
+        const dataLoader = window.dataLoader;
+        
+        console.log('DataLoader available, getting categories for:', componentType);
+        console.log('DataLoader componentsData:', dataLoader.componentsData);
+        
+        switch(componentType) {
+            case 'agents':
+                const agents = dataLoader.getComponentsByType('agent');
+                console.log('Agents data:', agents);
+                categories = getUniqueCategories(agents);
+                break;
+            case 'commands':
+                const commands = dataLoader.getComponentsByType('command');
+                console.log('Commands data:', commands);
+                categories = getUniqueCategories(commands);
+                break;
+            case 'settings':
+                try {
+                    categories = dataLoader.getSettingCategories ? dataLoader.getSettingCategories() : getUniqueCategories(dataLoader.getSettings());
+                } catch (e) {
+                    const settings = dataLoader.getComponentsByType('setting') || dataLoader.getSettings();
+                    categories = getUniqueCategories(settings);
+                }
+                break;
+            case 'hooks':
+                try {
+                    categories = dataLoader.getHookCategories ? dataLoader.getHookCategories() : getUniqueCategories(dataLoader.getHooks());
+                } catch (e) {
+                    const hooks = dataLoader.getComponentsByType('hook') || dataLoader.getHooks();
+                    categories = getUniqueCategories(hooks);
+                }
+                break;
+            case 'mcps':
+                const mcps = dataLoader.getComponentsByType('mcp');
+                console.log('MCPs data:', mcps);
+                categories = getUniqueCategories(mcps);
+                break;
+            case 'templates':
+                const templates = dataLoader.getComponentsByType('template');
+                console.log('Templates data:', templates);
+                categories = getUniqueCategories(templates);
+                break;
+            default:
+                categories = [];
+        }
+        
+        console.log('Found categories for', componentType, ':', categories);
+    } else {
+        console.log('DataLoader not available yet');
+    }
+    
+    // Add "All" option at the beginning
+    if (categories.length > 0) {
+        categories.unshift('All');
+    }
+    
+    if (categories.length > 0) {
+        categoryChips.innerHTML = categories.map((category, index) => {
+            const displayName = formatCategoryName(category);
+            // Only the first item (All) should be active by default
+            const isActive = index === 0 ? 'active' : '';
+            return `
+                <button class="filter-chip ${isActive}" data-category="${category.toLowerCase()}" onclick="setCategoryFilter('${category.toLowerCase()}')">
+                    ${displayName}
+                </button>
+            `;
+        }).join('');
+        
+        categoryContainer.style.display = 'block';
+    } else {
+        categoryContainer.style.display = 'none';
+    }
+}
+
+// Helper function to extract unique categories from component data
+function getUniqueCategories(components) {
+    if (!components || !Array.isArray(components)) return [];
+    
+    const categories = new Set();
+    components.forEach(component => {
+        if (component.category && component.category.trim() !== '') {
+            categories.add(component.category);
+        }
+    });
+    
+    return Array.from(categories).sort();
+}
+
+// Helper function to format category names for display
+function formatCategoryName(category) {
+    if (category === 'All') return 'All';
+    
+    // Convert category names to proper case
+    return category
+        .split(/[-_\s]+/)
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
+}
+
+// Function to handle category filter selection
+// Enhanced setCategoryFilter function that handles both old and new category systems
+window.setCategoryFilter = function setCategoryFilter(category) {
+    console.log('setCategoryFilter called with:', category);
+    
+    // Handle the new category chips in #categoryChips
+    const categoryButtons = document.querySelectorAll('#categoryChips button.filter-chip');
+    if (categoryButtons.length > 0) {
+        console.log('Found new category buttons:', categoryButtons.length);
+        
+        categoryButtons.forEach((btn, index) => {
+            console.log(`Button ${index}:`, btn.getAttribute('data-category'), 'has active:', btn.classList.contains('active'));
+            btn.classList.remove('active');
+        });
+        
+        // Add active class only to the clicked button
+        const activeBtn = document.querySelector(`#categoryChips button[data-category="${category}"]`);
+        console.log('Target button found:', activeBtn);
+        
+        if (activeBtn) {
+            activeBtn.classList.add('active');
+            console.log('Added active class to:', category);
+        }
+    }
+    
+    // Also call the existing IndexManager setCategoryFilter method for actual filtering
+    if (window.indexManager && window.indexManager.setCategoryFilter) {
+        console.log('Calling IndexManager setCategoryFilter with:', category);
+        window.indexManager.setCategoryFilter(category);
+    }
+    
+    // Force re-render of the current filter to apply category filtering
+    if (window.indexManager && window.indexManager.displayCurrentFilter) {
+        console.log('Re-displaying current filter to apply category filter');
+        window.indexManager.displayCurrentFilter();
+    }
+}
+
+// Test function to debug category filters
+window.testCategoryFilter = function() {
+    console.log('=== Category Filter Debug ===');
+    const categoryChips = document.getElementById('categoryChips');
+    console.log('Category chips container:', categoryChips);
+    
+    if (categoryChips) {
+        const buttons = categoryChips.querySelectorAll('button.filter-chip');
+        console.log('Found buttons:', buttons.length);
+        
+        buttons.forEach((btn, index) => {
+            console.log(`Button ${index}:`, {
+                category: btn.getAttribute('data-category'),
+                hasActive: btn.classList.contains('active'),
+                onclick: btn.getAttribute('onclick')
+            });
+        });
+    }
+    
+    console.log('setCategoryFilter function exists:', typeof window.setCategoryFilter);
 }
 
 // Global helper functions for template cards
@@ -1055,11 +1250,7 @@ function showTemplateDetails(templateId, templateName, subtype) {
 }
 
 // Global function for setting category filter (called from onclick)
-function setCategoryFilter(category) {
-    if (window.indexManager) {
-        window.indexManager.setCategoryFilter(category);
-    }
-}
+// setCategoryFilter function is now defined globally above as window.setCategoryFilter
 
 // Show component contribute modal (copied from script.js)
 function showComponentContributeModal(type) {
@@ -1447,4 +1638,16 @@ function handleAddToCart(name, path, type, category, buttonElement) {
 document.addEventListener('DOMContentLoaded', () => {
     window.indexManager = new IndexPageManager();
     window.indexManager.init();
+    
+    // Initialize category filters for default selection (agents)
+    // Wait for components to load, then show categories
+    const initCategories = () => {
+        if (window.dataLoader && window.dataLoader.componentsData) {
+            showCategoryFilters('agents');
+        } else {
+            setTimeout(initCategories, 200);
+        }
+    };
+    
+    setTimeout(initCategories, 100);
 });

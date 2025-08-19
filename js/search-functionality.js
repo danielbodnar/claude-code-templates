@@ -44,7 +44,7 @@ function toggleSearch() {
 }
 
 /**
- * Handle search input with debouncing
+ * Handle search input - now only shows/hides clear button, doesn't trigger search
  */
 function handleSearchInput(event) {
     const query = event.target.value;
@@ -55,17 +55,9 @@ function handleSearchInput(event) {
         clearBtn.style.display = 'flex';
     } else {
         clearBtn.style.display = 'none';
+        // If input is empty, restore previous view
+        restorePreviousView();
     }
-    
-    // Clear previous timeout
-    if (searchTimeout) {
-        clearTimeout(searchTimeout);
-    }
-    
-    // Debounce search after 300ms
-    searchTimeout = setTimeout(() => {
-        performSearch(query);
-    }, 300);
 }
 
 /**
@@ -73,13 +65,14 @@ function handleSearchInput(event) {
  */
 function handleSearchKeydown(event) {
     if (event.key === 'Escape') {
-        toggleSearch();
+        clearSearch();
     } else if (event.key === 'Enter') {
         event.preventDefault();
-        // Focus first result if any
-        const firstResult = document.querySelector('.unified-grid .component-card:not([style*="display: none"])');
-        if (firstResult) {
-            firstResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const query = event.target.value.trim();
+        if (query.length >= 3) {
+            performSearch(query);
+        } else if (query.length === 0) {
+            restorePreviousView();
         }
     }
 }
@@ -90,12 +83,9 @@ function handleSearchKeydown(event) {
 function clearSearch() {
     const input = document.getElementById('searchInput');
     const clearBtn = document.getElementById('clearSearchBtn');
-    const resultsInfo = document.getElementById('searchResultsInfo');
-    const unifiedGrid = document.getElementById('unifiedGrid');
     
     input.value = '';
     clearBtn.style.display = 'none';
-    resultsInfo.style.display = 'none';
     
     // Clear search timeout
     if (searchTimeout) {
@@ -103,17 +93,35 @@ function clearSearch() {
         searchTimeout = null;
     }
     
-    // Reset to show all components or return to filter view
-    const activeFilter = document.querySelector('.filter-btn.active:not(.search-btn)');
-    if (activeFilter) {
-        const filterType = activeFilter.getAttribute('data-filter');
-        setUnifiedFilter(filterType);
-    } else {
-        // Show all components except templates
-        showAllComponents();
-    }
+    // Restore previous view
+    restorePreviousView();
     
     searchResults = [];
+}
+
+/**
+ * Restore the previous view (before search was active)
+ */
+function restorePreviousView() {
+    const resultsInfo = document.getElementById('searchResultsInfo');
+    resultsInfo.style.display = 'none';
+    
+    // Show filters again
+    showFilters();
+    
+    // Reset to current filter view
+    const activeFilter = document.querySelector('.component-type-filters .filter-chip.active');
+    if (activeFilter) {
+        const filterType = activeFilter.getAttribute('data-filter');
+        if (window.indexManager) {
+            window.indexManager.displayCurrentFilter();
+        }
+    } else {
+        // Fallback to agents if no active filter found
+        if (window.indexManager) {
+            window.indexManager.setFilter('agents');
+        }
+    }
 }
 
 /**
@@ -179,8 +187,12 @@ async function loadComponentsForSearch() {
 function performSearch(query) {
     if (!query || query.length < 3) {
         updateSearchResults([]);
+        showFilters(); // Show filters when no search
         return;
     }
+    
+    // Hide filters during search
+    hideFilters();
     
     const normalizedQuery = query.toLowerCase().trim();
     const results = [];
@@ -300,9 +312,9 @@ function updateSearchResults(results, categoryMatches = new Set()) {
     
     resultsInfo.style.display = 'block';
     
-    // Update count
+    // Update count with terminal-style format
     const count = results.length;
-    resultsCount.textContent = `${count} result${count !== 1 ? 's' : ''} found`;
+    resultsCount.textContent = `Found(${count} result${count !== 1 ? 's' : ''})`;
     
     // Update category tags
     if (categoryMatches.size > 0) {
@@ -366,9 +378,12 @@ function displaySearchResults(results) {
         groupedResults[result.category].push(result);
     });
     
-    // Render grouped results
+    // Render grouped results in specific order
     let html = '';
-    Object.keys(groupedResults).forEach(category => {
+    const categoryOrder = ['agents', 'commands', 'settings', 'hooks', 'mcps'];
+    
+    categoryOrder.forEach(category => {
+        if (!groupedResults[category]) return;
         const categoryResults = groupedResults[category];
         const categoryIcon = getCategoryIcon(category);
         const categoryName = category.charAt(0).toUpperCase() + category.slice(1);
@@ -413,33 +428,54 @@ function getCategoryIcon(category) {
  * Generate component card HTML (matching existing template-card format)
  */
 function generateComponentCard(component, category) {
-    const name = component.name || component.title || 'Unnamed Component';
-    const description = component.description || 'No description available';
-    const tags = component.tags || [];
-    const displayName = name.replace(/[-_]/g, ' ');
+    // Generate install command - remove .md extension from path
+    let componentPath = component.path || component.name;
+    // Remove .md or .json extensions from path
+    if (componentPath.endsWith('.md') || componentPath.endsWith('.json')) {
+        componentPath = componentPath.replace(/\.(md|json)$/, '');
+    }
+    const installCommand = `npx claude-code-templates@latest --${component.type}=${componentPath} --yes`;
     
-    // Generate installation command based on category
-    const installCommand = generateInstallCommand(component, category);
+    const typeConfig = {
+        agent: { icon: '🤖', color: '#ff6b6b' },
+        command: { icon: '⚡', color: '#4ecdc4' },
+        mcp: { icon: '🔌', color: '#45b7d1' },
+        setting: { icon: '⚙️', color: '#9c88ff' },
+        hook: { icon: '🪝', color: '#ff8c42' }
+    };
+    
+    const config = typeConfig[component.type];
+    
+    // Escape quotes and special characters for onclick attributes
+    const escapedType = component.type.replace(/'/g, "\\'");
+    const escapedName = (component.name || '').replace(/'/g, "\\'");
+    const escapedPath = (component.path || component.name || '').replace(/'/g, "\\'");
+    const escapedCategory = (component.category || 'general').replace(/'/g, "\\'");
     const escapedCommand = installCommand.replace(/'/g, "\\'");
-    const escapedName = (component.name || component.title || '').replace(/'/g, "\\'");
-    const componentPath = component.path ? (component.path.endsWith('.json') ? component.path : component.path + '.json') : (component.name || 'item') + '.json';
     
-    // Convert category plural to singular for showComponentDetails
-    const singularCategory = category === 'settings' ? 'setting' : category === 'hooks' ? 'hook' : category.slice(0, -1);
+    // Create category label (use "General" if no category)
+    const categoryName = component.category || 'general';
+    const categoryLabel = `<div class="category-label">${categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}</div>`;
+    
+    // Format component name
+    const formattedName = (component.name || '').split(/[-_]/).map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1)
+    ).join(' ');
+    
+    // Get description
+    const description = component.description || 'Component for enhanced development workflow';
+    const truncatedDescription = description.length > 80 ? description.substring(0, 80) + '...' : description;
     
     return `
-        <div class="template-card search-result-card" data-category="${category}">
+        <div class="template-card" data-type="${component.type}">
             <div class="card-inner">
                 <div class="card-front">
-                    <div class="component-type-badge">${getCategoryIcon(category)} ${category}</div>
-                    <h3 class="card-title">${displayName}</h3>
-                    <p class="card-description">${description.length > 100 ? description.substring(0, 100) + '...' : description}</p>
-                    ${tags.length > 0 ? `
-                        <div class="card-tags">
-                            ${tags.slice(0, 3).map(tag => `<span class="tag">${tag}</span>`).join('')}
-                            ${tags.length > 3 ? `<span class="tag-more">+${tags.length - 3}</span>` : ''}
-                        </div>
-                    ` : ''}
+                    ${categoryLabel}
+                    <div class="framework-logo" style="color: ${config.color}">
+                        <span class="component-icon">${config.icon}</span>
+                    </div>
+                    <h3 class="template-title">${formattedName}</h3>
+                    <p class="template-description">${truncatedDescription}</p>
                 </div>
                 <div class="card-back">
                     <div class="command-display">
@@ -447,21 +483,21 @@ function generateComponentCard(component, category) {
                         <div class="command-code-container">
                             <div class="command-code">${installCommand}</div>
                             <button class="copy-overlay-btn" onclick="copyToClipboard('${escapedCommand}'); event.stopPropagation();" title="Copy command">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
                                 </svg>
                                 Copy Command
                             </button>
                         </div>
                         <div class="card-actions">
-                            <button class="view-files-btn" onclick="showComponentDetails('${singularCategory}', '${escapedName}', '${componentPath}', '${component.category || category}')">
+                            <button class="view-files-btn" onclick="showComponentDetails('${escapedType}', '${escapedName}', '${escapedPath}', '${escapedCategory}')">
                                 📁 View Details
                             </button>
                             <button class="add-to-cart-btn" 
-                                    data-type="${category}s" 
-                                    data-path="${component.path || component.name}"
-                                    onclick="handleAddToCart('${escapedName}', '${component.path || component.name}', '${category}s', '${component.category || category}', this)">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    data-type="${component.type}s" 
+                                    data-path="${componentPath}"
+                                    onclick="handleAddToCart('${escapedName}', '${componentPath}', '${component.type}s', '${escapedCategory}', this)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M19,7H18V6A2,2 0 0,0 16,4H8A2,2 0 0,0 6,6V7H5A1,1 0 0,0 4,8A1,1 0 0,0 5,9H6V19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V9H19A1,1 0 0,0 20,8A1,1 0 0,0 19,7M8,6H16V7H8V6M16,19H8V9H16V19Z"/>
                                 </svg>
                                 Add to Stack
@@ -922,3 +958,35 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(searchStyles);
     }
 });
+
+/**
+ * Hide filter elements during search
+ */
+function hideFilters() {
+    const filterGroup = document.querySelector('.filter-group');
+    const componentCategories = document.getElementById('componentCategories');
+    
+    if (filterGroup) {
+        filterGroup.style.display = 'none';
+    }
+    
+    if (componentCategories) {
+        componentCategories.style.display = 'none';
+    }
+}
+
+/**
+ * Show filter elements when search is cleared
+ */
+function showFilters() {
+    const filterGroup = document.querySelector('.filter-group');
+    const componentCategories = document.getElementById('componentCategories');
+    
+    if (filterGroup) {
+        filterGroup.style.display = 'flex';
+    }
+    
+    if (componentCategories) {
+        componentCategories.style.display = 'block';
+    }
+}

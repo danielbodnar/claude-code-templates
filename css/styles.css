@@ -287,8 +287,8 @@ body {
 
 .steps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
     margin-bottom: 20px;
 }
 
@@ -296,12 +296,12 @@ body {
     background: var(--bg-secondary);
     border: 1px solid var(--border-primary);
     border-radius: 8px;
-    padding: 20px;
+    padding: 16px;
     position: relative;
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    min-height: 200px;
+    min-height: 140px;
 }
 
 .step-card:hover {
@@ -311,17 +311,17 @@ body {
 
 .step-number {
     position: absolute;
-    top: -10px;
-    left: 20px;
+    top: -8px;
+    left: 16px;
     background: var(--text-accent);
     color: var(--bg-primary);
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: bold;
 }
 
@@ -333,24 +333,25 @@ body {
 
 .step-content h3 {
     color: var(--text-primary);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: normal;
-    margin-bottom: 8px;
-    margin-top: 10px;
+    margin-bottom: 6px;
+    margin-top: 8px;
 }
 
 .step-content p {
     color: var(--text-secondary);
-    font-size: 0.875rem;
-    margin-bottom: 16px;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
     flex: 1;
+    line-height: 1.4;
 }
 
 .step-highlight {
     background: var(--bg-tertiary);
     border: 1px solid var(--border-secondary);
     border-radius: 6px;
-    padding: 12px;
+    padding: 10px;
     text-align: center;
     margin-top: auto;
 }
@@ -1050,7 +1051,8 @@ body {
     }
 
     .step-card {
-        padding: 15px;
+        padding: 12px;
+        min-height: 120px;
     }
 
     .tool-card {
@@ -1400,12 +1402,12 @@ body {
 .step-command {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     background: var(--bg-primary);
     border: 1px solid var(--border-secondary);
     border-radius: 6px;
-    padding: 12px;
-    margin: 10px 0;
+    padding: 8px;
+    margin: 8px 0;
     font-family: inherit;
 }
 
@@ -1422,9 +1424,9 @@ body {
     background: var(--text-success);
     color: var(--bg-primary);
     border: none;
-    padding: 6px 12px;
+    padding: 4px 8px;
     border-radius: 4px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     cursor: pointer;
     transition: opacity 0.2s ease;
     font-family: inherit;
@@ -1632,73 +1634,435 @@ body {
     }
 }
 
-/* Unified Filter Section */
+/* Terminal-Style Filter Section */
 .unified-filter-section {
     margin: 2rem 0;
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
 }
 
-.unified-filter-bar {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-top: 1.5rem;
+/* Search Header - Terminal Style with original content */
+.search-header {
+    margin-bottom: 2rem;
+}
+
+.terminal-command {
+    position: relative;
+    display: flex;
+    justify-content: center;
     text-align: center;
 }
 
-.unified-filter-bar .filter-label {
-    color: var(--text-accent);
+.terminal-dot {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+}
+
+.search-title {
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: normal;
+    display: block;
+    width: 100%;
+    line-height: 1.1;
+}
+
+.title-params {
+    font-weight: 300 !important;
+    opacity: 0.8;
+}
+
+.search-subtitle {
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
     font-size: 1rem;
-    font-weight: 600;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.1;
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-top: -0.1rem;
+}
+
+/* Terminal Navigation Help */
+.terminal-navigation-help {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-secondary);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin-top: 1rem;
+}
+
+/* Terminal Search Container - Main Component */
+.terminal-search-container {
     margin-bottom: 1rem;
+}
+
+.terminal-search-wrapper {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    transition: border-color 0.2s ease;
+    cursor: text;
 }
 
-.unified-filter-bar .filter-label:before {
-    content: ">";
-    color: var(--text-success);
+.terminal-search-wrapper:focus-within {
+    border-color: var(--text-accent);
+    box-shadow: 0 0 0 2px rgba(213, 116, 85, 0.1);
+}
+
+.terminal-prompt {
+    color: var(--text-accent);
+    font-size: 1rem;
     font-weight: bold;
+    user-select: none;
 }
 
-.unified-filter-bar .filter-buttons {
+.search-icon-end {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.terminal-search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-family: inherit;
+    outline: none;
+    placeholder-color: var(--text-secondary);
+}
+
+.terminal-search-input::placeholder {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.terminal-clear-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    opacity: 0.7;
+}
+
+.terminal-clear-btn:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    opacity: 1;
+}
+
+/* Search Results Info - Terminal Style */
+.search-results-info {
+    margin-top: 1rem;
+}
+
+.terminal-results {
     display: flex;
-    justify-content: center;
-    gap: 1rem;
+    align-items: flex-start;
+    gap: 0.5rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-secondary);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.results-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.results-count {
+    color: var(--text-primary);
+    font-weight: 400;
+    margin: 0 0 0.1rem 0;
+}
+
+.search-filters {
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.search-filter-tags {
+    display: inline-flex;
+    gap: 0.5rem;
     flex-wrap: wrap;
 }
 
-.unified-filter-bar .filter-btn {
+.search-category-tag {
+    background: var(--bg-secondary);
+    color: var(--text-accent);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    border: 1px solid var(--border-secondary);
+}
+
+.terminal-search-help {
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+}
+
+.search-help-text {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+/* Component Type Filters - Compact */
+.component-type-filters {
+    margin-bottom: 1rem;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.filter-group-label {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    min-width: 40px;
+}
+
+.filter-chips {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-chip {
     background: var(--bg-tertiary);
     color: var(--text-secondary);
-    border: 1px solid var(--border-primary);
-    padding: 0.75rem 1.25rem;
-    border-radius: 8px;
+    border: 1px solid var(--border-secondary);
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
     cursor: pointer;
     font-family: inherit;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
     white-space: nowrap;
 }
 
-.unified-filter-bar .filter-btn:hover {
-    background: var(--bg-primary);
+.filter-chip:hover {
+    background: var(--bg-secondary);
     color: var(--text-primary);
-    border-color: var(--text-accent);
+    border-color: var(--border-primary);
     transform: translateY(-1px);
 }
 
-.unified-filter-bar .filter-btn.active {
-    background: var(--text-accent);
-    color: var(--bg-primary);
-    border-color: var(--text-accent);
-    font-weight: 600;
-    box-shadow: 0 4px 12px rgba(213, 116, 85, 0.3);
+.filter-chip.active {
+    background: var(--text-accent) !important;
+    color: var(--bg-primary) !important;
+    border-color: var(--text-accent) !important;
+    font-weight: 500;
+}
+
+.chip-icon {
+    font-size: 0.9rem;
+}
+
+/* Component Categories - Dynamic */
+.component-categories {
+    margin-bottom: 1rem;
+    border-top: 1px solid var(--border-secondary);
+    padding-top: 1rem;
+}
+
+.category-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.category-group-label {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    min-width: 60px;
+}
+
+.category-chips {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.category-chips .filter-chip {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    background: var(--bg-primary);
+    border-color: var(--border-secondary);
+}
+
+.category-chips .filter-chip:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--border-primary);
+}
+
+.category-chips .filter-chip.active {
+    background: var(--text-success) !important;
+    color: var(--bg-primary) !important;
+    border-color: var(--text-success) !important;
+}
+
+/* Responsive Design for Terminal Interface */
+@media (max-width: 768px) {
+    .search-title {
+        font-size: 1.2rem;
+    }
+    
+    .search-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .header-content {
+        margin-left: 1.2rem;
+    }
+    
+    .terminal-dot::after {
+        height: 30px;
+    }
+    
+    .terminal-navigation-help {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.8rem;
+    }
+    
+    .terminal-results {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.8rem;
+    }
+    
+    .terminal-search-wrapper {
+        padding: 0.6rem 0.8rem;
+        gap: 0.5rem;
+        border-radius: 8px;
+    }
+    
+    .terminal-prompt {
+        font-size: 0.9rem;
+    }
+    
+    .terminal-search-input {
+        font-size: 0.9rem;
+    }
+    
+    .filter-chips {
+        gap: 0.4rem;
+    }
+    
+    .filter-chip {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+        border-radius: 3px;
+    }
+    
+    .component-categories h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .category-chips .filter-chip {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-title {
+        font-size: 1rem;
+    }
+    
+    .search-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .header-content {
+        margin-left: 1rem;
+    }
+    
+    .terminal-dot::after {
+        height: 25px;
+    }
+    
+    .terminal-navigation-help {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.6rem;
+    }
+    
+    .terminal-results {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.6rem;
+    }
+    
+    .unified-filter-section {
+        padding: 0.5rem;
+    }
+    
+    .terminal-search-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        padding: 0.75rem;
+    }
+    
+    .terminal-input-row {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .filter-chips,
+    .category-chips {
+        justify-content: center;
+    }
+    
+    .filter-chip {
+        flex: 0 0 auto;
+        min-width: fit-content;
+    }
 }
 
 /* Unified Grid */
