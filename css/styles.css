@@ -2375,6 +2375,59 @@ body {
     gap: 0.5rem;
 }
 
+/* Global Agent Styles */
+.global-agent-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-secondary);
+}
+
+.global-agent-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0 0 1rem 0;
+    font-style: italic;
+}
+
+.global-agent-usage {
+    margin-top: 1rem;
+}
+
+.usage-example {
+    margin-bottom: 1rem;
+}
+
+.usage-title {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.usage-command {
+    background: var(--bg-terminal);
+    border: 1px solid var(--border-primary);
+}
+
+.usage-command code {
+    color: var(--text-accent);
+    font-weight: 500;
+}
+
+.global-features {
+    display: grid;
+    gap: 0.4rem;
+    margin-top: 1rem;
+}
+
+.feature {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .component-preview {
     background: var(--bg-primary);
     border: 1px solid var(--border-secondary);

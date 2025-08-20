@@ -47,6 +47,9 @@ function createComponentModalHTML(component) {
     }
     const installCommand = `npx claude-code-templates@latest --${component.type}=${componentPath} --yes`;
     
+    // Generate global agent command for agents only
+    const globalAgentCommand = component.type === 'agent' ? `npx claude-code-templates@latest --create-agent ${componentPath}` : null;
+    
     const description = getComponentDescription(component); // Full description
 
     // Construct GitHub URL
@@ -78,6 +81,29 @@ function createComponentModalHTML(component) {
                                 <code>${installCommand}</code>
                                 <button class="copy-btn" data-command="${installCommand.replace(/"/g, '&quot;')}" onclick="copyToClipboard(this.dataset.command)">Copy</button>
                             </div>
+                            ${globalAgentCommand ? `
+                            <div class="global-agent-section">
+                                <h4>🌍 Global Agent (Claude Code SDK)</h4>
+                                <p class="global-agent-description">Create a global AI agent accessible from anywhere with zero configuration</p>
+                                <div class="command-line">
+                                    <code>${globalAgentCommand}</code>
+                                    <button class="copy-btn" data-command="${globalAgentCommand.replace(/"/g, '&quot;')}" onclick="copyToClipboard(this.dataset.command)">Copy</button>
+                                </div>
+                                <div class="global-agent-usage">
+                                    <div class="usage-example">
+                                        <div class="usage-title">After installation, use from anywhere:</div>
+                                        <div class="command-line usage-command">
+                                            <code>${componentPath.split('/').pop()} "your prompt here"</code>
+                                            <button class="copy-btn" data-command="${componentPath.split('/').pop()} &quot;your prompt here&quot;" onclick="copyToClipboard(this.dataset.command)">Copy</button>
+                                        </div>
+                                    </div>
+                                    <div class="global-features">
+                                        <div class="feature">✅ Works in scripts, CI/CD, npm tasks</div>
+                                        <div class="feature">✅ Auto-detects project context</div>
+                                        <div class="feature">✅ Powered by Claude Code SDK</div>
+                                    </div>
+                                </div>
+                            </div>` : ''}
                         </div>
 
                         <div class="component-content">
