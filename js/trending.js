@@ -322,7 +322,7 @@ class TrendingPage {
 
 // Initialize the trending page when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new TrendingPage();
+    window.trendingPageInstance = new TrendingPage();
 });
 
 // Modal functionality
@@ -330,8 +330,39 @@ function showInstallModal(componentName) {
     const modal = document.getElementById('installModal');
     const commandText = document.getElementById('commandText');
     
-    // Update the command with the actual component name
-    const command = `npx claude-code-templates@latest ${componentName} --yes`;
+    // Determine the component type from the current filter or component name
+    let componentType = 'command'; // default
+    
+    // Get the current trending page instance to check the type
+    if (window.trendingPageInstance) {
+        componentType = window.trendingPageInstance.currentType || 'commands';
+    }
+    
+    // Convert plural to singular for the command flag
+    const typeMap = {
+        'agents': 'agent',
+        'commands': 'command', 
+        'settings': 'setting',
+        'hooks': 'hook',
+        'mcps': 'mcp',
+        'templates': 'template'
+    };
+    
+    const flagType = typeMap[componentType] || 'command';
+    
+    // Clean the component name by removing prefixes
+    let cleanName = componentName;
+    const prefixesToRemove = ['agent-', 'command-', 'setting-', 'hook-', 'mcp-', 'template-'];
+    
+    for (const prefix of prefixesToRemove) {
+        if (cleanName.startsWith(prefix)) {
+            cleanName = cleanName.substring(prefix.length);
+            break;
+        }
+    }
+    
+    // Update the command with the correct flag and clean component name
+    const command = `npx claude-code-templates@latest --${flagType} ${cleanName} --yes`;
     commandText.textContent = command;
     
     // Show the modal
