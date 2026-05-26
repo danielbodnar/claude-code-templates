@@ -22,14 +22,14 @@
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.1.0",
+    "@cloudflare/vitest-pool-workers": "^0.16.9",
     "@cloudflare/workers-types": "^4.20240129.0",
     "@types/node": "^20.11.0",
     "prettier": "^3.2.4",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3",
-    "vitest": "^1.2.0",
-    "wrangler": "^3.78.12"
+    "vitest": "^4.1.7",
+    "wrangler": "^4.94.0"
   },
   "engines": {
     "node": ">=16.17.0"
