@@ -73,7 +73,7 @@ For onboarding, examples, command references, or troubleshooting, read the bundl
 
 ## Agent integration
 
-- `swarmvault install --agent codex|claude|cursor|goose|pi|gemini|opencode|aider|copilot|trae|claw|droid` installs agent-specific rules into the current project.
+- `swarmvault install --agent claude|cursor|goose|pi|gemini|opencode|aider|copilot|trae|claw|droid` installs agent-specific rules into the current project.
 - `swarmvault install --agent claude|opencode|gemini|copilot --hook` installs graph-first hook or plugin support for the agents that expose project hook APIs.
 - `swarmvault install --agent aider` installs `CONVENTIONS.md` and wires `.aider.conf.yml` to read it when that config is valid YAML.
 - `swarmvault mcp` exposes tools and resources for page search, page reads, source listing, query, ingest, compile, and lint.

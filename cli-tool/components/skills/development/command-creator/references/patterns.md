@@ -177,7 +177,7 @@ This document describes the common patterns for slash commands, helping you choo
    - If provided: use specified branch
    - If not provided: use main/master
 
-2. Run codex-review script
+2. Run code-review script
    - Pass base-branch to script
    - Capture output
 

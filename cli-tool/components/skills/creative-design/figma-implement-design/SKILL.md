@@ -29,13 +29,12 @@ This skill provides a structured workflow for translating Figma designs into pro
 If any MCP call fails because Figma MCP is not connected, pause and set it up:
 
 1. Add the Figma MCP:
-   - `codex mcp add figma --url https://mcp.figma.com/mcp`
-2. Enable remote MCP client:
-   - Set `[features].rmcp_client = true` in `config.toml` **or** run `codex --enable rmcp_client`
+   - `claude mcp add figma --url https://mcp.figma.com/mcp`
+2. MCP support is built into Claude Code — no additional configuration needed.
 3. Log in with OAuth:
-   - `codex mcp login figma`
+   - `claude mcp add figma`
 
-After successful login, the user will have to restart codex. You should finish your answer and tell them so when they try again they can continue with Step 1.
+After successful login, the user will have to restart Claude Code. You should finish your answer and tell them so when they try again they can continue with Step 1.
 
 ### Step 1: Get Node ID
 

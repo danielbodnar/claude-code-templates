@@ -148,7 +148,7 @@ Generated guided artifacts and dashboards also carry Dataview-friendly fields su
 
 Supported agent installs:
 
-- `swarmvault install --agent codex`
+- `swarmvault install --agent claude`
 - `swarmvault install --agent claude --hook`
 - `swarmvault install --agent cursor`
 - `swarmvault install --agent gemini --hook`

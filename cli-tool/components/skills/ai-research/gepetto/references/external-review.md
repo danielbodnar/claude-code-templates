@@ -1,12 +1,12 @@
 # External Review Protocol
 
-This step sends `claude-plan.md` to external LLMs (Gemini and Codex) for independent review using CLI subagents.
+This step sends `claude-plan.md` to independent reviewers for analysis using Claude Code subagents.
 
 ## Overview
 
-Launch TWO parallel Bash commands to get external reviews:
-1. **Gemini CLI** - Google's Gemini 3 Pro
-2. **Codex CLI** - OpenAI's GPT-5.2
+Launch TWO parallel subagents to get independent reviews:
+1. **Architecture Reviewer** - Focuses on structural and performance concerns
+2. **Security Reviewer** - Focuses on security, edge cases, and risk
 
 Both reviewers receive the same plan and return their analysis.
 
@@ -45,63 +45,25 @@ plan_content=$(cat "<planning_dir>/claude-plan.md")
 
 ### Step 2: Launch Both Reviews in Parallel
 
-Use TWO Bash tool calls in a single message:
+Use TWO Agent tool calls in a single message with different `subagent_type` values:
 
-**Gemini Review:**
-```bash
-gemini -m gemini-3-pro-preview --approval-mode yolo "You are a senior software architect reviewing an implementation plan.
+**Architecture Review:**
+Use the `feature-dev:code-reviewer` subagent with the review prompt and plan content.
 
-The plan is self-contained - it includes all background, context, and requirements.
-
-Identify:
-- Potential footguns and edge cases
-- Missing considerations
-- Security vulnerabilities
-- Performance issues
-- Architectural problems
-- Unclear or ambiguous requirements
-- Anything else worth adding to the plan
-
-Be specific and actionable. Reference specific sections. Give your honest, unconstrained assessment.
-
-Here is the plan to review:
-
-$(cat '<planning_dir>/claude-plan.md')"
-```
-
-**Codex Review:**
-```bash
-echo "You are a senior software architect reviewing an implementation plan.
-
-The plan is self-contained - it includes all background, context, and requirements.
-
-Identify:
-- Potential footguns and edge cases
-- Missing considerations
-- Security vulnerabilities
-- Performance issues
-- Architectural problems
-- Unclear or ambiguous requirements
-- Anything else worth adding to the plan
-
-Be specific and actionable. Reference specific sections. Give your honest, unconstrained assessment.
-
-Here is the plan to review:
-
-$(cat '<planning_dir>/claude-plan.md')" | codex exec -m gpt-5.2 --sandbox read-only --skip-git-repo-check --full-auto 2>/dev/null
-```
+**Security Review:**
+Use the `security-scanner` subagent or a general-purpose agent with security focus.
 
 ### Step 3: Write Review Files
 
 Create `<planning_dir>/reviews/` directory and write:
-- `gemini-review.md` - Gemini's analysis
-- `codex-review.md` - Codex's analysis
+- `architecture-review.md` - Architecture analysis
+- `security-review.md` - Security analysis
 
 Format each file:
 ```markdown
-# {Provider} Review
+# {Reviewer} Review
 
-**Model:** {model_name}
+**Focus:** {architecture|security}
 **Generated:** {timestamp}
 
 ---
@@ -113,14 +75,11 @@ Format each file:
 
 | Scenario | Action |
 |----------|--------|
-| Gemini fails, Codex succeeds | Write only codex-review.md, note Gemini failure |
-| Codex fails, Gemini succeeds | Write only gemini-review.md, note Codex failure |
+| One reviewer fails | Write the successful review, note the failure |
 | Both fail | Ask user if they want to retry or skip external review |
-| CLI not installed | Skip that reviewer, note in output |
 
 ## Notes
 
-- **Gemini**: Uses `--approval-mode yolo` for non-interactive execution
-- **Codex**: Uses `--full-auto` and `2>/dev/null` to suppress thinking tokens
-- Both CLIs must be installed and configured separately by the user
-- If a CLI is not available, skip that reviewer and continue with the other
+- Both reviews run as Claude Code subagents in parallel
+- No external CLI installation required
+- Reviews use the same model and context as the parent session

@@ -2,7 +2,7 @@
 name: linear
 description: Manage issues, projects & team workflows in Linear. Use when the user wants to read, create or updates tickets in Linear.
 metadata:
-  short-description: Manage Linear issues in Codex
+  short-description: Manage Linear issues in Claude Code
 ---
 
 # Linear
@@ -24,13 +24,12 @@ This skill provides a structured workflow for managing issues, projects & team w
 If any MCP call fails because Linear MCP is not connected, pause and set it up:
 
 1. Add the Linear MCP:
-   - `codex mcp add linear --url https://mcp.linear.app/mcp`
-2. Enable remote MCP client:
-   - Set `[features] rmcp_client = true` in `config.toml` **or** run `codex --enable rmcp_client`
+   - `claude mcp add linear --url https://mcp.linear.app/mcp`
+2. MCP support is built into Claude Code — no additional configuration needed.
 3. Log in with OAuth:
-   - `codex mcp login linear`
+   - `claude mcp add linear`
 
-After successful login, the user will have to restart codex. You should finish your answer and tell them so when they try again they can continue with Step 1.
+After successful login, the user will have to restart Claude Code. You should finish your answer and tell them so when they try again they can continue with Step 1.
 
 **Windows/WSL note:** If you see connection errors on Windows, try configuring the Linear MCP to run via WSL:
 ```json

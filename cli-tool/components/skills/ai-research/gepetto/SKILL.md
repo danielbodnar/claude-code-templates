@@ -169,8 +169,8 @@ Create detailed plan → `<planning_dir>/claude-plan.md`
 See [external-review.md](references/external-review.md)
 
 Launch TWO subagents in parallel to review the plan:
-1. **Gemini** via Bash
-2. **Codex** via Bash
+1. **Architecture Reviewer** via Agent tool
+2. **Security Reviewer** via Agent tool
 
 Both receive the plan content and return their analysis. Write results to `<planning_dir>/reviews/`.
 

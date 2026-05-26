@@ -449,7 +449,7 @@ The goal is to create a comprehensive implementation plan that will be saved as 
 - Tells agent which specialized agent to invoke
 - Specifies where to save output (`.md` at root)
 
-## Example 4: codex-review (Simple Execution Pattern)
+## Example 4: code-review (Simple Execution Pattern)
 
 **Pattern:** Simple Execution (Parse Arguments → Execute → Return Output)
 
@@ -461,14 +461,14 @@ description: Perform a local code review using repository standards and best pra
 argument-hint: [base-branch]
 ---
 
-# Codex Review
+# Code Review
 
 Performs a thorough code review of changes between the current branch and the base branch.
 
 ## What This Command Does
 
 1. Determines base branch (uses provided argument or defaults to main/master)
-2. Runs codex-review script with the base branch
+2. Runs code-review script with the base branch
 3. Displays review findings and suggestions
 
 ## Usage
@@ -477,11 +477,11 @@ Performs a thorough code review of changes between the current branch and the ba
 
 # With explicit base branch
 
-/codex-review develop
+/code-review develop
 
 # Without argument (auto-detects main/master)
 
-/codex-review
+/code-review
 \`\`\`
 
 ## Implementation Steps
@@ -503,7 +503,7 @@ If no argument:
 Execute the review script with the determined base branch:
 
 \`\`\`bash
-scripts/codex-review.py [base-branch]
+scripts/code-review.py [base-branch]
 \`\`\`
 
 ### 3. Display Results
@@ -540,7 +540,7 @@ If the script fails:
 
 ## Pattern Comparison
 
-| Feature               | submit-stack             | ensure-ci          | create-implementation-plan | codex-review             |
+| Feature               | submit-stack             | ensure-ci          | create-implementation-plan | code-review             |
 | --------------------- | ------------------------ | ------------------ | -------------------------- | ------------------------ |
 | **Pattern**           | Workflow Automation      | Iterative Fixing   | Agent Delegation           | Simple Execution         |
 | **Arguments**         | Optional `<description>` | None               | None                       | Optional `[base-branch]` |
@@ -574,7 +574,7 @@ If the script fails:
 - No direct code modification should happen
 - Output is saved to specific location
 
-**Use codex-review as a reference when:**
+**Use code-review as a reference when:**
 
 - Command is a simple wrapper
 - Main logic is in external script

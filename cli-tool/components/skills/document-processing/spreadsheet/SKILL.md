@@ -72,7 +72,7 @@ If installation isn't possible in this environment, tell the user which dependen
 No required environment variables.
 
 ## Examples
-- Runnable Codex examples (openpyxl): `references/examples/openpyxl/`
+- Runnable examples (openpyxl): `references/examples/openpyxl/`
 
 ## Formula requirements
 - Use formulas for derived values rather than hardcoding results.

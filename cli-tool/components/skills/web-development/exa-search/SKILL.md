@@ -33,4 +33,4 @@ See [GitHub Repository](https://github.com/BenedictKing/exa-search) for examples
 See the GitHub repository for troubleshooting guides.
 
 ## Related Skills
-- context7-auto-research, tavily-web, firecrawl-scraper, codex-review
+- context7-auto-research, tavily-web, firecrawl-scraper, claude-code-review

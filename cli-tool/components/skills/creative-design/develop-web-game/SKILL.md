@@ -1,6 +1,6 @@
 ---
 name: "develop-web-game"
-description: "Use when Codex is building or iterating on a web game (HTML/JS) and needs a reliable development + testing loop: implement small changes, run a Playwright-based test script with short input bursts and intentional pauses, inspect screenshots/text, and review console errors with render_game_to_text."
+description: "Use when Claude Code is building or iterating on a web game (HTML/JS) and needs a reliable development + testing loop: implement small changes, run a Playwright-based test script with short input bursts and intentional pauses, inspect screenshots/text, and review console errors with render_game_to_text."
 author: openai
 ---
 
@@ -12,12 +12,12 @@ Build games in small steps and validate every change. Treat each iteration as: i
 ## Skill paths (set once)
 
 ```bash
-export CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
-export WEB_GAME_CLIENT="$CODEX_HOME/skills/develop-web-game/scripts/web_game_playwright_client.js"
-export WEB_GAME_ACTIONS="$CODEX_HOME/skills/develop-web-game/references/action_payloads.json"
+export 
+export WEB_GAME_CLIENT="~/.claude/skills/develop-web-game/scripts/web_game_playwright_client.js"
+export WEB_GAME_ACTIONS="~/.claude/skills/develop-web-game/references/action_payloads.json"
 ```
 
-User-scoped skills install under `$CODEX_HOME/skills` (default: `~/.codex/skills`).
+User-scoped skills install under `~/.claude/skills` (default: `~/.claude/skills`).
 
 ## Workflow
 
@@ -143,8 +143,8 @@ At the end of your work, leave TODOs and suggestions for the next agent in `prog
 
 ## Scripts
 
-- `$WEB_GAME_CLIENT` (installed default: `$CODEX_HOME/skills/develop-web-game/scripts/web_game_playwright_client.js`) — Playwright-based action loop with virtual-time stepping, screenshot capture, and console error buffering. You must pass an action burst via `--actions-file`, `--actions-json`, or `--click`.
+- `$WEB_GAME_CLIENT` (installed default: `~/.claude/skills/develop-web-game/scripts/web_game_playwright_client.js`) — Playwright-based action loop with virtual-time stepping, screenshot capture, and console error buffering. You must pass an action burst via `--actions-file`, `--actions-json`, or `--click`.
 
 ## References
 
-- `$WEB_GAME_ACTIONS` (installed default: `$CODEX_HOME/skills/develop-web-game/references/action_payloads.json`) — example action payloads (keyboard + mouse, per-frame capture). Use these to build your burst.
+- `$WEB_GAME_ACTIONS` (installed default: `~/.claude/skills/develop-web-game/references/action_payloads.json`) — example action payloads (keyboard + mouse, per-frame capture). Use these to build your burst.

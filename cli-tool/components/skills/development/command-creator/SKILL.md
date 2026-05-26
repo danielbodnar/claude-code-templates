@@ -74,7 +74,7 @@ Help the user understand different command types. Load **references/patterns.md*
 - **Workflow Automation** - Analyze → Act → Report (e.g., submit-stack)
 - **Iterative Fixing** - Run → Parse → Fix → Repeat (e.g., ensure-ci)
 - **Agent Delegation** - Context → Delegate → Iterate (e.g., create-implementation-plan)
-- **Simple Execution** - Run command with args (e.g., codex-review)
+- **Simple Execution** - Run command with args (e.g., code-review)
 
 Ask the user: "Which pattern is closest to what you want to create?" This helps frame the conversation.
 

@@ -14,11 +14,17 @@
     "@supabase/supabase-js": "^2.45.0",
     "@neondatabase/serverless": "^0.10.1",
     "@clerk/backend": "^1.0.0",
-    "axios": "^1.6.2",
+    "axios": "^1.15.2",
     "discord-interactions": "^3.4.0"
   },
   "devDependencies": {
     "jest": "^29.7.0",
     "@types/jest": "^29.5.11"
+  },
+  "overrides": {
+    "@clerk/shared": ">=3.47.5",
+    "js-cookie": ">=3.0.7",
+    "minimatch": ">=3.1.4",
+    "picomatch": ">=2.3.2"
   }
 }

@@ -161,8 +161,8 @@ planning/
 ├── claude-ralph-loop-prompt.md  # Ready-to-run ralph-loop prompt
 ├── claude-ralphy-prd.md         # Ready-to-run Ralphy PRD
 ├── reviews/
-│   ├── gemini-review.md         # Gemini's feedback
-│   └── codex-review.md          # Codex's feedback
+│   ├── architecture-review.md   # Architecture analysis
+│   └── security-review.md       # Security analysis
 └── sections/
     ├── index.md                 # Section manifest & dependencies
     ├── section-01-*.md          # Implementation unit 1
@@ -182,19 +182,11 @@ planning/
 
 ## External Review
 
-gepetto uses **Gemini CLI** and **Codex CLI** to get independent reviews of your plan.
+gepetto uses **Claude Code subagents** to get independent reviews of your plan.
 
 ### Requirements
 
-Install at least one:
-
-```bash
-# Gemini CLI (Google)
-# See: https://github.com/google-gemini/gemini-cli
-
-# Codex CLI (OpenAI)
-# See: https://github.com/openai/codex
-```
+No additional CLI installation required — reviews run as parallel Claude Code subagents.
 
 ### What Reviewers Check
 
@@ -286,7 +278,7 @@ See [Integration with ralph-loop](#integration-with-ralph-loop-optional) for det
 
 ### Option C: Autonomous with Ralphy (External CLI)
 
-Best for: multi-engine support (Claude, Codex, Cursor, etc.), parallel execution, branch-per-task workflows.
+Best for: multi-engine support (Claude Code, Cursor, etc.), parallel execution, branch-per-task workflows.
 
 ```bash
 ralphy --prd planning/claude-ralphy-prd.md
@@ -390,7 +382,7 @@ Ralphy is an external CLI tool that iterates through a task list (PRD.md) and ex
 | Feature | ralph-loop | Ralphy |
 |---------|-----------|--------|
 | **Runs in** | Claude Code (plugin) | External CLI |
-| **AI Engines** | Claude only | Claude, Codex, Cursor, Qwen, Droid |
+| **AI Engines** | Claude only | Claude Code, Cursor, Qwen, Droid |
 | **Input format** | Single large prompt | Checkbox task list |
 | **Context passing** | Embedded in prompt | AI reads referenced files |
 | **Parallel execution** | No | Yes (`--parallel`) |
@@ -435,7 +427,7 @@ Each task references the detailed section file, so the AI gets all the context G
 
 ```bash
 # Use different AI engine
-ralphy --prd planning/claude-ralphy-prd.md --codex
+ralphy --prd planning/claude-ralphy-prd.md --claude
 ralphy --prd planning/claude-ralphy-prd.md --cursor
 
 # Parallel execution (3 agents by default)
@@ -473,7 +465,7 @@ See the [Ralphy repository](https://github.com/michaelshimeles/ralphy) for insta
 | API Keys Required | No - uses CLI tools |
 | TDD Phase | No - focused on planning |
 | Python Scripts | No - pure Claude skill |
-| External Review | Via Gemini + Codex CLI |
+| External Review | Via Claude Code subagents |
 | Resume Support | Yes - automatic |
 
 ---

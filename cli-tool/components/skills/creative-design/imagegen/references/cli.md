@@ -10,11 +10,10 @@ This file contains the “command catalog” for the bundled image generation CL
 Real API calls require **network access** + `OPENAI_API_KEY`. `--dry-run` does not.
 
 ## Quick start (works from any repo)
-Set a stable path to the skill CLI (default `CODEX_HOME` is `~/.codex`):
+Set a stable path to the skill CLI:
 
 ```
-export CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
-export IMAGE_GEN="$CODEX_HOME/skills/imagegen/scripts/image_gen.py"
+export IMAGE_GEN=".claude/skills/imagegen/scripts/image_gen.py"
 ```
 
 Dry-run (no API call; no network required; does not require the `openai` package):

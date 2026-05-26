@@ -130,7 +130,7 @@ Use these modules when the request is for a specific delivery style. They provid
 - CLI commands + examples: `references/cli.md`
 - API parameter quick reference: `references/audio-api.md`
 - Instruction patterns + examples: `references/voice-directions.md`
-- If network approvals / sandbox settings are getting in the way: `references/codex-network.md`
+- If network approvals / sandbox settings are getting in the way: `references/claude-permissions.md`
 
 ## Reference map
 - **`references/cli.md`**: how to run speech generation/batches via `scripts/text_to_speech.py` (commands, flags, recipes).
@@ -142,4 +142,4 @@ Use these modules when the request is for a specific delivery style. They provid
 - **`references/voiceover.md`**: templates + defaults for product demo voiceovers.
 - **`references/ivr.md`**: templates + defaults for IVR/phone prompts.
 - **`references/accessibility.md`**: templates + defaults for accessibility reads.
-- **`references/codex-network.md`**: environment/sandbox/network-approval troubleshooting.
+- **`references/claude-permissions.md`**: environment/sandbox/network-approval troubleshooting.

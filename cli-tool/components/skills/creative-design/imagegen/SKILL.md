@@ -165,11 +165,11 @@ Asset-type templates (website assets, game assets, wireframes, logo) are consoli
 ## CLI + environment notes
 - CLI commands + examples: `references/cli.md`
 - API parameter quick reference: `references/image-api.md`
-- If network approvals / sandbox settings are getting in the way: `references/codex-network.md`
+- If network approvals / sandbox settings are getting in the way: `references/claude-permissions.md`
 
 ## Reference map
 - **`references/cli.md`**: how to *run* image generation/edits/batches via `scripts/image_gen.py` (commands, flags, recipes).
 - **`references/image-api.md`**: what knobs exist at the API level (parameters, sizes, quality, background, edit-only fields).
 - **`references/prompting.md`**: prompting principles (structure, constraints/invariants, iteration patterns).
 - **`references/sample-prompts.md`**: copy/paste prompt recipes (generate + edit workflows; examples only).
-- **`references/codex-network.md`**: environment/sandbox/network-approval troubleshooting.
+- **`references/claude-permissions.md`**: environment/sandbox/network-approval troubleshooting.

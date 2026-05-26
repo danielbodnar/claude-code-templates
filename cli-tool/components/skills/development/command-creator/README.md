@@ -260,7 +260,7 @@ Create agent-executable instructions using:
 
 **Example**: Code review
 ```markdown
-1. Run codex review on specified files
+1. Run code review on specified files
 2. Present results to user
 ```
 
@@ -300,7 +300,7 @@ Create agent-executable instructions using:
 - No project-specific dependencies
 
 **Examples**:
-- `/codex-review` (code review any files)
+- `/code-review` (code review any files)
 - `/create-implementation-plan` (generic planning)
 - `/git-cleanup` (git maintenance anywhere)
 
@@ -381,19 +381,19 @@ This skill includes three comprehensive reference files in the `references/` dir
 
 ### Example 2: Create Global Code Review Command
 
-**User Request**: "Create a global command to review code with Codex"
+**User Request**: "Create a global command to review code with Claude Code"
 
 **Skill Flow**:
 1. Detects global (user requests "global")
 2. Suggests "Simple Execution" pattern
 3. Gathers info:
-   - Name: `codex-review`
-   - Description: "Review code files using Codex"
+   - Name: `code-review`
+   - Description: "Review code files with Claude Code"
    - Arguments: `<files>` (required)
-   - Steps: Run codex review → Present results
-4. Generates command with codex skill invocation
-5. Creates `~/.claude/commands/codex-review.md`
-6. User invokes: `/codex-review src/app.py src/utils.py`
+   - Steps: Run code review → Present results
+4. Generates command with review skill invocation
+5. Creates `~/.claude/commands/code-review.md`
+6. User invokes: `/code-review src/app.py src/utils.py`
 
 ### Example 3: Create PR Submission Workflow
 

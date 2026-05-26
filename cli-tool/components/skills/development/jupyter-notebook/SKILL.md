@@ -28,11 +28,10 @@ Prefer the bundled templates and the helper script for consistent structure and 
 ## Skill path (set once)
 
 ```bash
-export CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
-export JUPYTER_NOTEBOOK_CLI="$CODEX_HOME/skills/jupyter-notebook/scripts/new_notebook.py"
+export JUPYTER_NOTEBOOK_CLI="~/.claude/skills/jupyter-notebook/scripts/new_notebook.py"
 ```
 
-User-scoped skills install under `$CODEX_HOME/skills` (default: `~/.codex/skills`).
+User-scoped skills install under `~/.claude/skills` (default: `~/.claude/skills`).
 
 ## Workflow
 1. Lock the intent.
@@ -80,7 +79,7 @@ Use the final pass checklist in `references/quality-checklist.md`.
 - The helper script loads a template, updates the title cell, and writes a notebook.
 
 Script path:
-- `$JUPYTER_NOTEBOOK_CLI` (installed default: `$CODEX_HOME/skills/jupyter-notebook/scripts/new_notebook.py`)
+- `$JUPYTER_NOTEBOOK_CLI` (installed default: `~/.claude/skills/jupyter-notebook/scripts/new_notebook.py`)
 
 ## Temp and output conventions
 - Use `tmp/jupyter-notebook/` for intermediate files; delete when done.

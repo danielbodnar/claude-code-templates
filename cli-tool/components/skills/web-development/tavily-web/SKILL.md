@@ -33,4 +33,4 @@ See [GitHub Repository](https://github.com/BenedictKing/tavily-web) for examples
 See the GitHub repository for troubleshooting guides.
 
 ## Related Skills
-- context7-auto-research, exa-search, firecrawl-scraper, codex-review
+- context7-auto-research, exa-search, firecrawl-scraper, claude-code-review

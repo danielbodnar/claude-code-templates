@@ -153,7 +153,7 @@ This is a **Claude Code Skill** - a local folder containing instructions and scr
 | **Protocol** | Claude Skills | Model Context Protocol |
 | **Installation** | Clone to `~/.claude/skills` | `claude mcp add ...` |
 | **Sessions** | Fresh browser each question | Persistent chat sessions |
-| **Compatibility** | Claude Code only (local) | Claude Code, Codex, Cursor, etc. |
+| **Compatibility** | Claude Code only (local) | Claude Code, Cursor, etc. |
 | **Language** | Python | TypeScript |
 | **Distribution** | Git clone | npm package |
 
@@ -312,7 +312,7 @@ For multi-step research, Claude automatically asks follow-up questions when need
 The web UI runs skills in a sandbox without network access. Browser automation requires network access to reach NotebookLM.
 
 **How is this different from the MCP server?**
-This is a simpler, Python-based implementation that runs directly as a Claude Skill. The MCP server is more feature-rich with persistent sessions and works with multiple tools (Codex, Cursor, etc.).
+This is a simpler, Python-based implementation that runs directly as a Claude Skill. The MCP server is more feature-rich with persistent sessions and works with multiple tools (Claude Code, Cursor, etc.).
 
 **Can I use both this skill and the MCP server?**
 Yes! They serve different purposes. Use the skill for quick Claude Code integration, use the MCP server for persistent sessions and multi-tool support.
@@ -360,7 +360,7 @@ This tool automates browser interactions with NotebookLM to make your workflow m
 While I've built in humanization features (realistic typing speeds, natural delays, mouse movements) to make the automation behave more naturally, I can't guarantee Google won't detect or flag automated usage. I recommend using a dedicated Google account for automation rather than your primary account—think of it like web scraping: probably fine, but better safe than sorry!
 
 **About CLI tools and AI agents:**
-CLI tools like Claude Code, Codex, and similar AI-powered assistants are incredibly powerful, but they can make mistakes. Please use them with care and awareness:
+CLI tools like Claude Code and similar AI-powered assistants are incredibly powerful, but they can make mistakes. Please use them with care and awareness:
 - Always review changes before committing or deploying
 - Test in safe environments first
 - Keep backups of important work
@@ -381,7 +381,7 @@ This skill is inspired by my [**NotebookLM MCP Server**](https://github.com/Plea
 
 If you need:
 - **Persistent sessions** → Use the [MCP Server](https://github.com/PleasePrompto/notebooklm-mcp)
-- **Multiple tool support** (Codex, Cursor) → Use the [MCP Server](https://github.com/PleasePrompto/notebooklm-mcp)
+- **Multiple tool support** (Claude Code, Cursor) → Use the [MCP Server](https://github.com/PleasePrompto/notebooklm-mcp)
 - **Quick Claude Code integration** → Use this skill
 
 ---

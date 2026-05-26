@@ -34,4 +34,4 @@ See [GitHub Repository](https://github.com/BenedictKing/firecrawl-scraper) for e
 See the GitHub repository for troubleshooting guides.
 
 ## Related Skills
-- context7-auto-research, tavily-web, exa-search, codex-review
+- context7-auto-research, tavily-web, exa-search, claude-code-review

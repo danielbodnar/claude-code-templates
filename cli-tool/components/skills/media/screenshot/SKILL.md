@@ -11,7 +11,7 @@ Follow these save-location rules every time:
 
 1) If the user specifies a path, save there.
 2) If the user asks for a screenshot without a path, save to the OS default screenshot location.
-3) If Codex needs a screenshot for its own inspection, save to the temp directory.
+3) If Claude Code needs a screenshot for its own inspection, save to the temp directory.
 
 ## Tool priority
 
@@ -25,7 +25,7 @@ On macOS, run the preflight helper once before window/app capture. It checks
 Screen Recording permission, explains why it is needed, and requests it in one
 place.
 
-The helpers route Swift's module cache to `$TMPDIR/codex-swift-module-cache`
+The helpers route Swift's module cache to `$TMPDIR/claude-swift-module-cache`
 to avoid extra sandbox module-cache prompts.
 
 ```bash
@@ -37,10 +37,10 @@ command when possible:
 
 ```bash
 bash <path-to-skill>/scripts/ensure_macos_permissions.sh && \
-python3 <path-to-skill>/scripts/take_screenshot.py --app "Codex"
+python3 <path-to-skill>/scripts/take_screenshot.py --app "Claude Code"
 ```
 
-For Codex inspection runs, keep the output in temp:
+For Claude Code inspection runs, keep the output in temp:
 
 ```bash
 bash <path-to-skill>/scripts/ensure_macos_permissions.sh && \
@@ -65,7 +65,7 @@ Common patterns:
 python3 <path-to-skill>/scripts/take_screenshot.py
 ```
 
-- Temp location (Codex visual check):
+- Temp location (Claude Code visual check):
 
 ```bash
 python3 <path-to-skill>/scripts/take_screenshot.py --mode temp
@@ -80,19 +80,19 @@ python3 <path-to-skill>/scripts/take_screenshot.py --path output/screen.png
 - App/window capture by app name (macOS only; substring match is OK; captures all matching windows):
 
 ```bash
-python3 <path-to-skill>/scripts/take_screenshot.py --app "Codex"
+python3 <path-to-skill>/scripts/take_screenshot.py --app "Claude Code"
 ```
 
 - Specific window title within an app (macOS only):
 
 ```bash
-python3 <path-to-skill>/scripts/take_screenshot.py --app "Codex" --window-name "Settings"
+python3 <path-to-skill>/scripts/take_screenshot.py --app "Claude Code" --window-name "Settings"
 ```
 
 - List matching window ids before capturing (macOS only):
 
 ```bash
-python3 <path-to-skill>/scripts/take_screenshot.py --list-windows --app "Codex"
+python3 <path-to-skill>/scripts/take_screenshot.py --list-windows --app "Claude Code"
 ```
 
 - Pixel region (x,y,w,h):
@@ -162,7 +162,7 @@ Common patterns:
 powershell -ExecutionPolicy Bypass -File <path-to-skill>/scripts/take_screenshot.ps1
 ```
 
-- Temp location (Codex visual check):
+- Temp location (Claude Code visual check):
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File <path-to-skill>/scripts/take_screenshot.ps1 -Mode temp

@@ -1,6 +1,6 @@
 ---
 name: x-twitter-scraper
-description: "X API & Twitter scraper skill for AI coding agents. Builds integrations with the Xquik REST API, MCP server & webhooks: tweet search, user lookup, follower extraction, engagement metrics, giveaway contest draws, trending topics, account monitoring, reply/retweet/quote extraction, community & Space data, mutual follow checks. Works with Claude Code, Cursor, Codex, Copilot, Windsurf & 40+ agents."
+description: "X API & Twitter scraper skill for AI coding agents. Builds integrations with the Xquik REST API, MCP server & webhooks: tweet search, user lookup, follower extraction, engagement metrics, giveaway contest draws, trending topics, account monitoring, reply/retweet/quote extraction, community & Space data, mutual follow checks. Works with Claude Code, Cursor, Copilot, Windsurf & 40+ agents."
 ---
 
 # Xquik API Integration
@@ -147,7 +147,7 @@ Add to `.mcp.json` in your project root:
 }
 ```
 
-The MCP server exposes 22 tools covering all API capabilities. Supported platforms: Claude Code, Claude Desktop, ChatGPT, Codex CLI, Cursor, VS Code, Windsurf, OpenCode.
+The MCP server exposes 22 tools covering all API capabilities. Supported platforms: Claude Code, Claude Desktop, ChatGPT, Cursor, VS Code, Windsurf, OpenCode.
 
 ## Workflow Patterns
 

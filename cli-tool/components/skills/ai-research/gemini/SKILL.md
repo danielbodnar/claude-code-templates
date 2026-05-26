@@ -152,7 +152,7 @@ gemini -m gemini-3-pro-preview --approval-mode default \
 
 ## Following Up
 
-- Gemini CLI sessions are typically one-shot or interactive. Unlike Codex, there's no built-in resume functionality.
+- Gemini CLI sessions are typically one-shot or interactive. Unlike Claude Code, there's no built-in resume functionality.
 - For follow-up analysis, start a new Gemini session with context from previous findings.
 - When proposing follow-up actions, restate the chosen model and approval mode.
 - Use `AskUserQuestion` after each Gemini command to confirm next steps or gather clarifications.

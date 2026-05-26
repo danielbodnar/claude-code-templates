@@ -33,4 +33,4 @@ See [GitHub Repository](https://github.com/BenedictKing/context7-auto-research) 
 See the GitHub repository for troubleshooting guides.
 
 ## Related Skills
-- tavily-web, exa-search, firecrawl-scraper, codex-review
+- tavily-web, exa-search, firecrawl-scraper, claude-code-review

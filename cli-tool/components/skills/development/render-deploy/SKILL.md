@@ -156,7 +156,7 @@ claude mcp add --transport http render https://mcp.render.com/mcp --header "Auth
 
 3) Restart Claude Code, then retry `list_services()`.
 
-### Codex
+### Claude Code (alternative)
 
 Walk the user through these steps:
 
@@ -170,12 +170,12 @@ https://dashboard.render.com/u/*/settings#api-keys
 export RENDER_API_KEY="<YOUR_API_KEY>"
 ```
 
-3) Add the MCP server with the Codex CLI:
+3) Add the MCP server with Claude Code:
 ```bash
-codex mcp add render --url https://mcp.render.com/mcp --bearer-token-env-var RENDER_API_KEY
+claude mcp add render --url https://mcp.render.com/mcp --bearer-token-env-var RENDER_API_KEY
 ```
 
-4) Restart Codex, then retry `list_services()`.
+4) Restart Claude Code, then retry `list_services()`.
 
 ### Other Tools
 

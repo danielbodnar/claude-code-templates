@@ -5,7 +5,7 @@ description: "Design patterns for building autonomous coding agents. Covers tool
 
 # 🕹️ Autonomous Agent Patterns
 
-> Design patterns for building autonomous coding agents, inspired by [Cline](https://github.com/cline/cline) and [OpenAI Codex](https://github.com/openai/codex).
+> Design patterns for building autonomous coding agents, inspired by [Cline](https://github.com/cline/cline) and [Claude Code](https://github.com/anthropics/claude-code).
 
 ## When to Use This Skill
 
@@ -756,6 +756,6 @@ class MCPAgent:
 ## Resources
 
 - [Cline](https://github.com/cline/cline)
-- [OpenAI Codex](https://github.com/openai/codex)
+- [Claude Code](https://github.com/anthropics/claude-code)
 - [Model Context Protocol](https://modelcontextprotocol.io/)
 - [Anthropic Tool Use](https://docs.anthropic.com/claude/docs/tool-use)

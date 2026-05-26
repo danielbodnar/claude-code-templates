@@ -80,7 +80,7 @@ swarmvault schedule run <job-id>
 ## Agent Installs
 
 ```bash
-swarmvault install --agent codex
+swarmvault install --agent claude
 swarmvault install --agent claude --hook
 swarmvault install --agent gemini --hook
 swarmvault install --agent opencode --hook

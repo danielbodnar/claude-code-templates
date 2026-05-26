@@ -19,13 +19,13 @@ Pull relevant Notion pages, synthesize findings, and publish clear briefs or rep
 ## Workflow
 ### 0) If any MCP call fails because Notion MCP is not connected, pause and set it up:
 1. Add the Notion MCP:
-   - `codex mcp add notion --url https://mcp.notion.com/mcp`
+   - `claude mcp add notion --url https://mcp.notion.com/mcp`
 2. Enable remote MCP client:
-   - Set `[features].rmcp_client = true` in `config.toml` **or** run `codex --enable rmcp_client`
+   - MCP support is built into Claude Code — no additional configuration needed
 3. Log in with OAuth:
-   - `codex mcp login notion`
+   - `claude mcp add notion`
 
-After successful login, the user will have to restart codex. You should finish your answer and tell them so when they try again they can continue with Step 1.
+After successful login, the user will have to restart Claude Code. You should finish your answer and tell them so when they try again they can continue with Step 1.
 
 ### 1) Gather sources
 - Search first (`Notion:notion-search`); refine queries, and ask the user to confirm if multiple results appear.

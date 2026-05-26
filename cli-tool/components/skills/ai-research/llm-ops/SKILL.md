@@ -15,8 +15,7 @@ tools:
 - claude-code
 - antigravity
 - cursor
-- gemini-cli
-- codex-cli
+- claude-code
 ---
 
 # LLM-OPS -- IA de Producao

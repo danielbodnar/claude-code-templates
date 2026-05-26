@@ -11,13 +11,13 @@ author: openai
 
 ## Naming conventions
 
-- Branch: `codex/{description}` when starting from main/master/default.
+- Branch: `claude/{description}` when starting from main/master/default.
 - Commit: `{description}` (terse).
-- PR title: `[codex] {description}` summarizing the full diff.
+- PR title: `[claude] {description}` summarizing the full diff.
 
 ## Workflow
 
-- If on main/master/default, create a branch: `git checkout -b "codex/{description}"`
+- If on main/master/default, create a branch: `git checkout -b "claude/{description}"`
 - Otherwise stay on the current branch.
 - Confirm status, then stage everything: `git status -sb` then `git add -A`.
 - Commit tersely with the description: `git commit -m "{description}"`

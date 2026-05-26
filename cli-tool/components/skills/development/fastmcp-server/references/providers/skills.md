@@ -161,7 +161,7 @@ FastMCP includes pre-configured providers for popular AI coding tools. Each vend
 | `ClaudeSkillsProvider`   | `~/.claude/skills/`                         |
 | `CursorSkillsProvider`   | `~/.cursor/skills/`                         |
 | `VSCodeSkillsProvider`   | `~/.copilot/skills/`                        |
-| `CodexSkillsProvider`    | `/etc/codex/skills/` and `~/.codex/skills/` |
+| `ClaudeCodeSkillsProvider` | `~/.claude/skills/`                       |
 | `GeminiSkillsProvider`   | `~/.gemini/skills/`                         |
 | `GooseSkillsProvider`    | `~/.config/agents/skills/`                  |
 | `CopilotSkillsProvider`  | `~/.copilot/skills/`                        |
@@ -177,7 +177,7 @@ mcp = FastMCP("Claude Skills")
 mcp.add_provider(ClaudeSkillsProvider())  # Uses ~/.claude/skills/
 ```
 
-`CodexSkillsProvider` scans both system-level (`/etc/codex/skills/`) and user-level (`~/.codex/skills/`) directories, with system skills taking precedence.
+`ClaudeCodeSkillsProvider` scans the user-level `~/.claude/skills/` directory for installed skills.
 
 ## Supporting Files Disclosure
 
