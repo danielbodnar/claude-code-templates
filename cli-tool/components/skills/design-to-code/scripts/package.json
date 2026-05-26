@@ -4,5 +4,8 @@
   "private": true,
   "dependencies": {
     "coderio": "latest"
+  },
+  "overrides": {
+    "uuid": ">=11.1.1"
   }
 }

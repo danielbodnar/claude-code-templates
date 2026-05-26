@@ -32,6 +32,11 @@
     "vitest": "^4.1.6",
     "wrangler": "^4.90.0"
   },
+  "overrides": {
+    "devalue": ">=5.6.4",
+    "undici": ">=6.24.0",
+    "ws": ">=8.21.0"
+  },
   "engines": {
     "node": ">=16.17.0"
   },
