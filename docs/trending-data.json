@@ -1,9 +1,9 @@
 {
-  "lastUpdated": "2026-05-10T04:22:59.065997+00:00Z",
+  "lastUpdated": "2026-05-25T04:33:35.529605+00:00Z",
   "globalStats": {
     "totalComponents": 1849,
     "totalDownloads": 960155,
-    "monthlyDownloads": 33488,
+    "monthlyDownloads": 0,
     "weeklyDownloads": 0,
     "todayDownloads": 0,
     "totalCountries": 185
@@ -53,7 +53,7 @@
         "category": "testing",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 174,
+        "downloadsMonth": 0,
         "downloadsTotal": 8439
       },
       {
@@ -62,7 +62,7 @@
         "category": "git-workflow",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 3,
+        "downloadsMonth": 0,
         "downloadsTotal": 746
       },
       {
@@ -71,7 +71,7 @@
         "category": "security",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 26,
+        "downloadsMonth": 0,
         "downloadsTotal": 879
       },
       {
@@ -80,7 +80,7 @@
         "category": "deployment",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 26,
+        "downloadsMonth": 0,
         "downloadsTotal": 1592
       },
       {
@@ -89,7 +89,7 @@
         "category": "documentation",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 38,
+        "downloadsMonth": 0,
         "downloadsTotal": 1373
       },
       {
@@ -98,7 +98,7 @@
         "category": "documentation",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 70,
+        "downloadsMonth": 0,
         "downloadsTotal": 4973
       },
       {
@@ -107,7 +107,7 @@
         "category": "documentation",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 3,
+        "downloadsMonth": 0,
         "downloadsTotal": 677
       },
       {
@@ -116,7 +116,7 @@
         "category": "performance",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 5,
+        "downloadsMonth": 0,
         "downloadsTotal": 389
       },
       {
@@ -125,7 +125,7 @@
         "category": "performance",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 6,
+        "downloadsMonth": 0,
         "downloadsTotal": 568
       },
       {
@@ -134,7 +134,7 @@
         "category": "setup",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 20,
+        "downloadsMonth": 0,
         "downloadsTotal": 829
       }
     ],
@@ -145,7 +145,7 @@
         "category": "programming-languages",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 182,
+        "downloadsMonth": 0,
         "downloadsTotal": 8559
       },
       {
@@ -154,7 +154,7 @@
         "category": "programming-languages",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 67,
+        "downloadsMonth": 0,
         "downloadsTotal": 3837
       },
       {
@@ -163,7 +163,7 @@
         "category": "performance-testing",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 60,
+        "downloadsMonth": 0,
         "downloadsTotal": 2918
       },
       {
@@ -181,7 +181,7 @@
         "category": "deep-research-team",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 27,
+        "downloadsMonth": 0,
         "downloadsTotal": 1319
       },
       {
@@ -217,7 +217,7 @@
         "category": "deep-research-team",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 68,
+        "downloadsMonth": 0,
         "downloadsTotal": 2526
       },
       {
@@ -226,7 +226,7 @@
         "category": "deep-research-team",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 6,
+        "downloadsMonth": 0,
         "downloadsTotal": 599
       }
     ],
@@ -237,7 +237,7 @@
         "category": "global",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 27,
+        "downloadsMonth": 0,
         "downloadsTotal": 2134
       },
       {
@@ -246,7 +246,7 @@
         "category": "statusline",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 40,
+        "downloadsMonth": 0,
         "downloadsTotal": 2837
       },
       {
@@ -264,7 +264,7 @@
         "category": "permissions",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 33,
+        "downloadsMonth": 0,
         "downloadsTotal": 2042
       },
       {
@@ -273,7 +273,7 @@
         "category": "api",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 2,
+        "downloadsMonth": 0,
         "downloadsTotal": 110
       },
       {
@@ -282,7 +282,7 @@
         "category": "environment",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 11,
+        "downloadsMonth": 0,
         "downloadsTotal": 459
       },
       {
@@ -291,7 +291,7 @@
         "category": "global",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 2,
+        "downloadsMonth": 0,
         "downloadsTotal": 163
       },
       {
@@ -300,7 +300,7 @@
         "category": "model",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 2,
+        "downloadsMonth": 0,
         "downloadsTotal": 107
       },
       {
@@ -309,7 +309,7 @@
         "category": "telemetry",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 9,
+        "downloadsMonth": 0,
         "downloadsTotal": 810
       },
       {
@@ -318,7 +318,7 @@
         "category": "statusline",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 15,
+        "downloadsMonth": 0,
         "downloadsTotal": 1816
       }
     ],
@@ -329,7 +329,7 @@
         "category": "automation",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 3,
+        "downloadsMonth": 0,
         "downloadsTotal": 150
       },
       {
@@ -338,7 +338,7 @@
         "category": "automation",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 169,
+        "downloadsMonth": 0,
         "downloadsTotal": 6851
       },
       {
@@ -347,7 +347,7 @@
         "category": "automation",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 8,
+        "downloadsMonth": 0,
         "downloadsTotal": 819
       },
       {
@@ -356,7 +356,7 @@
         "category": "automation",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 12,
+        "downloadsMonth": 0,
         "downloadsTotal": 434
       },
       {
@@ -365,7 +365,7 @@
         "category": "post-tool",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 15,
+        "downloadsMonth": 0,
         "downloadsTotal": 1157
       },
       {
@@ -374,7 +374,7 @@
         "category": "development-tools",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 51,
+        "downloadsMonth": 0,
         "downloadsTotal": 2320
       },
       {
@@ -383,7 +383,7 @@
         "category": "post-tool",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 10,
+        "downloadsMonth": 0,
         "downloadsTotal": 581
       },
       {
@@ -392,7 +392,7 @@
         "category": "performance",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 10,
+        "downloadsMonth": 0,
         "downloadsTotal": 718
       },
       {
@@ -401,7 +401,7 @@
         "category": "security",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 29,
+        "downloadsMonth": 0,
         "downloadsTotal": 1446
       },
       {
@@ -410,7 +410,7 @@
         "category": "post-tool",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 26,
+        "downloadsMonth": 0,
         "downloadsTotal": 1062
       }
     ],
@@ -421,7 +421,7 @@
         "category": "integration",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 46,
+        "downloadsMonth": 0,
         "downloadsTotal": 3092
       },
       {
@@ -430,7 +430,7 @@
         "category": "database",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 56,
+        "downloadsMonth": 0,
         "downloadsTotal": 3390
       },
       {
@@ -439,7 +439,7 @@
         "category": "web",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 68,
+        "downloadsMonth": 0,
         "downloadsTotal": 3714
       },
       {
@@ -448,7 +448,7 @@
         "category": "devtools",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 116,
+        "downloadsMonth": 0,
         "downloadsTotal": 12840
       },
       {
@@ -457,7 +457,7 @@
         "category": "database",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 21,
+        "downloadsMonth": 0,
         "downloadsTotal": 1226
       },
       {
@@ -466,7 +466,7 @@
         "category": "browser_automation",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 24,
+        "downloadsMonth": 0,
         "downloadsTotal": 1490
       },
       {
@@ -475,7 +475,7 @@
         "category": "deepgraph",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 8,
+        "downloadsMonth": 0,
         "downloadsTotal": 473
       },
       {
@@ -484,7 +484,7 @@
         "category": "deepgraph",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 13,
+        "downloadsMonth": 0,
         "downloadsTotal": 825
       },
       {
@@ -493,7 +493,7 @@
         "category": "browser_automation",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 70,
+        "downloadsMonth": 0,
         "downloadsTotal": 4967
       },
       {
@@ -502,7 +502,7 @@
         "category": "marketing",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 13,
+        "downloadsMonth": 0,
         "downloadsTotal": 410
       }
     ],
@@ -513,7 +513,7 @@
         "category": "development",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 114,
+        "downloadsMonth": 0,
         "downloadsTotal": 3241
       },
       {
@@ -522,7 +522,7 @@
         "category": "development",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 137,
+        "downloadsMonth": 0,
         "downloadsTotal": 4553
       },
       {
@@ -531,7 +531,7 @@
         "category": "document-processing",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 141,
+        "downloadsMonth": 0,
         "downloadsTotal": 3762
       },
       {
@@ -540,7 +540,7 @@
         "category": "creative-design",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 33,
+        "downloadsMonth": 0,
         "downloadsTotal": 947
       },
       {
@@ -549,7 +549,7 @@
         "category": "creative-design",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 329,
+        "downloadsMonth": 0,
         "downloadsTotal": 4964
       },
       {
@@ -558,7 +558,7 @@
         "category": "creative-design",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 3,
+        "downloadsMonth": 0,
         "downloadsTotal": 251
       },
       {
@@ -567,7 +567,7 @@
         "category": "creative-design",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 77,
+        "downloadsMonth": 0,
         "downloadsTotal": 2225
       },
       {
@@ -576,7 +576,7 @@
         "category": "development",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 30,
+        "downloadsMonth": 0,
         "downloadsTotal": 1437
       },
       {
@@ -585,7 +585,7 @@
         "category": "development",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 386,
+        "downloadsMonth": 0,
         "downloadsTotal": 11200
       },
       {
@@ -594,7 +594,7 @@
         "category": "development",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 253,
+        "downloadsMonth": 0,
         "downloadsTotal": 6136
       }
     ],
@@ -605,7 +605,7 @@
         "category": "javascript-typescript",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 5,
+        "downloadsMonth": 0,
         "downloadsTotal": 581
       },
       {
@@ -614,7 +614,7 @@
         "category": "javascript-typescript",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 70,
+        "downloadsMonth": 0,
         "downloadsTotal": 1981
       },
       {
@@ -632,7 +632,7 @@
         "category": "python",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 1,
+        "downloadsMonth": 0,
         "downloadsTotal": 199
       },
       {
@@ -641,7 +641,7 @@
         "category": "javascript-typescript",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 4,
+        "downloadsMonth": 0,
         "downloadsTotal": 223
       },
       {
@@ -650,7 +650,7 @@
         "category": "common",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 23,
+        "downloadsMonth": 0,
         "downloadsTotal": 632
       },
       {
@@ -697,7 +697,7 @@
         "category": "testing",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 174,
+        "downloadsMonth": 0,
         "downloadsTotal": 8439
       },
       {
@@ -706,7 +706,7 @@
         "category": "git-workflow",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 3,
+        "downloadsMonth": 0,
         "downloadsTotal": 746
       },
       {
@@ -715,7 +715,7 @@
         "category": "security",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 26,
+        "downloadsMonth": 0,
         "downloadsTotal": 879
       },
       {
@@ -724,7 +724,7 @@
         "category": "deployment",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 26,
+        "downloadsMonth": 0,
         "downloadsTotal": 1592
       },
       {
@@ -733,7 +733,7 @@
         "category": "documentation",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 38,
+        "downloadsMonth": 0,
         "downloadsTotal": 1373
       },
       {
@@ -742,7 +742,7 @@
         "category": "documentation",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 70,
+        "downloadsMonth": 0,
         "downloadsTotal": 4973
       },
       {
@@ -751,7 +751,7 @@
         "category": "documentation",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 3,
+        "downloadsMonth": 0,
         "downloadsTotal": 677
       },
       {
@@ -760,7 +760,7 @@
         "category": "performance",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 5,
+        "downloadsMonth": 0,
         "downloadsTotal": 389
       },
       {
@@ -769,7 +769,7 @@
         "category": "performance",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 6,
+        "downloadsMonth": 0,
         "downloadsTotal": 568
       },
       {
@@ -778,28 +778,13 @@
         "category": "setup",
         "downloadsToday": 0,
         "downloadsWeek": 0,
-        "downloadsMonth": 20,
+        "downloadsMonth": 0,
         "downloadsTotal": 829
       }
     ]
   },
   "chartData": {
     "dates": [
-      "2026-04-11",
-      "2026-04-12",
-      "2026-04-13",
-      "2026-04-14",
-      "2026-04-15",
-      "2026-04-16",
-      "2026-04-17",
-      "2026-04-18",
-      "2026-04-19",
-      "2026-04-20",
-      "2026-04-21",
-      "2026-04-22",
-      "2026-04-23",
-      "2026-04-24",
-      "2026-04-25",
       "2026-04-26",
       "2026-04-27",
       "2026-04-28",
@@ -814,232 +799,247 @@
       "2026-05-07",
       "2026-05-08",
       "2026-05-09",
-      "2026-05-10"
+      "2026-05-10",
+      "2026-05-11",
+      "2026-05-12",
+      "2026-05-13",
+      "2026-05-14",
+      "2026-05-15",
+      "2026-05-16",
+      "2026-05-17",
+      "2026-05-18",
+      "2026-05-19",
+      "2026-05-20",
+      "2026-05-21",
+      "2026-05-22",
+      "2026-05-23",
+      "2026-05-24",
+      "2026-05-25"
     ],
     "series": {
       "commands": [
-        163,
-        427,
-        1590,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675,
-        1675
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
       ],
       "agents": [
-        1363,
-        3611,
-        7736,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353,
-        8353
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
       ],
       "settings": [
-        130,
-        271,
-        575,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638,
-        638
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
       ],
       "hooks": [
-        156,
-        252,
-        579,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650,
-        650
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
       ],
       "mcps": [
-        164,
-        318,
-        696,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789,
-        789
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
       ],
       "skills": [
-        3055,
-        6272,
-        10785,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496,
-        12496
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
       ],
       "templates": [
-        32,
-        63,
-        87,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89,
-        89
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
       ]
     }
   }
