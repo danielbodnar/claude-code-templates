@@ -45,7 +45,7 @@
     "minimatch": ">=10.2.3",
     "path-to-regexp": ">=6.3.0",
     "picomatch": ">=2.3.2",
-    "smol-toml": ">=1.6.1",
+    "smol-toml": ">=1.9.1",
     "undici": ">=6.24.0"
   },
   "keywords": [
